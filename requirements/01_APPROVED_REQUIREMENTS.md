@@ -1,75 +1,45 @@
-# Согласованное функциональное ТЗ (31.10.2026)
+# Functional requirements
 
-## Концепция
+## Concept
 
-- Персональный **неофициальный** фанатский квест с реальными подарками и веб-сайтом, имитирующим интерфейс Guild Wars 2.
-- Игрок ищет физически размещённые коды; на сайте активирует их для получения кристаллов; приобретает Black Lion Chest Keys; открывает Black Lion Chests; получает книги с подсказками к местам подарков.
-- **Ровно один игрок**. Без регистрации, сети/серверной логики, синхронизации между браузерами и админки.
-- Все коды, предметы, тексты книг и очередность наград задаются в исходном конфиге.
-- Число реальных подарков **пока неизвестно**, следовательно N задаётся массивом `gifts` в конфиге; число обычных сундуков N определяется автоматически.
+A personal gift quest for one player, presented as a Guild Wars 2 style inventory. The player finds physical codes, redeems them for gems, buys keys, opens chests, and reads journals that lead to physical gifts. There is no registration, admin interface, or server-side gameplay. All content is configured in source.
 
-## Сундуки и выдача лута
+The number of physical gifts is configurable: N equals gifts.length. Regular chests start as one stack of N identical items. Their contents follow opening order, regardless of the icon clicked.
 
-- Все обычные сундуки **одинаковые** визуально, лежат в стартовом инвентаре одной стопкой в количестве N.
-- Их содержимое выдаётся в **жёсткой последовательности по номеру открытия**, независимо от конкретной иконки сундука.
-- Каждый обычный сундук требует **1 ключ**, ключ покупается за **100 кристаллов**.
-- Каждый обычный сундук выдаёт **4 предмета**: (1) гарантированная сюжетная книжка-подсказка, (2) гарантированный мусор для продажи, (3) материал, (4) дополнительный предмет из детерминированного пула (мусор/материал/коллекционный/декоративный).
-- Визуально содержимое разнообразно, но генерируется воспроизводимо с фиксированным seed. Суммарная стоимость **всего продаваемого мусора** строго фиксируется экономикой; случайный слот не должен делать экономику бесконтрольной.
-- Сундуки не раскрывают содержание книг до открытия; в окне наград подсказки выпадают в виде предмета-книги.
-- Книжка остаётся в инвентаре и может открываться повторно двойным щелчком; открывается окно чтения. У книги заголовок, редкость, описание, сюжетный текст. Продажа/удаление книжек запрещены.
+## Rewards
 
-## Экономика и промокоды
+- A regular chest consumes one key and produces exactly four items: a clue journal, junk, a material, and a deterministic decorative collectible.
+- The journal is revealed last and remains readable in the Quest Bag. It cannot be sold or deleted.
+- Journal content is hidden until the chest is opened.
+- Decorative variety must not change the total sellable junk budget.
+- Reward state is persisted before animation, preventing duplicate loot on reload.
 
-- Сюжетные коды (включая стартовый) дают **по 100 кристаллов**; каждый можно активировать однократно.
-- Обычные коды **не проверяются на последовательность**: игрок физически получает следующий код с предыдущим реальным подарком. Если несколько кодов станут известны заранее, ограничения покупок не гарантируются — принятое упрощение.
-- Коды вводятся в отдельном окне, игнорируют регистр и внешние пробелы. Ошибочный/использованный код сообщает соответствующий статус.
-- Покупка ключа **только за кристаллы**.
-- Мусор продаётся **вручную** в окне Merchant за золотую валюту GW2 (золото/серебро/медь); есть Sell (отдельно), Sell Junk (весь мусор) и Buyback.
-- В Currency Exchange игрок вручную обменивает монеты на кристаллы; курс фиксированный: **1 серебро = 1 кристалл** (100 меди = 1 кристалл), в отличие от настоящего GW2.
-- **Общая стоимость мусора из всех N обычных сундуков = 90 серебра = 9000 меди**. Для любых предусмотренных N суммы распределяются по сундукам так, чтобы общее значение не менялось. Материалы и коллекционные предметы не дают дополнительных денег/кристаллов.
-- Последний секретный код независимо от обычных даёт **10 кристаллов** — недостающую часть одного ключа.
-- До секретного кода от мусора в сумме можно получить лишь 90 кристаллов — нельзя купить дополнительный ключ только на доходы от продажи.
-- Начальные деньги, кристаллы и ключи — 0 (стартовый сюжетный код даёт первую сотню); стартовая стопка обычных сундуков — N.
+## Economy and codes
 
-## Секретный финал
+- One main code per gift, each granting 100 gems; one key costs 100 gems.
+- Codes ignore case and surrounding whitespace. Each is usable once. Main code order is unrestricted.
+- Junk is sold manually through Sell or Sell Junk. Buyback returns sold items for exactly the original sale price.
+- All regular junk together is worth exactly 90 silver, or 9000 copper, for every supported N.
+- Currency Exchange converts 100 copper to one gem. Whole gems only; leftover copper stays in the wallet.
+- The separate final code grants 10 gems.
+- Materials and collectibles are not sellable. Starting coins, gems, and keys are zero.
 
-- Дополнительный сундук **полностью скрыт**: не отображается в магазине, инвентаре и счётчиках до срабатывания события.
-- Обычно игрок проходит N сундуков, продаёт мусор, конвертирует 90 серебра в 90 кристаллов, вводит отдельный секретный код на 10 кристаллов и **покупает дополнительный ключ**.
-- После этой покупки в инвентаре автоматически возникает **ещё один Black Lion Chest**. Сюрприз — получение нового сундука, а не отдельная покупка сундука. Внешне он может быть обычным; внутри — лучшая, более редкая награда и эффектное открытие.
-- Финальный сундук должен быть **самым лучшим**: легендарная/особая книга с последним посланием, уникальные памятные трофеи, отдельная анимация. Не подлежащие продаже награды.
-- Дополнительный сундук и эффект его выдачи доступны **строго один раз**. Не допускать повторной выдачи при перезагрузке.
-- Для устойчивости к преждевременно купленному ключу рекомендуемый технический триггер: `allMainOpened && finalCodeRedeemed && ownedUnusedKey >= 1 && !bonusChestGranted`. Проверять это после покупки ключа и после изменения условий. В обычном сценарии сундук появляется непосредственно после покупки; таким образом сохраняется сюрприз и не возникает безвыходное состояние при иной последовательности действий.
+## Bonus chest
 
-## Инвентарь
+The hidden chest is absent from initial counts and previews. It appears once all main chests are open, the final code has been redeemed, an unused key is owned, and no bonus chest has been granted. Normal progression reveals it immediately after the extra key purchase. The same eligibility check handles an early secret code or spare key without a dead end.
 
-- Визуально **максимально точная стилизация под GW2**, без абстрактного фэнтези UI. Сохранять характерные размеры, фон, иконки, рамки редкости, поведение тултипов и двойного клика.
-- `Starter Backpack`: 20 слотов для сундуков, ключей, мусора, материалов и пр.
-- `Quest Bag`: отдельно 20 слотов под непродаваемые книги; динамически увеличивается при большом N, чтобы книги никогда не терялись.
-- `Material Storage`: отдельный склад материалов, команда `Deposit All Materials`.
-- Команда `Compact` группирует предметы в начало сумки; поиск по предметам; сетка предметов, тултипы, слоты, контекстное меню, кошелёк.
-- Однотипный лут складывается в стопки (ориентир GW2: до 250 единиц). При нехватке свободного места сюжетные награды не пропадают.
-- Декоративные коллекционные вещи попадают в специальную коллекцию после демонстрации в окне награды — для экономии места.
+Its closed appearance matches the ordinary chest. Opening it consumes one key and grants a legendary journal plus three non-sellable rewards. The final clue is not exposed before opening.
 
-## Окна сайта
+## Inventory and screens
 
-1. Inventory (сумки, поиск, предметы, Compact, Deposit All Materials, кошелёк)
-2. Black Lion Chest (ключ, открытие, 4 награды, анимация)
-3. Merchant (Sell, Sell Junk, Buyback)
-4. Currency Exchange (монеты ↔ кристаллы; в этом квесте нужна покупка кристаллов за монеты)
-5. Gem Store (покупка Black Lion Chest Key за 100 кристаллов)
-6. Redeem Code (ввод одноразового кода)
-7. Book Reader (подсказки и финальная легендарная книга)
+Starter Backpack and Quest Bag each begin with 20 slots and expand for larger quests. Materials can be deposited in Material Storage. Collectibles use a separate collection. Search, automatic compaction, tooltips, selection, context menus, and wallet are available. Items and journals must not disappear because of capacity.
 
-## Сохранение и интерфейс
+Screens include Inventory, Black Lion Chest, Merchant, Currency Exchange, Gem Store, Redeem Code, Book Reader, and Wallet. The initial screen resembles an open inventory, without an introductory landing page.
 
-- **localStorage** сохраняет все состояния: активированные коды, баланс валют, список купленных/потраченных ключей, N открытых обычных сундуков, флаг выдачи/открытия бонусного, инвентарь, книжки, материалы, коллекцию, историю проданных предметов.
-- Нет серверной проверки секретов: в статическом JavaScript исходные коды и подсказки можно извлечь через DevTools. Для домашнего квеста это принятый компромисс.
-- Начальный экран должен выглядеть так, как если бы игрок просто открыл инвентарь персонажа Guild Wars 2; без очевидной оболочки «сайта-квеста».
-- Код и дизайн должны быть воспроизводимыми при сбросе прогресса и неизменном seed.
-- Не создавать интерфейс/материалы, выдающие проект за официальное приложение ArenaNet; необходимость правового дисклеймера описана в `references/REFERENCES.md`.
+## Persistence and presentation
 
-## Принятое, но с деталями на реализацию
+localStorage tracks codes, currencies, keys, opened chests, bonus flags, items, journals, material deposits, and buyback. Export/import supports moving compatible saves between browsers. A fixed configuration produces repeatable rewards after a deliberate reset.
 
-- Какой ровно состав 3 вспомогательных предметов по редкости/весу — настроить позднее; 4 предмета и наличие книжки/мусора/материала зафиксированы.
-- Ввод всех сюжетных кодов независимо от очередности разрешён; проект не пытается технически гарантировать, что игрок не подглядит коды в источнике.
-- Ассеты и точный внешний вид следует сверять с указанными референсами и лицензионными условиями.
+The interface uses game references, compact proportions, item rarity borders, readable tooltips, double-click actions, keyboard controls, and a mobile layout. Audio is optional and reduced-motion preferences are honored.
+
+Current presentation requirements: English text throughout, no em dashes, and no visible copyright, disclaimer, or publication notices. Asset provenance and the third-party license stay in the source tree.

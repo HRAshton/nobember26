@@ -35,7 +35,7 @@ test('1, 2, 5, 10 and 30 gift quests all support exact one bonus key after the s
   s=act(E.sellJunk(c,s));
   s=act(E.exchange(c,s,90));
   assert.equal(s.gems,90);
-  assert.throws(()=>E.buyKey(c,s),/Недостаточно/);
+  assert.throws(()=>E.buyKey(c,s),/Not enough/);
   s=act(E.redeem(c,s,'LAST-SECRET'));
   assert.equal(s.gems,100);
   const bonusKey=E.buyKey(c,s);s=bonusKey.state;
@@ -52,7 +52,7 @@ test('organizer print sheets have exactly one card per main code and one separat
   const c=scalable(n);
   const html=htmlFor(c);
   assert.equal((html.match(/class="card /g)||[]).length,n+1);
-  assert.ok(html.includes('ПОСЛЕ ПОДАРКА №'+(n-1)) || n===1);
+  assert.ok(html.includes('AFTER GIFT #'+(n-1)) || n===1);
   assert.ok(html.includes('LAST-SECRET'));
   assert.equal((html.match(/class="card secret"/g)||[]).length,1);
   assert.equal(html,htmlFor(c),'print output must be reproducible');
@@ -67,7 +67,7 @@ test('printed codes are HTML-escaped and bad configs cannot produce a print shee
  const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'gw2-v07-'));
  const fakeConfig=path.join(tmp,'config.js'),out=path.join(tmp,'private.html');
  fs.writeFileSync(fakeConfig,'window.QUEST_CONFIG='+JSON.stringify({...c,codes:[c.codes[0]]})+';');
- assert.throws(()=>generate(fakeConfig,out),/исправьте ошибки/);
+ assert.throws(()=>generate(fakeConfig,out),/configuration errors/);
  assert.equal(fs.existsSync(out),false);
  fs.rmSync(tmp,{recursive:true,force:true});
 });

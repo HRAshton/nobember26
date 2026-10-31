@@ -1,36 +1,31 @@
-# История решений и оставшиеся вопросы
+# Decisions and remaining content
 
-## Хронология
+## Recorded design decisions, October 31, 2026
 
-- **12:01 UTC, 31.10.2026.** Идея: сайт с инвентарём Guild Wars 2, сундуками Black Lion Chest, виртуальными кристаллами из физических кодов и обменом кристаллов на ключи.
-- **12:02 UTC.** Отказ от админки, предпочтение хардкода ради воспроизводимости.
-- **12:11 UTC.** Переход к согласованию требований вместо немедленной реализации.
-- **12:14 UTC.** Одинаковые сундуки; подарки в заданном порядке; декоративный мусор, но без захламления; подсказка как предмет-книга; localStorage; максимально точная стилизация GW2.
-- **12:16 UTC.** Число подарков пока неизвестно, будет конфигурируемым.
-- **12:18 UTC.** Добавить возможность купить кристаллы за золото от продажи мусора; сумма от мусора должна быть почти равна цене одного ключа; отдельный секретный код дополняет её до стоимости ключа; на очередной сюжетный сундук должно хватать «впритык».
-- **12:23 UTC.** Один игрок, не проверять порядок ввода обычных кодов, контролировать естественный прогресс экономикой. Финальный сундук — лучший. Продажа junk — **ручная**.
-- **12:27 UTC.** Четыре дропа из обычного сундука; секретный сундук скрыть и автоматически дарить после покупки финального ключа.
-- **12:30 UTC.** Пользователь разрешил продолжить проектирование инвентаря.
-- **12:34 UTC.** Пользователь подтвердил весь предложенный состав и механику инвентаря и попросил архивный бэкап перед продолжением.
+- 12:01 UTC: inventory-style quest with Black Lion Chests, physical codes, gems, and keys.
+- 12:02 UTC: source configuration instead of an admin interface.
+- 12:11 UTC: establish requirements before implementation.
+- 12:14 UTC: identical closed chests, ordered gifts, journal clues, localStorage, and close visual references.
+- 12:16 UTC: configurable gift count.
+- 12:18 UTC: sell junk for almost one key; a separate final code supplies the difference.
+- 12:23 UTC: one player, unrestricted main-code order, manual junk sales, strongest reward last.
+- 12:27 UTC: exactly four drops; the extra chest is hidden and granted after the final key purchase in the natural flow.
+- 12:30 UTC: inventory implementation approved.
+- 12:34 UTC: inventory mechanics confirmed and an archive backup requested.
+- Later completion: local assets found, cropped, and embedded; form navigation corrected; Git baseline and completed build saved.
+- English revision: translate all project text, remove em dashes and visible disclaimer/copyright/publication notices; retain source asset records and the third-party license.
 
-## Утверждено сейчас
+## Current fixed behavior
 
-Без админки и сервера; один игрок; localStorage; одинаковые основные сундуки с заданными книгами; 4 дропа; отдельный Quest Bag; материалы в Material Storage; Sell Junk/Buyback; currency exchange; скрытый бонус; 100 gems/key, 100 gems/main code, 90 silver junk total, +10 gems/final code; максимальная визуальная близость к GW2.
+One player, source configuration, localStorage, identical main chests with ordered journals, four rewards, separate Quest Bag, Material Storage, manual sales and buyback, currency exchange, and one hidden final chest. A key and each main code equal 100 gems; total junk equals 90 silver; the final code equals 10 gems.
 
-## Не определено пользователем — НЕ выдавать за факт
+## Content still supplied by the organizer
 
-1. **Количество N** и полный список реальных подарков/их мест.
-2. **Реальные коды** и места, где они находятся; стартовый код; секретный код и способ его обнаружения.
-3. **Тексты, названия и изображения всех книг**, реальная финальная загадка/послание.
-4. **Точные категории, редкости, иконки и веса декоративного лута**, список вещей и состав легендарной награды. Четыре позиции в обычном сундуке уже утверждены.
-5. **Детальный пиксельный дизайн**: разрешение, мобильная поддержка, размеры панелей, горячие клавиши, звуки, эффекты.
-6. **Режим технического сброса прохождения** (для тестирования локальных данных; после сброса лут повторяем).
-7. **Источник легальных графических ассетов** и окончательное размещение дисклеймера «неофициальный фан-проект».
-8. **Раскладка junk по N сундукам** и конкретные цены предметов при неизменной общей выручке 90 silver.
-9. **Семантика Buyback после перезапуска** (в настоящем GW2 есть ограничения; в локальном проекте можно выбрать удобное поведение).
+1. Final gift count and actual physical gifts and locations.
+2. Real codes, their placement, and the method of finding the secret code.
+3. Personalized journal titles, clues, and final message.
+4. Optional custom decorative item choices and imagery.
 
-## Ключевые оговорки
+The delivered configuration uses three demo gifts. Technical choices already implemented include responsive desktop/mobile layouts, shortcuts, optional synthesized sound, reduced motion, growing bags, deterministic junk allocation, persistent buyback, and JSON save transfer.
 
-- «Максимально точная копия» — **визуальная цель**, не утверждение о праве публиковать чужой UI/логотипы как свой продукт. По условиям ArenaNet фан-сайт не должен притворяться официальным и должен содержать заметный статус неофициального проекта.
-- История ответа ассистента ниже — **не автоматический экспорт ChatGPT**, а текстовая реконструкция из доступного контекста; в особых местах визуальные примеры описаны словами.
-- Примеры сообщений на английском (`New item received`, `Sell Junk`) — примерные UI-строки, точная локализация не согласована.
+To repeat a test run, use a separate browser profile or deliberately clear only the quest's storage key. The English release recognizes the exact previous demo save checksums; edits to actual quest content continue to use ordinary compatibility checks.

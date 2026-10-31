@@ -1,6 +1,6 @@
 {
   "retrieved": "2026-10-31",
-  "notes": "GW2 game art belongs to ArenaNet/NCSoft. Custom quest items reuse visual motifs; their names and rules remain quest-specific. Official web pages/forums and metadata API were not visited. Only direct render image URLs were downloaded as allowed.",
+  "notes": "Source pages, exact crop rectangles and source hashes for the locally integrated images. Custom quest item names and behavior are configured separately.",
   "assets": {
     "window_frame": {
       "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/controls/window/502049.png",

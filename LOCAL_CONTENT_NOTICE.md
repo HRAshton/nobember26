@@ -1,7 +1,7 @@
-# Изображения в локальной сборке
+# Local asset contents
 
-Эта завершённая версия содержит настоящие игровые изображения: сторонние скриншоты, вырезки UI и иконки. Они включены в assets/real-ui и встроены в play-offline.html. Предыдущее описание об отсутствии оригинальных игровых изображений относится к исходному шаблону и больше не описывает эту сборку.
+This build includes source screenshots, item icons, UI crops, and compiled PNG assets. The single-file build embeds the compiled images.
 
-Источники, координаты и контрольные суммы: docs/ASSET_SOURCES.json. Лицензия Blish HUD: docs/BLISH_HUD_LICENSE.txt. Игровая графика и названия принадлежат ArenaNet/NCSoft; неофициальный статус отмечен в интерфейсе. Проект подготовлен локально; публичное размещение не выполнялось.
+Source details and crop coordinates are in docs/ASSET_SOURCES.json. The Blish HUD license is retained in docs/BLISH_HUD_LICENSE.txt.
 
-Демо-коды и загадки остаются в config.js. Реальные подарки и их местоположение организатор заполняет самостоятельно.
+Gift content is configured in config.js. The supplied English clues are demo content to replace for your own quest.

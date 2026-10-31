@@ -1,13 +1,13 @@
-# Завершение v1.2 — 31 октября 2026
+# Completed visual build
 
-Встроены 47 локальных элементов из сторонних источников. Вместо прежних SVG-заглушек используются игровые иконки сундука, ключа, материалов и кристалла, вырезки книг, рюкзака, кошелька и навигации. Фон — скриншот старого Lion’s Arch из RPG Site. Фактуры окон, сфера здоровья и кнопка — из стороннего Blish HUD; пустой слот, навыки и мини-карта нарезаны из Hardstuck.
+The project includes 47 local image regions: chest, key, gem and material icons; journal, bag, wallet and navigation crops; window and slot textures; a health orb, skill bar, minimap, and old Lion's Arch background.
 
-HTML остаётся интерактивным: скриншоты не подменяют текст, кнопки, цены или загадки. Мини-карта и навыки декоративные; карта из учебного скриншота представляет Queensdale, а не Lion’s Arch. Книги и трофеи имеют собственные квестовые названия и используют подходящие игровые визуальные мотивы, не утверждая соответствия предметам GW2.
+The interface remains interactive HTML. Text, prices, buttons, and clues are rendered separately from the bitmap surfaces. The minimap and skills are decorative.
 
-Исправлена существовавшая ошибка делегирования кликов: data-screen на контейнере окна больше не превращает отправку формы в переход на тот же экран. Коды и обмен отправляются без пересоздания формы. Движок, экономика, конфиг и формат сохранений не изменены.
+Sources are recorded in docs/ASSET_SOURCES.json. Raw inputs and crop coordinates are in local-input. Generated images, CSS, icon mapping, and hashes are in assets/real-ui. The offline file embeds its assets and skips external requests.
 
-Сборщик встраивает PNG-иконки HUD и карту предметов в play-offline.html; полный локальный набор отключает необязательную загрузку метаданных API. Nine-slice больше не закрывает содержимое окна центральной заливкой. Локальный сервер скрывает dot-файлы (включая Git) и отвечает 400 на повреждённые URL, сохраняя работоспособность.
+The shared click handler recognizes navigation buttons rather than the window container. Submitting a code or exchanging currency no longer recreates the form before it submits. Window frames use nine-slice borders without covering the interactive center.
 
-Исходники вырезок: local-input/screenshots, разметка: local-input/slices.local.json, готовые изображения и отчёт: assets/real-ui. Все источники, прямые URL, координаты и SHA-256 записаны в docs/ASSET_SOURCES.json. Страницы официального сайта и форумы игры не открывались.
+Version 1.3 translates the interface, accessibility labels, engine messages, demo journals, tools, tests, and documentation into English. The copyright footer, publication notices, and em dashes have been removed. The third-party source license remains with the assets.
 
-Проверки описаны в TEST_RESULTS.md. Скриншоты фактической сборки — previews/. Персональные тексты подарков не выдумывались: в config.js сохранено исходное демо.
+The translated demo preserves saves from the preceding unchanged demo. Ordinary configuration compatibility validation remains active. See TEST_RESULTS.md and previews/ for verification.

@@ -1,41 +1,23 @@
-# Карточки с найденными кодами — для организатора
+# Printable code cards
 
-Сайт и квест работают **без админ-панели**. Код каждого подарка редактируется прямо в `config.js`, как и раньше.
+Edit the codes in `config.js`, then run:
 
-## Генерация печатного листа
-
-В корне проекта выполните:
-
-```bash
+```sh
 npm run validate
 npm run print:cards
 ```
 
-Второй вызов создаёт `black-lion-PRIVATE-code-cards.html` **в соседней папке относительно проекта**, а не в самом сайте. Откройте его в браузере, нажмите `Ctrl+P`, выберите A4 и включите печать фона (если хотите цветные игровые карточки).
+The default output is `black-lion-PRIVATE-code-cards.html` beside the project directory. Open it, press Ctrl+P, select A4, and enable background printing for colored cards.
 
-Альтернатива с конкретным путём:
-
-```bash
-npm run print:cards -- /home/user/Desktop/my-private-codes.html
-```
-
-Или в Windows PowerShell:
+Choose another path with:
 
 ```powershell
-npm run print:cards -- "C:\Users\USER\Desktop\my-private-codes.html"
+npm run print:cards -- "C:\Users\USER\Desktop\gift-codes.html"
 ```
 
-## Распределение
+- QUEST START: hand over before the first chest.
+- AFTER GIFT #1: place the second main code with the first physical gift.
+- AFTER GIFT #2: place the third main code with the second physical gift, continuing as needed.
+- SECRET CODE: hide separately for discovery near the ending.
 
-- **START**: отдать перед первым сундуком.
-- **После подарка №1**: карточка со вторым основным кодом.
-- **После подарка №2**: карточка с третьим основным кодом, и т. д.
-- **SECRET**: спрятать отдельно, чтобы было найдено ближе к концу. После продажи мусора он добавит недостающие кристаллы.
-
-При N подарках лист содержит **N основных карточек и 1 секретную**, то есть N+1.
-
-## Конфиденциальность
-
-Не публикуйте распечатку/HTML с карточками на том же хостинге, что и сайт! Файл содержит все коды. В публичный сайт загружаются только HTML, JS, CSS и ассеты игры. В `config.js` коды всё равно доступны в исходниках браузера — это сознательный компромисс для дружеского квеста одного игрока.
-
-Генератор не отправляет данные в сеть, проверяет конфиг перед печатью, экранирует HTML и не меняет ни игровой прогресс, ни ваши коды.
+For N gifts, the sheet contains N main cards and one secret card. The generator validates the configuration, escapes HTML, and leaves game progress unchanged.

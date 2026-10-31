@@ -8,7 +8,7 @@ if %errorlevel% neq 0 (echo Cannot create virtual environment & pause & exit /b 
 .venv\Scripts\python.exe -m pip install -r requirements-local.txt
 if %errorlevel% neq 0 (echo Cannot install Pillow & pause & exit /b 1)
 .venv\Scripts\python.exe tools\finish_local.py --strict --standalone
-if %errorlevel% neq 0 (echo Read docs\LOCAL_ASSET_PIPELINE_RU.md & pause & exit /b 1)
+if %errorlevel% neq 0 (echo Read docs\LOCAL_ASSET_PIPELINE.md & pause & exit /b 1)
 .venv\Scripts\python.exe tools\create_contact_sheet.py
 if %errorlevel% neq 0 exit /b 1
 where node >nul 2>nul

@@ -32,18 +32,18 @@ test('an invalid or damaged save cannot replace existing local progress',()=>{
   const original=storage.getItem(C.storageKey);
   const v=E.exportSave(C,current);
   assert.throws(()=>E.importSave(C,storage,'{no-json'),/JSON/);
-  assert.throws(()=>E.importSave(C,storage,{}),/формат/);
+  assert.throws(()=>E.importSave(C,storage,{}),/format/);
   const invalid=structuredClone(v);invalid.state.opened=999;
-  assert.throws(()=>E.importSave(C,storage,invalid),/больше сундуков/);
+  assert.throws(()=>E.importSave(C,storage,invalid),/more chests/);
   const malformed=structuredClone(v);malformed.state.books=[];
-  assert.throws(()=>E.importSave(C,storage,malformed),/Количество/);
+  assert.throws(()=>E.importSave(C,storage,malformed),/journal count/);
   assert.equal(storage.getItem(C.storageKey),original);
 });
 test('cannot import a save from another gift configuration',()=>{
   const s=E.initial(C);const storage=store();
   const backup=E.exportSave(C,s);
-  const edited=structuredClone(C);edited.gifts[1].clue='Новая тайная подсказка';
-  assert.throws(()=>E.importSave(edited,storage,backup),/другой версии/);
+  const edited=structuredClone(C);edited.gifts[1].clue='A new secret clue';
+  assert.throws(()=>E.importSave(edited,storage,backup),/different quest version/);
   assert.equal(storage.getItem(C.storageKey),null);
 });
 test('old v0.5 save continues to load without migration or loss',()=>{

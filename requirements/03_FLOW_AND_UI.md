@@ -1,71 +1,35 @@
-# Сценарии, навигация и поведение экранов
-
-## Первый визит
-
-На экране — интерфейс Inventory, визуально очень похожий на GW2. В Starter Backpack лежит стопка из `N` одинаковых Black Lion Chests. Кристаллов, золота и ключей пока нет. Игрок находит первый код на реальном носителе, открывает окно Redeem Code и пополняет gems.
+# Flow and interface behavior
 
 ## Inventory
 
-- Тёмная полупрозрачная панель в эстетике GW2, сетка квадратных слотов, списки сумок, счётчик слотов, цветные границы редкости, тултипы, контекстное меню, двойной клик, верхние инструменты и нижняя строка кошелька.
-- Starter Backpack — 20 обычных слотов. Отдельная Quest Bag — 20 слотов с автоматическим расширением для книг; Material Storage — отдельная вкладка/хранилище.
-- Идентичные предметы складываются в стопки до 250 единиц; материалы отправляются на склад кнопкой Deposit All Materials; Compact уплотняет предметы; Search фильтрует/подсвечивает соответствующие предметы.
-- Книги нельзя продавать или уничтожать. При переполнении инвентаря обеспечить очередь выдачи и/или сохранение наград, не потерю.
-- Основные сундуки N лежат одной стопкой, каждый открывается за один ключ. После N открытий стопка исчезает.
-- Проект является неофициальным; визуальная схожесть не должна создавать впечатление принадлежности ArenaNet.
+The first screen is a character inventory over the game-world background. Regular chests form one stack; no final-chest count or secret-code reminder is shown.
 
-## Black Lion Chest
+Double-click uses or reads an item. Right-click opens its context menu. Keyboard focus exposes tooltips and supports Enter or Space. On touch devices, selection plus Use / Read provides the primary action, and a long press opens the menu.
 
-- Использование/двойной клик на сундук при наличии ключа уменьшает ключи и число сундуков на 1; выдаёт следующую по порядку книгу и 3 дополнительные награды.
-- Награды показывать в окне получения с иконками, редкостью, количеством, звуком/анимацией (при доступных законных ассетах и по усмотрению реализации).
-- Основные сундуки дают 4 предмета: книгу, junk, материал, детерминированный декоративный предмет. Случайность только видимая; алгоритм воспроизводим.
-- Содержимое книги до открытия не показывать.
-- Тайный финальный сундук до получения не виден. Он выдаёт особенно ценные **непродаваемые** предметы и легендарную книгу с эффектным представлением.
+Starter Backpack holds ordinary items, Quest Bag holds journals, Material Storage holds deposited materials, and Collections holds decorative trophies. Search dims nonmatching items. Compact keeps items grouped. Deposit All Materials moves materials without selling them. Capacity grows to prevent lost rewards.
 
-## Redeem Code
+## Chests and journals
 
-- Ввод: тримминг пробелов, регистронезависимая нормализация.
-- Статусы: неизвестный код, уже активирован, успех +N gems.
-- Использованные коды сохраняются; повторный ввод не начисляет gems.
-- Обычные коды не ограничены искусственным сюжетным порядком.
-- Финальный код даёт 10 gems и считается отдельным секретом; активировать его можно по общим правилам, но до выполнения условий бонус не раскрывается.
+The chest window displays chest and key counts. Without a key it offers the store. Opening commits the next four rewards, consumes one key and one chest, and then runs the presentation animation. Skip and reduced motion preserve the same outcome.
 
-## Gem Store
+Three decorative drops appear before the journal. Each reward can be inspected, and the journal can be read immediately. Closing the reader does not consume it. Previous and Next navigate only collected journals. The final journal has a distinct legendary presentation.
 
-- Визуальная стилизация под Black Lion Trading Company/Gem Store.
-- Стандартный ключ — 100 gems. При покупке тратятся gems, в инвентарь/кошелёк добавляется один Black Lion Chest Key. Никаких реальных платежей.
-- Специальной витрины бонусного сундука нет. В нормальном сценарии покупка последнего ключа порождает скрытый бонусный сундук как **неожиданный подарок**, с уведомлением о получении предмета.
+## Codes and store
 
-## Merchant
+Redeem Code normalizes case and surrounding whitespace. Unknown and reused codes produce clear messages without changing state. Success credits the configured gem amount. Main codes are accepted in any order.
 
-- Sell: продать один продаваемый предмет; Sell Junk: продать все junk; Buyback: вернуть недавно проданные предметы по цене, по которой они были проданы.
-- Показать цены и баланс в золоте/серебре/меди. Книги, материалы и коллекционные предметы не продаются (в рамках экономики квеста).
-- Запрет бесконечной монетизации через Sell/Buyback.
+The store sells a Black Lion Chest Key for 100 gems. There is no advance bonus-chest listing. The normal final purchase produces a New Item Acquired notification with one ordinary-looking chest.
 
-## Currency Exchange
+## Merchant and exchange
 
-- Отдельное окно с текущим курсом, вводом суммы, предпросмотром результата и подтверждением.
-- Фиксированный курс `100 copper -> 1 gem` (одна серебряная монета за один кристалл). На обратный обмен пока нет игрового запроса; можно не реализовывать.
-- Не допускать дробных кристаллов. В кошельке учитывать оставшиеся copper.
+Sell handles one junk item, Sell Junk handles all junk, and Buyback returns recent sales at the same price. Books, materials, and collectibles cannot be sold. Prices and balances use gold, silver, and copper.
 
-## Book Reader
+Currency Exchange shows the fixed rate and available balance and accepts a whole number of gems to buy. One gem costs 100 copper. Leftover copper remains in the wallet. Reverse exchange is not required.
 
-- Двойной клик по книжке открывает окно чтения с заголовком и текстом подсказки.
-- После закрытия предмет не исчезает, всегда можно перечитать.
-- Книги сохраняются в порядке выпадения; финальная книга имеет особое оформление и редкость.
-- Квестовый текст может быть иносказательным; конкретные тексты и места подарков будут внесены позже.
+## Wallet and controls
 
-## Анимации и атмосфера
+Wallet shows currencies and keys and provides JSON export/import. Import requires confirmation before replacing progress and validates compatibility before writing the save.
 
-- Старт: словно открыли инвентарь живого персонажа GW2, не «лендинг квеста».
-- Обычное получение лута — лаконичная анимация оригинального интерфейса.
-- Тайный сундук появляется неожиданно **после покупки ключа**: стандартное уведомление «New item received / Black Lion Chest ×1» и новая иконка в инвентаре.
-- Открытие финала — наиболее торжественная анимация, особая книга и уникальные трофеи; финальный сундук сам по себе заранее не рекламируется.
+I opens Inventory, O opens the store, M toggles audio, and Escape closes the current menu, overlay, or window. Desktop windows can be dragged by the title bar while keeping it reachable. Mobile navigation remains usable at narrow widths. Decorative skills and the minimap do not simulate gameplay.
 
-## Видимые vs скрытые счётчики
-
-- Дополнительный сундук не включать в изначальную стопку N, прогресс-бар, счётчики наград и превью.
-- Перед финальным появлением в интерфейсе нет ярлыка «секретный сундук» и сообщения «осталось найти секретный код».
-
-## Навигация
-
-Минимум семь окон: Inventory, Black Lion Chest, Merchant, Currency Exchange, Gem Store, Redeem Code, Book Reader. Способ открытия каждого окна (иконки панели, горячие клавиши, контекстное меню) должен быть уточнён в UI-проектировании, но не добавлять лишних «квестовых» экранов.
+The interface text, accessibility labels, journals, status messages, and printable cards use English. No copyright footer, disclaimer label, publication notice, or em dash is shown.

@@ -1,76 +1,38 @@
-# Экономика: числа, инварианты и крайние случаи
+# Economy and invariants
 
-## Актуальные утверждённые числа
-
-| Параметр | Значение |
+| Parameter | Value |
 |---|---:|
-| Цена Black Lion Chest Key | 100 gems |
-| Награда за любой **основной** сюжетный код | 100 gems |
-| Секретный финальный код | 10 gems |
-| Обмен серебра на кристаллы | 1 silver → 1 gem |
-| 1 silver | 100 copper |
-| Выручка **всего** junk из обычных сундуков | 90 silver = 9000 copper |
-| Один обычный сундук | 1 key, 4 item drops |
-| Начальные gems, coin, keys | 0 |
-| Начальные обычные сундуки | N = gifts.length |
-| Скрытые дополнительные сундуки | 1 |
+| Key price | 100 gems |
+| Each main code | 100 gems |
+| Final code | 10 gems |
+| Exchange rate | 1 silver to 1 gem |
+| One silver | 100 copper |
+| Total sellable junk from regular chests | 90 silver, or 9000 copper |
+| Each ordinary opening | 1 key, 4 rewards |
+| Initial gems, coins, keys | 0 |
+| Initial ordinary chests | N = gifts.length |
+| Hidden extra chests | 1 |
 
-**Историческое уточнение:** в раннем примере фигурировали `1 золото = 10 кристаллов` и `9 золота`, но в более поздней и последней согласованной спецификации установлены `1 серебро = 1 кристалл` и `90 серебра` суммарной стоимости junk. Использовать именно последнюю версию. В другом раннем примере основной сундук содержал 4 предмета в разных комбинациях — итоговый состав указан выше.
+Earlier examples using nine gold or one gold for ten gems were superseded by the values above.
 
-## Почему нельзя купить лишний ключ раньше финала
+With k main codes redeemed, junk alone brings total income to at most 100*k + 90 gems, below the next key price of 100*(k+1). The final code adds the missing 10. A completed natural run therefore funds exactly N+1 keys for N+1 chests and ends with zero currency after all exchanges.
 
-При наличии `k` активированных **основных** кодов (k ≤ N), даже если весь возможный мусор уже продан и монеты конвертированы, общий приток кристаллов без секретного кода не превышает `100*k + 90`. Поэтому максимальное количество доступных покупок ключей — k (поскольку `100*k + 90 < 100*(k+1)`).
+Main codes are not ordered in software. Knowing several codes early may fund several ordinary keys; physical placement controls progression. This does not create extra income.
 
-После секретного кода приток становится `100*k + 90 + 10 = 100*(k+1)` при продаже **всего** мусора. По завершении N обычных сундуков получится ровно N+1 ключей на N+1 сундуков и баланс 0, если всё продано и обменено.
+All arithmetic uses integer copper. Exchange must never round up. Junk is allocated deterministically across chests and always totals 9000 copper; the current engine uses repeating weights 2, 3, and 4 with integer remainder distribution. A decorative item must never add sellable value outside that budget.
 
-**Важная оговорка:** у игрока могут оказаться сразу два сюжетных кода, если он получит их раньше положенного физически. Проект намеренно **не навязывает порядок ввода обычных кодов**. Значит, в некотором состоянии он может позволить купить несколько обычных ключей; это не нарушение согласованного принципа, так как ключи обеспечены именно найденными кодами. Требование «впритык» относится к естественному последовательному прохождению.
+Merchant sales remove the item and credit its exact value. Buyback debits that exact value and returns it. Repeated sale and buyback cannot generate profit. No action may create a negative balance, redeem a code twice, or duplicate rewards after reload.
 
-## Денежная математика и округление
+## Natural progression
 
-- Всё считать целыми copper, чтобы избежать ошибок десятичных дробей.
-- При курсе 100 copper за 1 gem — обменивать целое число кристаллов, остаток меди сохраняется в кошельке. **Не округлять вверх.**
-- Алгоритм распределения выручки по N сундукам: разбить `9000` copper на N целых частей: `base = floor(9000/N)`, остаток по 1 меди первым `9000 % N` сундукам. Для реалистичного N вплоть до 9000 каждому сундуку достанется хотя бы 1 copper; если N > 9000, нужно изменить формат лута/финансовые параметры или разрешить часть сундуков без продаваемого junk. Реальное N будет определено позднее.
-- Четвёртый «случайный» слот может иметь разные визуальные предметы, но дополнительные продаваемые предметы должны входить в **тот же** финансовый бюджет, а не увеличивать общую выручку сверх 9000 copper.
-- Материалы, декоративное оружие и коллекционные трофеи не приносят монеты: иначе возможно собрать 100 gems до финального кода.
-- При продаже через Merchant убирать товары из инвентаря и прибавлять цену к кошельку. Buyback вычитает **ровно цену продажи**, возвращает предмет; перепродажа не создаёт прибыль. Нельзя выкупить предмет без необходимых coin.
-- Не допускать отрицательных балансов, повторной активации кодов и повторной выдачи наград при обновлении страницы.
+1. Redeem the starting code, buy a key, open the first chest.
+2. Read journal i to find gift i and, for i less than N, its next code.
+3. Sell junk and exchange the proceeds manually.
+4. After all ordinary chests, 90 gems from junk plus the final 10 fund the last key.
+5. The hidden extra chest appears and contains the final journal.
 
-## Граф естественного прохождения
+For five gifts, one illustrative junk split is 10s, 15s, 20s, 20s, 25s. Accumulated income after buying each ordinary key is 10, 25, 45, 65, then 90 gems. The secret code and final key purchase bring it back to zero. Only the total is required; this example is not the engine's fixed split.
 
-1. Ввод стартового кода: +100 gems → покупка ключа (0) → первый сундук.
-2. Обычный сундук `i` выдаёт книгу с подсказкой к подарку `i` + junk + materials + случайный предмет.
-3. Найденный реальный подарок содержит следующий сюжетный код (для i < N).
-4. Продаваемый мусор постепенно суммарно формирует 90 silver. Монеты вручную обмениваются на gems.
-5. После N сундуков секретный код +10 gems дополняет накопление от junk до 100 gems.
-6. Покупается последний ключ → (обычно в этот момент) выдаётся скрытый дополнительный сундук → открытие лучшего сундука.
+Check bonus eligibility after key purchases and ordinary openings: all main chests open, final code redeemed, at least one unused key, bonus not yet granted. This supports early code redemption and spare keys without revealing the bonus prematurely.
 
-## Воспроизводимая симуляция для N=5
-
-Ниже пример **одного возможного распределения** junk по сундукам: `10s, 15s, 20s, 20s, 25s`. Эта разбивка НЕ обязательна; сумма — 90s.
-
-| Шаг | Кристаллы после обмена и покупки текущего ключа |
-|---|---:|
-| Основной код №1 (+100), ключ №1 (-100), junk +10 | 10 |
-| Основной код №2 (+100), ключ №2 (-100), junk +15 | 25 |
-| Основной код №3 (+100), ключ №3 (-100), junk +20 | 45 |
-| Основной код №4 (+100), ключ №4 (-100), junk +20 | 65 |
-| Основной код №5 (+100), ключ №5 (-100), junk +25 | 90 |
-| Секретный код (+10), ключ №6 (-100) | 0 |
-
-## Секретный сундук без жёсткого контроля порядка кодов
-
-При обычной последовательности игрок покупает финальный ключ **после** завершения N сундуков, и бонусный сундук появляется тут же. Для крайних случаев, когда секретный код введён раньше или ключ куплен заранее, безопаснее проверять условие появления при событиях `BUY_KEY`, `OPEN_MAIN_CHEST`, `REDEEM_FINAL_CODE`:
-
-`openedMain === N && finalCodeUsed && keysOwned >= 1 && !bonusChestGranted`
-
-Это **техническая рекомендация**, полностью совместимая с согласованным сценарием, а не новая обязательная сюжетная блокировка. Она исключает ситуацию, когда лишний ключ уже куплен, но выдача бонусного сундука никогда не происходит.
-
-## Пример негативных кейсов
-
-- Попытка открыть сундук без ключа → предлагает магазин ключей, не тратит сундук.
-- Недостаточно gems → покупка запрещена, состояние неизменно.
-- Попытка купить второй ключ только на доходы от мусора без нового кода → запрещена.
-- Final code введён до конца N сундуков → скрытый сундук не показывать преждевременно.
-- 90s junk обменены до конца прохождения → накопление <100, лишнего ключа нет.
-- Страница обновлена в момент награды → одна и та же книга/мусор/сундук не дублируются.
-- При повторной активации кода баланс не меняется.
+Reject opening without a key, purchasing with too few gems, exchanging without enough coins, and buying back without the sale value. An early final code cannot expose the chest before main completion. Refreshing during an animation cannot duplicate books, junk, or chest rewards.

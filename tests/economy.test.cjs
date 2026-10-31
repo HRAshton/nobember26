@@ -12,8 +12,8 @@ test('new player sees exactly N identical regular chests and no bonus',()=>{
 });
 test('ordinary promo codes can be entered in any order, but only once',()=>{
   let s=E.initial(C);s=doAction(E.redeem(C,s,'  gift-two '));assert.equal(s.gems,100);
-  assert.throws(()=>E.redeem(C,s,'GIFT-TWO'),/уже использован/);
-  assert.throws(()=>E.redeem(C,s,'FAKE'),/не найден/);
+  assert.throws(()=>E.redeem(C,s,'GIFT-TWO'),/already been redeemed/);
+  assert.throws(()=>E.redeem(C,s,'FAKE'),/not found/);
 });
 test('main storyline, 4 rewards per chest, exact 90 silver, and secret chest',()=>{
   let s=E.initial(C);
@@ -32,7 +32,7 @@ test('main storyline, 4 rewards per chest, exact 90 silver, and secret chest',()
   assert.equal(s.junk.reduce((total,x)=>total+x.qty*x.unitCopper,0),9000);
   s=doAction(E.sellJunk(C,s));assert.equal(s.goldCopper,9000);
   s=doAction(E.exchange(C,s,90));assert.equal(s.gems,90);
-  assert.throws(()=>E.buyKey(C,s),/Недостаточно кристаллов/);
+  assert.throws(()=>E.buyKey(C,s),/Not enough gems/);
   s=doAction(E.redeem(C,s,'LAST-SECRET'));assert.equal(s.gems,100);
   const last=E.buyKey(C,s);s=last.state;
   assert.equal(s.bonusGranted,true);assert.equal(s.keys,1);
@@ -41,7 +41,7 @@ test('main storyline, 4 rewards per chest, exact 90 silver, and secret chest',()
   assert.equal(bonus.bonus,true);assert.equal(s.bonusOpened,true);assert.equal(s.books.length,4);
   assert.equal(s.books[3].rarity,'legendary');
   assert.equal(s.keys,0);
-  assert.throws(()=>E.open(C,s),/Нужен|нет сундуков/);
+  assert.throws(()=>E.open(C,s),/required|no chests/);
 });
 test('bonus cannot appear without final code; buying final code early cannot softlock',()=>{
   let s=E.initial(C);
@@ -74,7 +74,7 @@ test('junk allocation works for arbitrary gift count and totals exactly 9000 cop
   }
 });
 test('no rewards can be opened without a key; no gems can be exchanged without coins',()=>{
-  const s=E.initial(C);assert.throws(()=>E.open(C,s),/Нужен/);assert.throws(()=>E.exchange(C,s,100),/Недостаточно/);
+  const s=E.initial(C);assert.throws(()=>E.open(C,s),/required/);assert.throws(()=>E.exchange(C,s,100),/Not enough/);
 });
 test('materials can be deposited while books remain accessible',()=>{
   let s=E.initial(C);s=doAction(E.redeem(C,s,'START-LION'));s=doAction(E.buyKey(C,s));s=doAction(E.open(C,s));
@@ -96,7 +96,7 @@ test('individual material deposit does not change the books, junk, or the econom
   s=doAction(E.depositOne(C,s,id));
   assert.equal(s.materials[0].deposited,true);assert.equal(s.books.length,1);
   assert.equal(s.junk.reduce((x,j)=>x+j.qty*j.unitCopper,0),beforeValue);
-  assert.throws(()=>E.depositOne(C,s,id),/уже в хранилище/);
+  assert.throws(()=>E.depositOne(C,s,id),/already in storage/);
 });
 test('legacy v0.3 localStorage save can be read in v0.4 without loss',()=>{
   const s=E.initial(C);s.gems=42;
@@ -110,7 +110,7 @@ test('text edits invalidate v0.4 progress without changing gift count',()=>{
   const original=E.initial(C);original.gems=80;
   const data={};const storage={getItem:k=>data[k]??null,setItem:(k,v)=>{data[k]=v}};
   E.write(C,storage,original);
-  const updated=structuredClone(C);updated.gifts[0].clue='Новая загадка после правки';
+  const updated=structuredClone(C);updated.gifts[0].clue='A new clue after editing';
   const restored=E.read(updated,storage);
   assert.equal(restored.gems,0);
   assert.notEqual(E.contentFingerprint(updated),original.contentFingerprint);

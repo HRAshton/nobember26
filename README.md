@@ -1,44 +1,45 @@
-# Black Lion Gift Quest — v1.2
+# Black Lion Gift Quest v1.3
 
-Готовый локальный неофициальный фан-квест для одного игрока по мотивам Guild Wars 2. Настоящие игровые изображения уже подключены и включены в автономную сборку. Никаких покупок за реальные деньги.
+A personal, offline gift quest with a Guild Wars 2 style inventory. Find physical notes, redeem codes for gems, buy keys, open chests, and read journals that lead to the next gift.
 
-## Запуск
+## Start
 
-- Откройте `play-offline.html` двойным щелчком: графика, стили и код встроены в один файл.
-- Рекомендуется `start-windows.bat` или `npm start`, затем http://localhost:3000. Нужен Node.js 18+.
-- Интернет, Python и загрузка дополнительных ресурсов для игры не нужны. При `file://` поддержка сохранений зависит от браузера; для стабильного прогресса используйте локальный сервер.
+- Run `start-windows.bat` or `npm start`, then open http://localhost:3000. Requires Node.js 18 or later.
+- Alternatively, open `play-offline.html`. Images, styles, and scripts are embedded in this single file.
+- Playing requires no internet connection or Python installation. A local server provides consistent browser save behavior.
 
-## Подготовка своего квеста
+## Personalize
 
-В `config.js` сохранены исходные демонстрационные подарки, коды и загадки. Реальные места и подарки не были предоставлены. Замените их по `docs/CUSTOMIZATION.md`, выполните `npm run validate`, затем `python build_standalone.py`. Не меняйте конфигурацию посреди прохождения: сохранения привязаны к содержимому квеста.
+Edit `config.js` using `docs/CUSTOMIZATION.md`. It currently contains three demo gifts and English clues. The number of regular chests follows the `gifts` array.
 
-Демо-коды: `START-LION`, `GIFT-ONE`, `GIFT-TWO`, `LAST-SECRET`.
-Печатные карточки организатора: `npm run print:cards`; подробности — `docs/PRINTABLE_CODES.md`.
+Demo codes: `START-LION`, `GIFT-ONE`, `GIFT-TWO`, `LAST-SECRET`.
 
-## Механика и управление
+After editing, run `npm run validate` and `python build_standalone.py` to update the offline file. `npm start` reads the current configuration directly. Generate paper cards with `npm run print:cards`; see `docs/PRINTABLE_CODES.md`.
 
-Каждый основной код даёт 100 кристаллов; ключ стоит 100. В каждом сундуке ровно четыре предмета, книга появляется последней и содержит подсказку. Мусор продаётся вручную у Merchant; весь мусор за квест стоит ровно 90 серебра. Обмен 1 серебра на 1 кристалл и секретные 10 кристаллов позволяют купить последний ключ и получить скрытую награду. Количество обычных сундуков определяется массивом `gifts`.
+## Play
 
-`I` — Inventory, `O` — Black Lion, `M` — звук, `Esc` — закрыть окно. Двойной клик использует предмет; ПКМ открывает меню. На телефоне выберите предмет и нажмите Use / Read; удержание открывает меню. Стрелки в книге переключают только полученные книги. Панель навыков и мини-карта декоративные.
+Each main code grants 100 gems. A key costs 100 gems. Each regular chest gives four items: a journal, junk, a material, and a collectible. The journal appears last and remains readable in the Quest Bag.
 
-Прогресс хранится только в текущем браузере. Wallet → Export Save / Import Save переносит сохранение JSON. Все коды и загадки доступны в исходниках; это домашний квест, а не защита секретов.
+Sell junk manually at the Merchant. All regular junk together is worth 90 silver, which exchanges for 90 gems. The secret code grants the remaining 10 gems. Buying the extra key reveals a final chest with a legendary journal.
 
-## Графика
+`I` opens Inventory, `O` opens Black Lion, `M` toggles sound, and `Esc` closes an overlay or window. Double-click to use an item, right-click for its menu. On a phone, select an item and press Use / Read; hold an item for its menu. Arrow keys in the reader navigate collected journals. The skill bar and minimap are decorative.
 
-47 локальных элементов: игровые иконки сундука, ключа, кристалла и материалов; вырезки сумок, книг и меню; фактуры окон и слотов; сфера здоровья, навыки, мини-карта и вид старого Lion’s Arch. Источники — сторонние Hardstuck, RPG Site, GW2.app и Blish HUD. Официальные страницы игры и форумы не посещались. С render-сервера скачивались только прямые изображения по ссылкам, найденным в сторонней базе предметов.
+## Saves
 
-Готовая сборка не обращается к внешним сервисам. Необязательный прежний API-фолбэк остаётся для варианта без локальных иконок и пропускается при полном локальном наборе. Автономная версия содержит собственные данные изображений и не требует соседней папки assets.
+Progress is stored in the current browser. Wallet provides Export Save and Import Save for transferring progress. The English demo upgrades saves and JSON backups from the previous unchanged demo while preserving currencies, items, redeemed codes, and chest progress. Other configuration changes retain the existing compatibility checks.
 
-Точные URL, координаты вырезок и контрольные суммы: `docs/ASSET_SOURCES.json`. Происхождение и условия: `docs/VISUAL_REFERENCES.md`, `docs/BLISH_HUD_LICENSE.txt`, `LOCAL_CONTENT_NOTICE.md`. Для изменения скина используйте `docs/LOCAL_ASSET_PIPELINE_RU.md`.
+## Assets and development
 
-## Проверки и пересборка
+The 47 local assets include item and menu icons, window and slot textures, a health orb, skill images, a minimap crop, and an old Lion's Arch background. Source pages, exact crop rectangles, and source hashes are in `docs/ASSET_SOURCES.json`. The third-party license file is retained beside the asset records.
 
-- `npm test` — 31 тест механики, конфигурации, сохранений и сервера.
-- `npm run validate` — экономика и конфигурация.
-- `python tools/finish_local.py --check --strict` — наличие всех обязательных слоёв.
-- `python tools/finish_local.py --strict --standalone` — нарезка и автономная сборка (нужен Pillow из requirements-local.txt).
-- `python tools/selftest.py` — проверка нарезки и отклонения небезопасных путей.
-- `python scripts/browser-smoke.py` — полный сценарий, финал, мобильный экран, автономность; нужен Playwright и Edge на Windows или Chromium на Linux. Путь можно задать через QUEST_BROWSER_EXECUTABLE.
-- Дополнительно: `scripts/browser-backup-smoke.py`, `scripts/browser-api-icons-smoke.py` (только имитация API; сетевых запросов к игре нет), `scripts/release-shots.py`.
+The complete local set skips the optional metadata API fallback. The single-file version embeds its assets and makes no external requests. See `docs/LOCAL_ASSET_PIPELINE.md` to replace images.
 
-© ArenaNet LLC. Все игровые изображения и товарные знаки принадлежат правообладателям. Это неофициальный некоммерческий фан-проект, не связанный с ArenaNet или NCSOFT.
+- `npm test`: engine, save, configuration, server, and interface checks.
+- `npm run validate`: configuration and economy validation.
+- `python tools/finish_local.py --check --strict`: verify required source layers.
+- `python tools/finish_local.py --strict --standalone`: crop assets and rebuild the offline file; requires Pillow from requirements-local.txt.
+- `python tools/selftest.py`: crop compiler checks.
+- `python scripts/browser-smoke.py`: full walkthrough, mobile layout, save reload, and offline asset checks. Requires Playwright and Edge on Windows or Chromium on Linux. Set QUEST_BROWSER_EXECUTABLE for another installed browser.
+- Additional browser checks: `scripts/browser-backup-smoke.py`, `scripts/browser-api-icons-smoke.py`, `scripts/release-shots.py`.
+
+Screenshots are in `previews/`. Test details are in `TEST_RESULTS.md`.

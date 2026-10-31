@@ -1,41 +1,36 @@
-# v1.2 — 2026-10-31
-
-47 локальных игровых элементов, автономная графика, исправление отправки форм, защита файлов Git локальным сервером, переносимые браузерные проверки на Windows. Экономика, config.js и формат сохранений сохранены.
-
 # Changelog
 
-## v1.0 — 2026-10-31 — visual completion
+## v1.3, October 31, 2026
 
-- Completed compact game-inspired HUD: top left menu, game-like counters, world label, decorative skill bar, health orb, party portrait, minimap.
-- Updated translucent windows, compact item grids, bag rail, chest/reward presentation, responsive mobile navigation.
-- Optional additional item icon sources from ArenaNet's public item API, with offline art fallback.
-- Retained all quest game mechanics and v0.7 localStorage format.
-- Final browser full-through walkthrough and config checks.
+- Translated interface text, accessibility labels, demo content, errors, printable cards, tools, and documentation into English.
+- Removed em dashes, visible copyright and disclaimer text, and publication boilerplate.
+- Preserved progress from the previous demo with an exact-release save migration, including translated item names and journal clues.
+- Retained the asset source records and third-party license file.
 
-# История изменений
+## v1.2, October 31, 2026
 
-## v0.7 — 31 октября 2026
+- Integrated 47 local game image regions and embedded assets in the offline build.
+- Fixed form submission being mistaken for window navigation.
+- Protected Git files on the local server and rejected malformed URLs.
+- Made browser checks portable to Windows and captured release screenshots.
 
-### Визуальные и игровые изменения
-- В каждом обычном сундуке визуально **три декоративных предмета раскрываются первыми, а сюжетная книжка — четвёртой**. Внутреннее содержимое и порядок книги в хранилище не изменены.
-- Все четыре слота наград стали интерактивными: можно осмотреть мусор, материал, коллекционный предмет или открыть книжку. Добавлены обозначения редкости, контуры фокуса и название предмета для управления клавиатурой.
-- В окне наград есть **Read New Journal / Read Legendary Tome**. Книжка не расходуется; прочитанный текст остаётся в Quest Bag.
-- Улучшены рамки наград и эффекты легендарного предмета. Поддерживается `prefers-reduced-motion`.
-- Стартовая сумка теперь автоматически расширяет число слотов кратно 20, когда подарков очень много; число занятых/доступных слотов всегда соответствует сетке.
+## v1.0, October 31, 2026
 
-### Подготовка настоящего квеста
-- Добавлен `npm run print:cards -- /абсолютный/путь/к/карточкам.html`: генерирует **печатные карточки кодов** (стартовый, последующие, отдельный секретный) по `config.js` без админки и дополнительных зависимостей.
-- По умолчанию карточки сохраняются **за пределами папки сайта**, чтобы их было сложнее случайно опубликовать. Они предназначены только организатору: в них содержатся все коды.
-- Добавлен документ `docs/PRINTABLE_CODES.md` с безопасным сценарием подготовки карточек.
+- Added a compact top menu, currency counters, world label, decorative skills, health orb, party portrait, and minimap.
+- Updated translucent windows, bag rail, dense item grids, chest rewards, and mobile navigation.
+- Added optional item API icons with local fallbacks, preserving quest mechanics and the existing save format.
 
-### Проверки
-- **28/28 автоматических тестов**: прежние 25, полный сценарий с 1/2/5/10/30 подарками, карточки и защита их генерации при неверном конфиге.
-- Полный сценарий Chromium: коды, покупка ключа, осмотр награды, книжки, торговец, обмен валюты, бонусный сундук, перезапуск, мобильная версия.
-- Проверена выгрузка/загрузка JSON и отклонение бэкапа от чужой конфигурации.
+## v0.7, October 31, 2026
 
-### Совместимость
-- Используется тот же `storageKey` и тот же формат `localStorage`/JSON-бэкапа, что в v0.6. Конфиг демо не изменён.
-- Никаких новых серверных зависимостей, платежей или внешних API. Иконки сундука/ключа из публичного GW2 API используются так же, как в v0.6, с локальным fallback.
+- Revealed three decorative drops first and the journal fourth, without changing stored reward order.
+- Made all reward slots inspectable, with rarity labels, focus outlines, and accessible names.
+- Added Read New Journal and Read Legendary Tome actions; journals remain in the Quest Bag.
+- Improved legendary effects and reduced-motion behavior.
+- Expanded bag capacity in blocks of 20 slots for large quests.
+- Added printable code cards generated separately from the game.
+- Verified 1, 2, 5, 10, and 30 gift configurations, JSON backup handling, mobile use, and the complete ending.
+- Preserved the existing storage key and save format.
 
-## v0.6 и ранее
-См. предыдущие релизы в истории проекта; все игровые механики v0.6 сохранены.
+## v0.6 and earlier
+
+Established the quest engine, 100/90/10 economy, journals, manual junk sales, buyback, material storage, and browser saves.

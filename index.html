@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#141719">
-  <meta name="description" content="Неофициальный некоммерческий фан-квест по мотивам Guild Wars 2 — все кристаллы виртуальные.">
-  <title>Black Lion — Inventory · Unofficial Fan Quest v1.2</title>
+  <meta name="description" content="A personal gift quest in Tyria.">
+  <title>Black Lion Inventory · Gift Quest v1.3</title>
   <link rel="icon" href="./assets/crest.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./assets/real-ui/skin.css">
@@ -14,16 +14,16 @@
   <div class="ambient-vignette" aria-hidden="true"></div>
   <div class="floating-motes" aria-hidden="true"></div>
   <div id="root">
-    <header class="hud-top" aria-label="Интерфейс игры">
+    <header class="hud-top" aria-label="Game interface">
       <nav class="game-menu-bar" aria-label="Game menu">
         <span class="menu-corner-glyph" aria-hidden="true">✥</span>
-        <button type="button" class="menu-tile" data-screen="inventory" title="Inventory [I]" aria-label="Инвентарь [I]"><img src="./assets/real-ui/item_menu-inventory.png" alt=""></button>
-        <button type="button" class="menu-tile" data-screen="merchant" title="Merchant" aria-label="Торговец"><img src="./assets/real-ui/item_menu-merchant.png" alt=""></button>
-        <button type="button" class="menu-tile menu-lion" data-screen="trading" title="Black Lion Trading Company [O]" aria-label="Торговая компания Чёрный Лев [O]"><img src="./assets/real-ui/item_menu-trading.png" alt=""></button>
-        <button type="button" class="menu-tile" data-screen="wallet" title="Wallet / Save" aria-label="Кошелёк и сохранения"><img src="./assets/real-ui/item_menu-wallet.png" alt=""></button>
-        <span class="menu-place">Lion's Arch <span>✦</span> <small>FAN QUEST</small></span>
+        <button type="button" class="menu-tile" data-screen="inventory" title="Inventory [I]" aria-label="Inventory [I]"><img src="./assets/real-ui/item_menu-inventory.png" alt=""></button>
+        <button type="button" class="menu-tile" data-screen="merchant" title="Merchant" aria-label="Merchant"><img src="./assets/real-ui/item_menu-merchant.png" alt=""></button>
+        <button type="button" class="menu-tile menu-lion" data-screen="trading" title="Black Lion Trading Company [O]" aria-label="Black Lion Trading Company [O]"><img src="./assets/real-ui/item_menu-trading.png" alt=""></button>
+        <button type="button" class="menu-tile" data-screen="wallet" title="Wallet / Save" aria-label="Wallet and saves"><img src="./assets/real-ui/item_menu-wallet.png" alt=""></button>
+        <span class="menu-place">Lion's Arch <span>✦</span> <small>GIFT QUEST</small></span>
       </nav>
-      <div class="hud-balances"><span title="Кристаллы"><img src="./assets/real-ui/item_gem.png" alt=""> <b id="topGems">0</b></span><span title="Монеты"><span class="coin-glyph">●</span><b id="topGold">0g 00s 00c</b></span><button id="audioToggle" class="audio-toggle" type="button" aria-label="Включить звуковые эффекты" aria-pressed="false" title="Sound [M]">◖ <span>Sound off</span></button></div>
+      <div class="hud-balances"><span title="Gems"><img src="./assets/real-ui/item_gem.png" alt=""> <b id="topGems">0</b></span><span title="Coins"><span class="coin-glyph">●</span><b id="topGold">0g 00s 00c</b></span><button id="audioToggle" class="audio-toggle" type="button" aria-label="Enable sound effects" aria-pressed="false" title="Sound [M]">◖ <span>Sound off</span></button></div>
     </header>
     <aside class="world-location" aria-hidden="true"><span class="loc-diamond">✥</span><div><strong>LION'S ARCH</strong><small>BLACK LION TRADING COMPANY</small></div></aside>
     <div class="world-hud" aria-hidden="true">
@@ -31,24 +31,23 @@
       <div class="skillbar"><div class="skillbar-left"><span class="skill skill-a"></span><span class="skill skill-b"></span></div><div class="skillbar-health"><span>24,512</span></div><div class="skillbar-skills"><span class="skill skill-c"><small>1</small></span><span class="skill skill-d"><small>2</small></span><span class="skill skill-e"><small>3</small></span><span class="skill skill-f"><small>4</small></span><span class="skill skill-g"><small>5</small></span></div></div>
       <div class="mini-map"><div class="mini-map-surface"><span class="mini-map-arrow">◆</span><span class="mini-map-label">Lion's Arch</span></div><div class="mini-map-bottom">☼ <span>TYRIA</span> ◈</div></div>
     </div>
-    <section id="window" class="game-window inventory-window" aria-label="Игровое окно">
-      <div class="window-titlebar"><span class="window-symbol" id="windowSymbol">◈</span><strong id="windowTitle">Inventory</strong><span class="window-spacer"></span><span class="window-shortcut" id="windowShortcut">[ I ]</span><button class="window-close" id="windowClose" aria-label="Закрыть окно">×</button></div>
+    <section id="window" class="game-window inventory-window" aria-label="Game window">
+      <div class="window-titlebar"><span class="window-symbol" id="windowSymbol">◈</span><strong id="windowTitle">Inventory</strong><span class="window-spacer"></span><span class="window-shortcut" id="windowShortcut">[ I ]</span><button class="window-close" id="windowClose" aria-label="Close window">×</button></div>
       <div class="window-body" id="windowBody"></div>
-      <div class="window-footer"><span>BLACK LION TRADING COMPANY</span><span id="windowFootRight">TYRIA · FAN PROJECT</span></div>
+      <div class="window-footer"><span>BLACK LION TRADING COMPANY</span><span id="windowFootRight">TYRIA</span></div>
     </section>
 
     <div id="itemTooltip" class="item-tooltip hidden" role="tooltip"></div>
-    <div id="itemMenu" class="item-context hidden" role="menu" aria-label="Действия с предметом"></div>
+    <div id="itemMenu" class="item-context hidden" role="menu" aria-label="Item actions"></div>
     <div class="toast-stack" id="toasts" aria-live="polite"></div>
     <div class="screen-overlay hidden" id="overlay"><div class="dialog-shell" id="dialogContent"></div></div>
 
-    <nav class="action-dock" aria-label="Игровые окна">
-      <button class="dock-button is-active" data-screen="inventory" title="Инвентарь [I]"><img src="./assets/real-ui/item_menu-inventory.png" alt=""><small>Inventory</small></button>
-      <button class="dock-button" data-screen="merchant" title="Торговец"><img src="./assets/real-ui/item_menu-merchant.png" alt=""><small>Merchant</small></button>
+    <nav class="action-dock" aria-label="Game windows">
+      <button class="dock-button is-active" data-screen="inventory" title="Inventory [I]"><img src="./assets/real-ui/item_menu-inventory.png" alt=""><small>Inventory</small></button>
+      <button class="dock-button" data-screen="merchant" title="Merchant"><img src="./assets/real-ui/item_menu-merchant.png" alt=""><small>Merchant</small></button>
       <button class="dock-button" data-screen="trading" title="Black Lion Trading [O]"><img src="./assets/real-ui/item_menu-trading.png" alt=""><small>Black Lion</small></button>
-      <button class="dock-button" data-screen="wallet" title="Кошелёк"><img src="./assets/real-ui/item_menu-wallet.png" alt=""><small>Wallet</small></button>
+      <button class="dock-button" data-screen="wallet" title="Wallet"><img src="./assets/real-ui/item_menu-wallet.png" alt=""><small>Wallet</small></button>
     </nav>
-    <footer class="fan-disclaimer" role="contentinfo">НЕОФИЦИАЛЬНЫЙ ФАН-ПРОЕКТ · © ArenaNet LLC. All rights reserved. NCSOFT, ArenaNet, Guild Wars 2 и связанные товарные знаки принадлежат их правообладателям · <a href="https://www.arena.net/en/legal/content-terms-of-use" target="_blank" rel="noopener noreferrer">Fan Content Policy</a></footer>
   </div>
   <script src="./config.js"></script>
   <script src="./engine.js"></script>

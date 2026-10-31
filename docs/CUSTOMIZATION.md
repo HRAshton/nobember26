@@ -1,84 +1,68 @@
-# Как подготовить настоящий квест
+# Prepare your gift quest
 
-Все изменения делаются в **`config.js`**, административная панель не нужна.
+All quest content is configured in `config.js`.
 
-## 1. Подготовить подарки и загадки
+## Gifts and clues
 
-Каждый объект в `gifts` соответствует **одному** обычному Black Lion Chest. У объектов должны быть уникальные простые `id` (`gift-1`, `gift-2` и т.д.).
+Each object in `gifts` corresponds to one regular chest. Use unique lowercase IDs such as gift-1 and gift-2.
 
 ```js
 {
   id: 'gift-4',
-  bookTitle: 'Записки картографа IV',
-  subtitle: 'Название главы',
-  clue: 'Текст загадки, который увидит игрок после открытия сундука.',
-  hint: 'Подсказка организатора — хранится в коде, не отображается в книге.',
-  junkName: 'Потёртая медная монета',
+  bookTitle: 'The Fourth Journal',
+  subtitle: 'A New Chapter',
+  clue: 'The riddle shown after opening the chest.',
+  hint: 'An organizer hint stored in the configuration.',
+  junkName: 'Worn Copper Coin',
   junkIcon: '◇',
-  material: 'Сияющий песок',
+  material: 'Glittering Sand',
   materialIcon: '✧',
-  collectible: 'Старый герб капитана',
+  collectible: 'Old Captain Emblem',
   collectibleIcon: '✦'
 }
 ```
 
-`bookTitle`, `subtitle`, `clue`, `junkName`, `material`, `collectible` обязательны. Для большего количества подарков копируйте объект и меняйте `id`, описание и загадку. Иконки в v0.4 берутся по циклу из готового набора, персональные картинки можно добавить позднее. 
+The required fields are bookTitle, subtitle, clue, junkName, material, and collectible. Copy an entry and change its ID and text to add another gift. The supplied artwork cycles across gifts.
 
-**Содержимое сундука всегда:** книжка (обязательно), мусор (обязательно), материалы, коллекционный предмет. **Сундуки полностью одинаковы внешне.** Все книги лежат в Quest Bag, не продаются и не исчезают после чтения.
+Each chest contains a journal, junk, a material, and a collectible. Closed chests look identical. Journals remain in the Quest Bag and cannot be sold or consumed.
 
-## 2. Подготовить коды
+## Codes
 
-В массиве `codes` должно быть **столько обычных кодов, сколько подарков**. Каждый основной код даёт ровно `economy.keyPriceGems` (по умолчанию 100) кристаллов. Первый передайте в начале квеста, второй положите с подарком №1 и т. д. Последний обычный код лежит с предпоследним подарком. Для последнего физического подарка отдельный основной код не требуется.
+Provide one main code per gift. Each main code grants economy.keyPriceGems gems, normally 100. Give the first code at the start; place the second code with physical gift 1, and so on. The final regular gift does not need another main code.
 
-Один секретный код имеет `final:true` и даёт **ровно недостающие** кристаллы (10 при стандартной экономике). Его местонахождение можно выбрать отдельно, например спрятать вместе с последним подарком, в записке или головоломке.
+One separate code must have `final: true`. It supplies the missing gems for the last key, normally 10. Hide it where it will be discovered near the end.
 
 ```js
 codes: [
-  { code:'START-LION', gems:100 },
-  { code:'GIFT-ONE', gems:100 },
-  { code:'GIFT-TWO', gems:100 },
-  { code:'LAST-SECRET', gems:10, final:true }
+  { code: 'START-LION', gems: 100 },
+  { code: 'GIFT-ONE', gems: 100 },
+  { code: 'GIFT-TWO', gems: 100 },
+  { code: 'LAST-SECRET', gems: 10, final: true }
 ]
 ```
 
-Коды приводятся к верхнему регистру и обрезаются по краям. Повторное использование блокируется локальным состоянием. Никакой серверной защиты от просмотра исходников или ручного изменения сохранения здесь нет.
+Code matching ignores case and surrounding whitespace. Each code can be redeemed once. Main code order is unrestricted; physical placement controls the natural sequence.
 
-## 3. Экономика
+## Economy and ending
 
-- Ключ = 100 кристаллов.
-- Курс: 100 медных монет (1 серебро) = 1 кристалл.
-- Все обычные сундуки суммарно дают 9000 медных монет (90 серебра) продаваемого мусора.
-- Финальный код добавляет 10 кристаллов → игрок покупает ещё один ключ.
-- **Только после покупки** нового ключа, когда все обычные сундуки открыты и секретный код применён, появляется бонусный сундук.
+- One key costs 100 gems.
+- 100 copper, or 1 silver, exchanges for 1 gem.
+- All regular chest junk together sells for exactly 9000 copper, or 90 silver, regardless of gift count.
+- The final code adds 10 gems, allowing one extra key.
+- The bonus chest appears once all regular chests are open, the final code is redeemed, and an unused key is owned.
+- Materials and collectibles cannot be sold. Buyback returns junk for exactly its original sale price.
 
-Общая стоимость мусора распределяется между сундуками детерминированно, независимо от их количества; менять стоимость каждого предмета не нужно. Материалы и коллекционные награды не продаются.
+Edit bonus.title, bonus.subtitle, bonus.clue, and bonus.hint for the final journal. The final clue is hidden until that chest is opened.
 
-**До следующего сюжетного кода суммарный дополнительный доход остаётся меньше одного ключа.** Сам порядок ввода обычных кодов отдельно не контролируется: предполагается, что организатор физически выдаёт их последовательно.
+## Before playing
 
-## 4. Настроить легендарный финал
+1. Replace the demo text and codes.
+2. Run `npm run validate` and `npm test`.
+3. Rebuild `play-offline.html` with `python build_standalone.py`.
+4. Walk through the entire quest, including junk sales and the secret code.
+5. Start with a clean test browser profile, or explicitly clear test progress with `localStorage.removeItem('gw2-black-lion-quest-v1'); location.reload();`.
+6. Keep the configuration fixed during play and retain a copy for restoring backups.
 
-Поменяйте `bonus.title`, `bonus.subtitle`, `bonus.clue` и `bonus.hint`. До бонусного открытия текст легендарной книги игроку не показывается. Бонусный сундук выглядит точно так же, как обычный, до открытия.
+The English translation includes a narrowly scoped upgrade for the previous demo's saves. Changing the actual clues, codes, or gift IDs still changes save compatibility.
 
-## 5. Перед началом: проверки
-
-1. Откройте `config.js`, замените ВСЕ демо-подсказки и коды.
-2. Выполните `npm run validate`. Команда проверит названия, дубли кодов, число подарков и экономику.
-3. Выполните `npm test`.
-4. Пройдите квест вручную на том же домене, где сайт будет опубликован, включая финальный код и продажу мусора.
-5. **Очистите тестовое сохранение** перед вручением квеста: в инструментах разработчика выполните `localStorage.removeItem('gw2-black-lion-quest-v1'); location.reload();`.
-6. Не меняйте подарки и коды во время игры — изменения конфига сбрасывают старый прогресс ради воспроизводимости.
-7. Сохраните резервную копию готового `config.js` офлайн. Раздавайте бумажные коды, а не файлы сайта.
-
-## 6. Запуск
-
-`npm start`, затем http://localhost:3000, либо `python3 -m http.server 3000`.
-
-`play-offline.html` — удобный просмотр в одном файле, но в некоторых браузерах `localStorage` с локальных файлов ограничен; для настоящего квеста используйте обычный статический хостинг (HTTPS). Сайт не имеет серверной логики, оплаты, взаимодействия с ArenaNet или настоящими кристаллами GW2.
-
-## 7. Полировка / звук
-
-Звук выключен по умолчанию, включается кнопкой `Sound` вверху или клавишей `M`. Это **оригинальные синтезированные эффекты**, не записи Guild Wars 2. Предпочтение хранится отдельно от игрового прогресса. Если браузер предпочитает уменьшение движения, длинная анимация сундука пропускается автоматически; награды не теряются.
-
-## 8. Печатные карточки
-
-Когда коды готовы, выполните `npm run print:cards`, чтобы автоматически сформировать листы с кодами для бумажных тайников. См. `docs/PRINTABLE_CODES.md`. Файл содержит ВСЕ коды и должен оставаться только у организатора.
+Sound is initially disabled. Toggle it with Sound or M; the preference is saved separately. Reduced motion skips the long chest animation while preserving rewards. Generate paper cards using `npm run print:cards` and `docs/PRINTABLE_CODES.md`.
