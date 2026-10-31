@@ -26,6 +26,6 @@ One player, source configuration, localStorage, identical main chests with order
 3. Personalized journal titles, clues, and final message.
 4. Optional custom decorative item choices and imagery.
 
-The delivered configuration uses three demo gifts. Technical choices already implemented include responsive desktop/mobile layouts, shortcuts, optional synthesized sound, reduced motion, growing bags, deterministic junk allocation, persistent buyback, and JSON save transfer.
+The delivered configuration uses three demo gifts. Technical choices already implemented include responsive desktop/mobile layouts, shortcuts, optional synthesized sound, reduced motion, growing bags, deterministic junk allocation, persistent buyback, and automatic local saving.
 
 To repeat a test run, use a separate browser profile or deliberately clear only the quest's storage key. The English release recognizes the exact previous demo save checksums; edits to actual quest content continue to use ordinary compatibility checks.

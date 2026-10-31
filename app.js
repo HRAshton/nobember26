@@ -126,7 +126,7 @@
       ${tab==='store'?`<div class="store-feature"><div class="store-image">${img('key')}</div><div class="store-content"><small>GEM STORE · FEATURED</small><h2>Black Lion Chest Key</h2><p>Opens one Black Lion Chest. Its contents stay hidden until opened.</p><div class="shop-price">${img('gem')} <strong>${C.economy.keyPriceGems}</strong><span>gems</span></div><button class="ingame-button gold full" data-action="buy-key" ${S.gems>=C.economy.keyPriceGems?'':'disabled'}>Purchase key</button></div></div>`:
       tab==='exchange'?`<div class="exchange-screen"><div class="currency-flourish">${img('gem')}</div><h2>Currency Exchange</h2><p>Exchange coins for gems at the fixed rate below.</p><div class="exchange-rate"><span>1 <b>silver</b></span><strong>➞</strong><span>1 <b>gem</b></span></div><div class="exchange-balance">Available: ${coin(S.goldCopper)} · ≈ ${Math.floor(S.goldCopper/C.economy.copperPerGem)} gems</div><form id="exchangeForm" class="game-form"><label for="exchangeQty">Gems to buy</label><div class="form-row"><input id="exchangeQty" inputmode="numeric" type="number" min="1" step="1" max="${Math.floor(S.goldCopper/C.economy.copperPerGem)}" value="${Math.max(1,Math.floor(S.goldCopper/C.economy.copperPerGem))}"><button class="ingame-button gold" type="submit">Exchange</button></div></form></div>`:
       `<div class="redeem-screen"><div class="redeem-emblem">✥</div><h2>Redeem Code</h2><p>Enter the code from a note you found. Each code can be redeemed once.</p><form id="redeemForm" class="game-form"><label for="promo">Your code</label><input id="promo" type="text" placeholder="ENTER CODE" spellcheck="false" autocomplete="off" required maxlength="64"><button class="ingame-button gold full" type="submit">Redeem</button></form><div class="redeem-help">Find codes on the notes hidden with your gifts.</div></div>`}`;}
-  function wallet(){return `<div class="wallet-screen"><div class="wallet-symbol">✥</div><h2>Wallet</h2><div class="wallet-line"><span>${img('gem')} Gems</span><strong>${S.gems}</strong></div><div class="wallet-line"><span>◎ Gold</span><strong>${coin(S.goldCopper)}</strong></div><div class="wallet-line"><span>${img('key')} Black Lion Chest Keys</span><strong>${S.keys}</strong></div><div class="save-controls"><strong>Local Save</strong><p>Your progress is saved in this browser. Export a backup to move it to another device or before clearing browser data.</p><div class="save-buttons"><button class="ingame-button" data-action="export-save">Export Save</button><button class="ingame-button" data-action="import-save">Import Save</button></div><input id="saveFileInput" type="file" accept=".json,application/json" hidden aria-label="Save backup file"></div><button class="ingame-button" data-screen="trading">Open Black Lion Trading Company</button></div>`;}
+  function wallet(){return `<div class="wallet-screen"><div class="wallet-symbol">✥</div><h2>Wallet</h2><div class="wallet-line"><span>${img('gem')} Gems</span><strong>${S.gems}</strong></div><div class="wallet-line"><span>◎ Gold</span><strong>${coin(S.goldCopper)}</strong></div><div class="wallet-line"><span>${img('key')} Black Lion Chest Keys</span><strong>${S.keys}</strong></div><button class="ingame-button" data-screen="trading">Open Black Lion Trading Company</button></div>`;}
   function titleFor(name){return {inventory:'Inventory',merchant:'Merchant',trading:'Black Lion Trading Company',wallet:'Wallet'}[name]||'Inventory';}
   function draw(){
     const titles={inventory:'◈',merchant:'⚖',trading:'✦',wallet:'◎'};
@@ -245,27 +245,6 @@
     if(item.type==='book')return readBook(item);
     showOverlay(`<div class="detail-modal"><div class="modal-title"><strong>${h(item.name)}</strong><button data-action="close-modal">×</button></div><div class="detail-icon ${h(item.rarity)}">${icon(item)}</div><p>${item.type==='junk'?'Junk · This item can be sold to a merchant.':item.type==='material'?'Crafting Material · Can be deposited in Material Storage.':'Collectible · A permanent collectible trophy.'}</p><p>Quantity: ${item.qty}${item.type==='junk'?` · Price: ${E.formatCoins(item.qty*item.unitCopper)}`:''}</p><button data-action="close-modal" class="ingame-button">Close</button></div>`);
   }
-  function downloadSave(){
-    try{
-      const data=JSON.stringify(E.exportSave(C,S),null,2);
-      const blob=new Blob([data],{type:'application/json;charset=utf-8'});
-      const url=URL.createObjectURL(blob);const link=document.createElement('a');
-      link.href=url;link.download='black-lion-quest-save.json';document.body.appendChild(link);link.click();link.remove();
-      setTimeout(()=>URL.revokeObjectURL(url),1200);toast('Save backup downloaded.');
-    }catch(e){toast('Export failed: '+e.message,true);}
-  }
-  async function restoreSave(file){
-    if(!file)return;
-    if(file.size>1024*1024){toast('The file is too large to be a quest save.',true);return;}
-    try{
-      const raw=await file.text();
-      // Import never runs before the player explicitly approves replacement.
-      if(!window.confirm('Replace your current progress with this save file?'))return;
-      S=E.importSave(C,localStorage,raw);
-      selectedId=null;hideOverlay();inventoryTab='bags';go('inventory');
-      toast('Save restored!');sound('redeem');
-    }catch(e){toast('Restore failed: '+e.message,true);}
-  }
   document.querySelector('#audioToggle').addEventListener('click',()=>{if(AudioFX)AudioFX.toggle();updateSoundButton();});
   updateSoundButton();
   document.addEventListener('click',e=>{
@@ -288,8 +267,6 @@
       case 'buyback':perform(()=>E.buyBack(C,S,target.dataset.id));break;
       case 'deposit':perform(()=>E.deposit(C,S));break;
       case 'compact':toast('Your items are already compacted automatically.');break;
-      case 'export-save':downloadSave();break;
-      case 'import-save':$('#saveFileInput')?.click();break;
       case 'selected-use':if(selectedId)useItem(selectedId);break;
       case 'read-new-book':{const found=[...S.lastRewards].reverse().find(x=>x.type==='book');if(found)readBook(found);break;}
       case 'open-chest':startChestOpening();break;
@@ -334,7 +311,6 @@
     pressTimer=setTimeout(()=>{suppressContextClick=true;selectItem(t.dataset.item);showItemMenu(findItem(t.dataset.item),t.dataset.bag,x,y);},550);
   });
   for(const eventName of ['pointerup','pointercancel','pointermove'])document.addEventListener(eventName,()=>clearTimeout(pressTimer));
-  document.addEventListener('change',e=>{if(e.target.id==='saveFileInput'){const file=e.target.files?.[0];restoreSave(file);e.target.value='';}});
   document.addEventListener('input',e=>{if(e.target.id==='inventorySearch'){searchQuery=e.target.value;applySearch();}});
   document.addEventListener('submit',e=>{
     if(e.target.id==='redeemForm'){e.preventDefault();const code=e.target.querySelector('input').value;const result=perform(()=>E.redeem(C,S,code));if(result)e.target.reset();}

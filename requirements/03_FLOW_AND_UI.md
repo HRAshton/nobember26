@@ -28,7 +28,7 @@ Currency Exchange shows the fixed rate and available balance and accepts a whole
 
 ## Wallet and controls
 
-Wallet shows currencies and keys and provides JSON export/import. Import requires confirmation before replacing progress and validates compatibility before writing the save.
+Wallet shows currencies and keys. Progress is saved automatically; the interface has no save, import, export, or file selection controls.
 
 I opens Inventory, O opens the store, M toggles audio, and Escape closes the current menu, overlay, or window. Desktop windows can be dragged by the title bar while keeping it reachable. Mobile navigation remains usable at narrow widths. Decorative skills and the minimap do not simulate gameplay.
 

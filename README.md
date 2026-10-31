@@ -26,7 +26,7 @@ Sell junk manually at the Merchant. All regular junk together is worth 90 silver
 
 ## Saves
 
-Progress is stored in the current browser. Wallet provides Export Save and Import Save for transferring progress. The English demo upgrades saves and JSON backups from the previous unchanged demo while preserving currencies, items, redeemed codes, and chest progress. Other configuration changes retain the existing compatibility checks.
+Progress is saved automatically in the current browser. Wallet displays currencies and keys. The English demo preserves progress from the previous unchanged demo; other configuration changes retain the existing compatibility checks.
 
 ## Assets and development
 
@@ -40,6 +40,6 @@ The complete local set skips the optional metadata API fallback. The single-file
 - `python tools/finish_local.py --strict --standalone`: crop assets and rebuild the offline file; requires Pillow from requirements-local.txt.
 - `python tools/selftest.py`: crop compiler checks.
 - `python scripts/browser-smoke.py`: full walkthrough, mobile layout, save reload, and offline asset checks. Requires Playwright and Edge on Windows or Chromium on Linux. Set QUEST_BROWSER_EXECUTABLE for another installed browser.
-- Additional browser checks: `scripts/browser-backup-smoke.py`, `scripts/browser-api-icons-smoke.py`, `scripts/release-shots.py`.
+- Additional browser checks: `scripts/browser-wallet-smoke.py`, `scripts/browser-api-icons-smoke.py`, `scripts/release-shots.py`.
 
 Screenshots are in `previews/`. Test details are in `TEST_RESULTS.md`.

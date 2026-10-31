@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.3.1, October 31, 2026
+
+- Removed the save export/import panel, file picker, and associated browser handlers.
+- Preserved automatic local progress saving and the currency Wallet.
+- Replaced the obsolete backup UI check with Wallet and automatic-save coverage.
+
 ## v1.3, October 31, 2026
 
 - Translated interface text, accessibility labels, demo content, errors, printable cards, tools, and documentation into English.

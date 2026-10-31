@@ -39,4 +39,4 @@ Additional targets include the health orb, minimap, skill slots, and menu icons.
 
 To revert the bitmap skin, remove the real-ui stylesheet link and use the original asset map. Logic, currencies, and journal behavior are independent of the skin. The original code remains available in the Git backup.
 
-`npm start` serves the project on port 3000. A second device can use the computer's local network address. Progress remains separate in each browser; use Wallet exports to transfer it.
+`npm start` serves the project on port 3000. A second device can use the computer's local network address. Progress is saved automatically and remains separate in each browser.

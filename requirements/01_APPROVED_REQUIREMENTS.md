@@ -38,7 +38,7 @@ Screens include Inventory, Black Lion Chest, Merchant, Currency Exchange, Gem St
 
 ## Persistence and presentation
 
-localStorage tracks codes, currencies, keys, opened chests, bonus flags, items, journals, material deposits, and buyback. Export/import supports moving compatible saves between browsers. A fixed configuration produces repeatable rewards after a deliberate reset.
+localStorage tracks codes, currencies, keys, opened chests, bonus flags, items, journals, material deposits, and buyback. Saving is automatic; there are no import or export controls in the interface. A fixed configuration produces repeatable rewards after a deliberate reset.
 
 The interface uses game references, compact proportions, item rarity borders, readable tooltips, double-click actions, keyboard controls, and a mobile layout. Audio is optional and reduced-motion preferences are honored.
 

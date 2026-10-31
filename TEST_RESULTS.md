@@ -4,11 +4,11 @@
 
 Verified using Node.js 24.21.0, Python 3.12.10, and installed Microsoft Edge through Playwright on Windows.
 
-Results: 35/35 automated tests PASS; configuration validation PASS; compiler self-test PASS; full browser walkthrough PASS; save backup checks PASS; mocked API fallback PASS; Merchant and Trading Company screenshots PASS.
+Results: 35/35 automated tests PASS; configuration validation PASS; compiler self-test PASS; full browser walkthrough PASS; Wallet and automatic-save checks PASS; mocked API fallback PASS; Merchant and Trading Company screenshots PASS.
 
 The automated suite covers quest economics, different gift counts, configuration checks, JSON backups, static server behavior, interface navigation, and English localization. Additional cases cover upgrading the preceding demo save, importing its backups, translating final rewards, rejecting damaged or incompatible saves, and scanning text files for Cyrillic text and em dashes.
 
-Browser checks exercise the complete story, all four rewards, journal ordering and navigation, manual junk sales, currency exchange, the secret ending, reload, audio, reduced motion, the mobile layout, backup export/import, and offline asset loading. API fallback coverage uses intercepted responses.
+Browser checks exercise the complete story, all four rewards, journal ordering and navigation, manual junk sales, currency exchange, the secret ending, reload, audio, reduced motion, the mobile layout, Wallet balances, automatic saving across reload, absence of import/export controls, and offline asset loading. API fallback coverage uses intercepted responses.
 
 The asset compiler has 47 integrated image regions and all six required layers. Its self-test verifies crops, ready-slice precedence, CSS, icon mapping, and path validation. Screenshots are regenerated in previews/.
 

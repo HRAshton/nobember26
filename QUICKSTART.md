@@ -8,4 +8,4 @@ The images are already included. No screenshot preparation or network access is 
 
 Before the real quest, edit the demo clues and codes in `config.js` using `docs/CUSTOMIZATION.md`. Run `npm run validate`, then `python build_standalone.py` to update the offline page. Normal server mode uses configuration edits immediately.
 
-Generate paper cards with `npm run print:cards`. Export progress through Wallet before moving to another browser.
+Generate paper cards with `npm run print:cards`. Progress is saved automatically in the browser you use to play.
