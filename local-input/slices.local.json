@@ -1,0 +1,481 @@
+{
+  "version": 1,
+  "regions": [
+    {
+      "name": "window_frame",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ],
+      "slice": [
+        10,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "name": "window_title",
+      "file": "titlebar-active.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        64
+      ]
+    },
+    {
+      "name": "inventory_panel",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ]
+    },
+    {
+      "name": "chest_panel",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ]
+    },
+    {
+      "name": "merchant_panel",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ]
+    },
+    {
+      "name": "trading_panel",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ]
+    },
+    {
+      "name": "wallet_panel",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ]
+    },
+    {
+      "name": "tooltip",
+      "file": "tooltip.png",
+      "rect": [
+        0,
+        0,
+        942,
+        942
+      ]
+    },
+    {
+      "name": "health_orb",
+      "file": "healthpool.png",
+      "rect": [
+        0,
+        0,
+        100,
+        100
+      ]
+    },
+    {
+      "name": "book_pages",
+      "file": "1909316.png",
+      "rect": [
+        0,
+        0,
+        420,
+        560
+      ]
+    },
+    {
+      "name": "button",
+      "file": "button-states.jpg",
+      "rect": [
+        0,
+        0,
+        350,
+        20
+      ]
+    },
+    {
+      "name": "slot_empty",
+      "file": "inventory.jpg",
+      "rect": [
+        551,
+        386,
+        39,
+        39
+      ]
+    },
+    {
+      "name": "item_bag",
+      "file": "inventory.jpg",
+      "rect": [
+        336,
+        82,
+        36,
+        36
+      ]
+    },
+    {
+      "name": "item_menu-wallet",
+      "file": "inventory.jpg",
+      "rect": [
+        377,
+        724,
+        22,
+        22
+      ]
+    },
+    {
+      "name": "item_compact",
+      "file": "inventory.jpg",
+      "rect": [
+        764,
+        126,
+        20,
+        20
+      ]
+    },
+    {
+      "name": "item_deposit",
+      "file": "inventory.jpg",
+      "rect": [
+        741,
+        126,
+        20,
+        20
+      ]
+    },
+    {
+      "name": "item_book-1",
+      "file": "inventory.jpg",
+      "rect": [
+        510,
+        173,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_book-2",
+      "file": "inventory.jpg",
+      "rect": [
+        553,
+        173,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_book-3",
+      "file": "inventory.jpg",
+      "rect": [
+        384,
+        217,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_book-final",
+      "file": "inventory.jpg",
+      "rect": [
+        553,
+        173,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_junk-seal",
+      "file": "inventory.jpg",
+      "rect": [
+        597,
+        173,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_junk-box",
+      "file": "inventory.jpg",
+      "rect": [
+        681,
+        173,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_collectible-anchor",
+      "file": "inventory.jpg",
+      "rect": [
+        468,
+        259,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_collectible-caravan",
+      "file": "inventory.jpg",
+      "rect": [
+        724,
+        217,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_collectible-captain",
+      "file": "inventory.jpg",
+      "rect": [
+        384,
+        173,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_collectible-final",
+      "file": "inventory.jpg",
+      "rect": [
+        597,
+        217,
+        35,
+        35
+      ]
+    },
+    {
+      "name": "item_menu-trading",
+      "file": "interface.jpg",
+      "rect": [
+        605,
+        109,
+        40,
+        37
+      ]
+    },
+    {
+      "name": "item_menu-inventory",
+      "file": "interface.jpg",
+      "rect": [
+        379,
+        111,
+        33,
+        34
+      ]
+    },
+    {
+      "name": "skill_a",
+      "file": "interface.jpg",
+      "rect": [
+        666,
+        641,
+        22,
+        20
+      ]
+    },
+    {
+      "name": "skill_b",
+      "file": "interface.jpg",
+      "rect": [
+        689,
+        641,
+        22,
+        20
+      ]
+    },
+    {
+      "name": "skill_c",
+      "file": "interface.jpg",
+      "rect": [
+        713,
+        641,
+        22,
+        20
+      ]
+    },
+    {
+      "name": "skill_d",
+      "file": "interface.jpg",
+      "rect": [
+        737,
+        641,
+        22,
+        20
+      ]
+    },
+    {
+      "name": "skill_e",
+      "file": "interface.jpg",
+      "rect": [
+        761,
+        641,
+        22,
+        20
+      ]
+    },
+    {
+      "name": "skill_f",
+      "file": "interface.jpg",
+      "rect": [
+        823,
+        639,
+        22,
+        22
+      ]
+    },
+    {
+      "name": "skill_g",
+      "file": "interface.jpg",
+      "rect": [
+        847,
+        639,
+        22,
+        22
+      ]
+    },
+    {
+      "name": "minimap",
+      "file": "minimap.jpg",
+      "rect": [
+        275,
+        140,
+        280,
+        170
+      ]
+    },
+    {
+      "name": "world_background",
+      "file": "world.jpg",
+      "rect": [
+        0,
+        0,
+        1838,
+        1149
+      ]
+    },
+    {
+      "name": "item_chest",
+      "file": "chest.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "item_key",
+      "file": "key.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "item_material-dust",
+      "file": "material-dust.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "item_material-ore",
+      "file": "material-ore.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "item_material-shard",
+      "file": "material-shard.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "item_material-eternal",
+      "file": "material-eternal.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "item_junk-tooth",
+      "file": "junk-tooth.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "item_collectible-sigil",
+      "file": "collectible-sigil.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "item_menu-merchant",
+      "file": "merchant.png",
+      "rect": [
+        0,
+        0,
+        26,
+        26
+      ]
+    },
+    {
+      "name": "item_gem",
+      "file": "gem.png",
+      "rect": [
+        0,
+        0,
+        195,
+        195
+      ]
+    }
+  ]
+}

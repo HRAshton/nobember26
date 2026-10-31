@@ -1,0 +1,438 @@
+{
+  "format": 1,
+  "image_count": 47,
+  "elements": {
+    "window_frame": {
+      "file": "window_frame.png",
+      "size": [
+        1024,
+        780
+      ],
+      "source": "screenshots/502049.png",
+      "slice": [
+        10,
+        10,
+        10,
+        10
+      ]
+    },
+    "window_title": {
+      "file": "window_title.png",
+      "size": [
+        1024,
+        64
+      ],
+      "source": "screenshots/titlebar-active.png"
+    },
+    "inventory_panel": {
+      "file": "inventory_panel.png",
+      "size": [
+        1024,
+        780
+      ],
+      "source": "screenshots/502049.png"
+    },
+    "chest_panel": {
+      "file": "chest_panel.png",
+      "size": [
+        1024,
+        780
+      ],
+      "source": "screenshots/502049.png"
+    },
+    "merchant_panel": {
+      "file": "merchant_panel.png",
+      "size": [
+        1024,
+        780
+      ],
+      "source": "screenshots/502049.png"
+    },
+    "trading_panel": {
+      "file": "trading_panel.png",
+      "size": [
+        1024,
+        780
+      ],
+      "source": "screenshots/502049.png"
+    },
+    "wallet_panel": {
+      "file": "wallet_panel.png",
+      "size": [
+        1024,
+        780
+      ],
+      "source": "screenshots/502049.png"
+    },
+    "tooltip": {
+      "file": "tooltip.png",
+      "size": [
+        942,
+        942
+      ],
+      "source": "screenshots/tooltip.png"
+    },
+    "health_orb": {
+      "file": "health_orb.png",
+      "size": [
+        100,
+        100
+      ],
+      "source": "screenshots/healthpool.png"
+    },
+    "book_pages": {
+      "file": "book_pages.png",
+      "size": [
+        420,
+        560
+      ],
+      "source": "screenshots/1909316.png"
+    },
+    "button": {
+      "file": "button.png",
+      "size": [
+        350,
+        20
+      ],
+      "source": "screenshots/button-states.jpg"
+    },
+    "slot_empty": {
+      "file": "slot_empty.png",
+      "size": [
+        39,
+        39
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_bag": {
+      "file": "item_bag.png",
+      "size": [
+        36,
+        36
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_menu-wallet": {
+      "file": "item_menu-wallet.png",
+      "size": [
+        22,
+        22
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_compact": {
+      "file": "item_compact.png",
+      "size": [
+        20,
+        20
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_deposit": {
+      "file": "item_deposit.png",
+      "size": [
+        20,
+        20
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_book-1": {
+      "file": "item_book-1.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_book-2": {
+      "file": "item_book-2.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_book-3": {
+      "file": "item_book-3.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_book-final": {
+      "file": "item_book-final.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_junk-seal": {
+      "file": "item_junk-seal.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_junk-box": {
+      "file": "item_junk-box.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_collectible-anchor": {
+      "file": "item_collectible-anchor.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_collectible-caravan": {
+      "file": "item_collectible-caravan.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_collectible-captain": {
+      "file": "item_collectible-captain.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_collectible-final": {
+      "file": "item_collectible-final.png",
+      "size": [
+        35,
+        35
+      ],
+      "source": "screenshots/inventory.jpg"
+    },
+    "item_menu-trading": {
+      "file": "item_menu-trading.png",
+      "size": [
+        40,
+        37
+      ],
+      "source": "screenshots/interface.jpg"
+    },
+    "item_menu-inventory": {
+      "file": "item_menu-inventory.png",
+      "size": [
+        33,
+        34
+      ],
+      "source": "screenshots/interface.jpg"
+    },
+    "skill_a": {
+      "file": "skill_a.png",
+      "size": [
+        22,
+        20
+      ],
+      "source": "screenshots/interface.jpg"
+    },
+    "skill_b": {
+      "file": "skill_b.png",
+      "size": [
+        22,
+        20
+      ],
+      "source": "screenshots/interface.jpg"
+    },
+    "skill_c": {
+      "file": "skill_c.png",
+      "size": [
+        22,
+        20
+      ],
+      "source": "screenshots/interface.jpg"
+    },
+    "skill_d": {
+      "file": "skill_d.png",
+      "size": [
+        22,
+        20
+      ],
+      "source": "screenshots/interface.jpg"
+    },
+    "skill_e": {
+      "file": "skill_e.png",
+      "size": [
+        22,
+        20
+      ],
+      "source": "screenshots/interface.jpg"
+    },
+    "skill_f": {
+      "file": "skill_f.png",
+      "size": [
+        22,
+        22
+      ],
+      "source": "screenshots/interface.jpg"
+    },
+    "skill_g": {
+      "file": "skill_g.png",
+      "size": [
+        22,
+        22
+      ],
+      "source": "screenshots/interface.jpg"
+    },
+    "minimap": {
+      "file": "minimap.png",
+      "size": [
+        280,
+        170
+      ],
+      "source": "screenshots/minimap.jpg"
+    },
+    "world_background": {
+      "file": "world_background.png",
+      "size": [
+        1838,
+        1149
+      ],
+      "source": "screenshots/world.jpg"
+    },
+    "item_chest": {
+      "file": "item_chest.png",
+      "size": [
+        64,
+        64
+      ],
+      "source": "screenshots/chest.png"
+    },
+    "item_key": {
+      "file": "item_key.png",
+      "size": [
+        64,
+        64
+      ],
+      "source": "screenshots/key.png"
+    },
+    "item_material-dust": {
+      "file": "item_material-dust.png",
+      "size": [
+        64,
+        64
+      ],
+      "source": "screenshots/material-dust.png"
+    },
+    "item_material-ore": {
+      "file": "item_material-ore.png",
+      "size": [
+        64,
+        64
+      ],
+      "source": "screenshots/material-ore.png"
+    },
+    "item_material-shard": {
+      "file": "item_material-shard.png",
+      "size": [
+        64,
+        64
+      ],
+      "source": "screenshots/material-shard.png"
+    },
+    "item_material-eternal": {
+      "file": "item_material-eternal.png",
+      "size": [
+        64,
+        64
+      ],
+      "source": "screenshots/material-eternal.png"
+    },
+    "item_junk-tooth": {
+      "file": "item_junk-tooth.png",
+      "size": [
+        64,
+        64
+      ],
+      "source": "screenshots/junk-tooth.png"
+    },
+    "item_collectible-sigil": {
+      "file": "item_collectible-sigil.png",
+      "size": [
+        64,
+        64
+      ],
+      "source": "screenshots/collectible-sigil.png"
+    },
+    "item_menu-merchant": {
+      "file": "item_menu-merchant.png",
+      "size": [
+        26,
+        26
+      ],
+      "source": "screenshots/merchant.png"
+    },
+    "item_gem": {
+      "file": "item_gem.png",
+      "size": [
+        195,
+        195
+      ],
+      "source": "screenshots/gem.png"
+    }
+  },
+  "missing_core": [],
+  "image_sha256": {
+    "window_frame": "1b4b435b8464d78f99330affc1c895735da45b0b6a994463d564d90b44021725",
+    "window_title": "3c895aa320e4c06a5f4f40cb2ca3d3e5d780a14e800b01149aaeab164acae2da",
+    "inventory_panel": "1b4b435b8464d78f99330affc1c895735da45b0b6a994463d564d90b44021725",
+    "chest_panel": "1b4b435b8464d78f99330affc1c895735da45b0b6a994463d564d90b44021725",
+    "merchant_panel": "1b4b435b8464d78f99330affc1c895735da45b0b6a994463d564d90b44021725",
+    "trading_panel": "1b4b435b8464d78f99330affc1c895735da45b0b6a994463d564d90b44021725",
+    "wallet_panel": "1b4b435b8464d78f99330affc1c895735da45b0b6a994463d564d90b44021725",
+    "tooltip": "12b1793dff927381747df32ded75834cad04c78c6fd2b27e11201d0616175913",
+    "health_orb": "b31b5a7dbb6eb7bb734d8f49f1f65a7ca3b6e8d4c3065648ee1436f9611f29d2",
+    "book_pages": "d3d68638eff08e52b09b99afed1386647c1ef2c8bad58642ce419d541f0a5b82",
+    "button": "cee4048f28ec45c727f5a2b55d3d530be7b33e805a38d4468fa21f7f1eec641c",
+    "slot_empty": "285fc00b5b6ea1fab15a1b202fd149f7d576c70db94f47745e91ee0fcf3741c3",
+    "item_bag": "9efbb9b923809277f7dfe0eb6ea61aeb0c899d76ea9514d40759b0f4175c0a62",
+    "item_menu-wallet": "6ee946a117be6b9239e4bd7aacedb434f97cdf5f11c362a5c17df2d22a0151b0",
+    "item_compact": "5be52ee526dbdb46eb27266d75a905c30f0e38e023522bef3b83a2e27601c07f",
+    "item_deposit": "320923e424d2e8ce1dfdd7a6cb4d2aae32bde1fdda2cb163f42ea06be1e76cf8",
+    "item_book-1": "341fc8a80253c072cadb3070f2061438923f5f723a928286f6e56c6e1ea9828f",
+    "item_book-2": "1ba19c565f6aa109e10baa7b8c2e13d9c08d8a3a7077da571f2573d130671b6a",
+    "item_book-3": "dbffb31653da39a14bf409477f787f0b8a1329d2b51d09ef9d578c271c850118",
+    "item_book-final": "1ba19c565f6aa109e10baa7b8c2e13d9c08d8a3a7077da571f2573d130671b6a",
+    "item_junk-seal": "15908f96c93a87db9eccdfd116163c4a267267afa51ac7f778de3da354a26b6b",
+    "item_junk-box": "94e249170cfdb613edc96a538a76a15021d64df7121c661f53d5bd63261ab1dc",
+    "item_collectible-anchor": "b01220fa1e0f93ec5b7d9de2413f4c2a8724773ee7eb16fc0de4faafb6b6e8d8",
+    "item_collectible-caravan": "e352bfdbc127be3e374c110991b485c2019c6458067ce46dfb3ad9fbd8072b5b",
+    "item_collectible-captain": "ddb822d59126d3ab24fbbc29611ff22e6dc78f733b3052be7e7ddba0f6221fa6",
+    "item_collectible-final": "91518cc2f4fe8a22ec899a1c1e1ba995d8521ab41a47cfd3d2aed003e180d543",
+    "item_menu-trading": "0376c8d3a2b65e239c76efe6f746d423f06a66f9c9f181ecfbb6ce270895b599",
+    "item_menu-inventory": "1c04d560ea83079f06234fe338ef3d515c5e4897c806a5aacca0715fedf14056",
+    "skill_a": "e17e19b0ae4457d1724a0769e4f055db8e79266e412d2d528f7b717adb581e62",
+    "skill_b": "12d049c824708b0b8733c8cd7bbd4086a954cd51ea48793f518cc1fbd9da3372",
+    "skill_c": "53254af1b9acf56a08a061bf987e58e602ac250b5104eb7677b721be19faa153",
+    "skill_d": "f4ba56260e33a5fe1afb1f5b8b58d5096f3fc69cc996493dfef7e8880bf6ed08",
+    "skill_e": "68efb75361277b425fb1acdb154429b574a0db768c8cf16acb1e2e2af056d409",
+    "skill_f": "fb77b7c6b6700e591f41ccb6ac02c459db0af722d296e6770c70a5ecbdc870e9",
+    "skill_g": "4cfc845bde981a3b11ad64f896d1db5fb2210b3ecd816f4a3e39aa77003220f6",
+    "minimap": "9e5972b9ff80d06edd318eb27093143984431a736ff1d8734f4eaf095d430031",
+    "world_background": "3d86170b76f4fae9581504ecc543e10367a16e9309e8e66be67a8cd0f42cc536",
+    "item_chest": "923a1b4fe2724ac39ada1f11a773335fbb345da73e00241941a38ee4d43e60cb",
+    "item_key": "44d2cb5dd03e154e94ba73eacd16d993f8cde1580a04b77ba57333834f71097c",
+    "item_material-dust": "395e2e763fb0b3018f1fff137112f04aea4dd67984f3480e6f3ed7e0d7bfd9f3",
+    "item_material-ore": "7063808d0bb74ca69b50bf87f5649842805ed1cc45b930b24470da1430bf394d",
+    "item_material-shard": "cbb4f6dcd453f9531987e584aa23c412aa3db8f41a06ff3f1a0b707b532b6c58",
+    "item_material-eternal": "cd27da7646e6184603cc6de52aab715dc07e4079c288fb7f8cf5e67e3c96ae37",
+    "item_junk-tooth": "92dcd7301b6504ec8675009f4c5f1bedbc64a0f74150022b8d9b07a3b586607f",
+    "item_collectible-sigil": "b8f3563f12d05d76c21426116f5e04104e5f0fafdef741b4a70366b38efadd3e",
+    "item_menu-merchant": "6f1a39dc5741f6a4e3e022d25f9d19761ec62454a94ae286dafcccc09b96fdc8",
+    "item_gem": "50b97d1910175ce83080a67f0aa35edded2cdfd49635a247918d45064ced5a6e"
+  }
+}

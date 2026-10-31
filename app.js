@@ -20,6 +20,8 @@
   }
   async function loadOfficialArt(){
     if(!['http:','https:'].includes(location.protocol))return;
+    // A finished local skin never needs the optional metadata service.
+    if(['chest','key','material-dust','material-ore','material-shard','material-eternal'].every(name=>(window.GW2_LOCAL_ASSETS||{})[name]))return;
     try {
       const controller=new AbortController();
       const timeout=setTimeout(()=>controller.abort(),3500);
@@ -99,12 +101,12 @@
     const all=regularItems(), quest=S.books;
     const starterSlots=Math.max(20,Math.ceil(all.length/20)*20);
     const questSlots=Math.max(20,Math.ceil(quest.length/20)*20);
-    return `<div class="inventory-toolbar"><span>Inventory <em>${all.length+quest.length} / ${starterSlots+questSlots}</em></span><div class="toolbar-actions"><button data-action="compact" title="Compact inventory" aria-label="Уплотнить инвентарь">▦</button><button data-action="deposit" title="Deposit All Materials" aria-label="Отправить материалы в хранилище">⇩</button></div></div><div class="inventory-search"><span aria-hidden="true">⌕</span><input id="inventorySearch" type="search" placeholder="Search inventory..." aria-label="Поиск по инвентарю" value="${h(searchQuery)}"></div>
+    return `<div class="inventory-toolbar"><span>Inventory <em>${all.length+quest.length} / ${starterSlots+questSlots}</em></span><div class="toolbar-actions"><button data-action="compact" title="Compact inventory" aria-label="Уплотнить инвентарь">${img('compact')}</button><button data-action="deposit" title="Deposit All Materials" aria-label="Отправить материалы в хранилище">${img('deposit')}</button></div></div><div class="inventory-search"><span aria-hidden="true">⌕</span><input id="inventorySearch" type="search" placeholder="Search inventory..." aria-label="Поиск по инвентарю" value="${h(searchQuery)}"></div>
       <div class="minor-tabs"><button class="${current==='bags'?'selected':''}" data-invtab="bags">Bags</button><button class="${current==='materials'?'selected':''}" data-invtab="materials">Material Storage</button><button class="${current==='collection'?'selected':''}" data-invtab="collection">Collections</button></div>
       ${current==='bags'?`
       <div class="inventory-with-rail">
       <div class="bag-rail" aria-label="Сумки">
-        <button class="rail-bag" title="Starter Backpack" data-jump-bag="starter" aria-label="Перейти к Starter Backpack">${img('chest')}<span>1</span></button>
+        <button class="rail-bag" title="Starter Backpack" data-jump-bag="starter" aria-label="Перейти к Starter Backpack">${img('bag')}<span>1</span></button>
         <button class="rail-bag quest-rail" title="Quest Bag" data-jump-bag="quest" aria-label="Перейти к Quest Bag">${img('book-1')}<span>2</span></button>
         <span class="rail-lock" title="Другие сумки недоступны" aria-hidden="true">♙</span>
       </div>
@@ -267,7 +269,9 @@
   document.querySelector('#audioToggle').addEventListener('click',()=>{if(AudioFX)AudioFX.toggle();updateSoundButton();});
   updateSoundButton();
   document.addEventListener('click',e=>{
-    const target=e.target.closest('[data-screen],[data-action],[data-tab],[data-invtab],[data-item],[data-book],[data-booknav],[data-inspect-reward],[data-jump-bag]');if(!target)return;
+    // data-screen also labels the window for CSS. Only navigation buttons may
+    // switch screens: treating the container as navigation detaches live forms.
+    const target=e.target.closest('button[data-screen],[data-action],[data-tab],[data-invtab],[data-item],[data-book],[data-booknav],[data-inspect-reward],[data-jump-bag]');if(!target)return;
     if(target.dataset.screen){go(target.dataset.screen);return;}
     if(target.dataset.tab){tab=target.dataset.tab;draw();return;}
     if(target.dataset.invtab){inventoryTab=target.dataset.invtab;draw();return;}

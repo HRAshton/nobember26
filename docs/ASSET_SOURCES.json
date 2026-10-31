@@ -1,0 +1,532 @@
+{
+  "retrieved": "2026-10-31",
+  "notes": "GW2 game art belongs to ArenaNet/NCSoft. Custom quest items reuse visual motifs; their names and rules remain quest-specific. Official web pages/forums and metadata API were not visited. Only direct render image URLs were downloaded as allowed.",
+  "assets": {
+    "window_frame": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/controls/window/502049.png",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ],
+      "source_sha256": "86eaa5d5827556b8a14ca8ce0f6774798c1dde4921304b12927a59f563f652ec"
+    },
+    "window_title": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/titlebar-active.png",
+      "file": "titlebar-active.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        64
+      ],
+      "source_sha256": "8665b53aac37d11c9fa213145b6ffe831334ddf76b7603fcfd9d4772b2d91c50"
+    },
+    "inventory_panel": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/controls/window/502049.png",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ],
+      "source_sha256": "86eaa5d5827556b8a14ca8ce0f6774798c1dde4921304b12927a59f563f652ec"
+    },
+    "chest_panel": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/controls/window/502049.png",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ],
+      "source_sha256": "86eaa5d5827556b8a14ca8ce0f6774798c1dde4921304b12927a59f563f652ec"
+    },
+    "merchant_panel": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/controls/window/502049.png",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ],
+      "source_sha256": "86eaa5d5827556b8a14ca8ce0f6774798c1dde4921304b12927a59f563f652ec"
+    },
+    "trading_panel": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/controls/window/502049.png",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ],
+      "source_sha256": "86eaa5d5827556b8a14ca8ce0f6774798c1dde4921304b12927a59f563f652ec"
+    },
+    "wallet_panel": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/controls/window/502049.png",
+      "file": "502049.png",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ],
+      "source_sha256": "86eaa5d5827556b8a14ca8ce0f6774798c1dde4921304b12927a59f563f652ec"
+    },
+    "tooltip": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/tooltip.png",
+      "file": "tooltip.png",
+      "rect": [
+        0,
+        0,
+        942,
+        942
+      ],
+      "source_sha256": "4e9dc5e620a34eea003d3088a6016c47cb9b4aa7f3830ff02fb1092c1a4ef5f9"
+    },
+    "health_orb": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/healthpool.png",
+      "file": "healthpool.png",
+      "rect": [
+        0,
+        0,
+        100,
+        100
+      ],
+      "source_sha256": "1e735fd58d2a338d023b310dacb3c6efdd2e4035b7837aefd70c1e2cd2b66a25"
+    },
+    "book_pages": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/1909316.png",
+      "file": "1909316.png",
+      "rect": [
+        0,
+        0,
+        420,
+        560
+      ],
+      "source_sha256": "c71fc0019779f51435e09267fd7f985d8a5241578b75a7b80ec83416c1b83027"
+    },
+    "button": {
+      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/Content/common/button-states.jpg",
+      "file": "button-states.jpg",
+      "rect": [
+        0,
+        0,
+        350,
+        20
+      ],
+      "source_sha256": "2efb78e32bdc157d4b29d5bdc9843ac90de59196d0800214fa8154c254e1525d"
+    },
+    "slot_empty": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        551,
+        386,
+        39,
+        39
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_bag": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        336,
+        82,
+        36,
+        36
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_menu-inventory": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "interface.jpg",
+      "rect": [
+        379,
+        111,
+        33,
+        34
+      ],
+      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
+    },
+    "item_menu-wallet": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        377,
+        724,
+        22,
+        22
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_compact": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        764,
+        126,
+        20,
+        20
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_deposit": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        741,
+        126,
+        20,
+        20
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_book-1": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        510,
+        173,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_book-2": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        553,
+        173,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_book-3": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        384,
+        217,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_book-final": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        553,
+        173,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_junk-seal": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        597,
+        173,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_junk-box": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        681,
+        173,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_collectible-anchor": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        468,
+        259,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_collectible-caravan": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        724,
+        217,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_collectible-captain": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        384,
+        173,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_collectible-final": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "inventory.jpg",
+      "rect": [
+        597,
+        217,
+        35,
+        35
+      ],
+      "source_sha256": "23651600a91f7381ba04aabd18411bfd98c98bd13a2fe7882262bc72fa34e55d"
+    },
+    "item_menu-trading": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "interface.jpg",
+      "rect": [
+        605,
+        109,
+        40,
+        37
+      ],
+      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
+    },
+    "item_menu-merchant": {
+      "source_page": "https://gw2.app/items/20349",
+      "file": "merchant.png",
+      "rect": [
+        0,
+        0,
+        26,
+        26
+      ],
+      "source_sha256": "4891e560f180781fb07a3d0d60b21e3f372b64977fc0804f13f279d05b09a6c2"
+    },
+    "skill_a": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "interface.jpg",
+      "rect": [
+        666,
+        641,
+        22,
+        20
+      ],
+      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
+    },
+    "skill_b": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "interface.jpg",
+      "rect": [
+        689,
+        641,
+        22,
+        20
+      ],
+      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
+    },
+    "skill_c": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "interface.jpg",
+      "rect": [
+        713,
+        641,
+        22,
+        20
+      ],
+      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
+    },
+    "skill_d": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "interface.jpg",
+      "rect": [
+        737,
+        641,
+        22,
+        20
+      ],
+      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
+    },
+    "skill_e": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "interface.jpg",
+      "rect": [
+        761,
+        641,
+        22,
+        20
+      ],
+      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
+    },
+    "skill_f": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "interface.jpg",
+      "rect": [
+        823,
+        639,
+        22,
+        22
+      ],
+      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
+    },
+    "skill_g": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "interface.jpg",
+      "rect": [
+        847,
+        639,
+        22,
+        22
+      ],
+      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
+    },
+    "minimap": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
+      "file": "minimap.jpg",
+      "rect": [
+        275,
+        140,
+        280,
+        170
+      ],
+      "source_sha256": "2d041f8ff318aa089bc82570729c03bc9909ce069ad81c5c7cc037752c2711fb"
+    },
+    "world_background": {
+      "source_page": "https://www.rpgsite.net/review/3154-guild-wars-2-review",
+      "file": "world.jpg",
+      "rect": [
+        0,
+        0,
+        1838,
+        1149
+      ],
+      "source_sha256": "ae81007f022570cb7b315f659f1472139c0d0b3698884e3fa8e8f9b79674572b"
+    },
+    "item_chest": {
+      "source_page": "https://gw2.app/items/20316",
+      "file": "chest.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "source_sha256": "c4905bf123d93c5ee0f027fc68eeeb6b11d1293179bfca223d0d363c50d5bb53",
+      "image_url": "https://render.guildwars2.com/file/48E4CEEAEEF8F3419A63D4F6295AB77136B86656/711974.png"
+    },
+    "item_key": {
+      "source_page": "https://gw2.app/items/19980",
+      "file": "key.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "source_sha256": "4ed434b2dd4e4b1688941ad05e50185d64ef640c88b4de3219b17803041b5a3a",
+      "image_url": "https://render.guildwars2.com/file/207BDD31BC494A07A0A1691705079100066D3F2F/414998.png"
+    },
+    "item_material-dust": {
+      "source_page": "https://gw2.app/items/24272",
+      "file": "material-dust.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "source_sha256": "8069d203a44b4f30d0477866d5d3763964710458f68142b07f07695fcd35db02",
+      "image_url": "https://render.guildwars2.com/file/F438A5EFB89C4ED6F8A04FE6E7060D05C294C4C6/434532.png"
+    },
+    "item_material-ore": {
+      "source_page": "https://gw2.app/items/19701",
+      "file": "material-ore.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "source_sha256": "5a28c22025ab353b5a5d25e8c69480265daad2b83602ceddb06b22ddc0f87c62",
+      "image_url": "https://render.guildwars2.com/file/A6E2C82153BA684E2D05D3FCA09F3E02431366ED/220461.png"
+    },
+    "item_material-shard": {
+      "source_page": "https://gw2.app/items/24277",
+      "file": "material-shard.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "source_sha256": "507ab5335f1f4804d53ee57b53e795f0ee35c14ab62f4c7a112a3fe215f1ceb5",
+      "image_url": "https://render.guildwars2.com/file/080D00670558CD9E580D5662030394B2206E92A6/434537.png"
+    },
+    "item_material-eternal": {
+      "source_page": "https://gw2.app/items/24295",
+      "file": "material-eternal.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "source_sha256": "75c98f7bf1c2b03b952fc3a5fa6a1c0f1180cdfdeea3033896ea1fb977b3f8b6",
+      "image_url": "https://render.guildwars2.com/file/1A930A6A7B5B01EAB4CB36E79014C12B500BF6B3/66950.png"
+    },
+    "item_junk-tooth": {
+      "source_page": "https://gw2.app/items/24358",
+      "file": "junk-tooth.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "source_sha256": "b449f9467094f4ad4ed48c4516e2d1be72057e96508a2ef692c57e4058bf8b76",
+      "image_url": "https://render.guildwars2.com/file/0EE45FBB1E1A004600E9BAA7097830B2DE08587D/66828.png"
+    },
+    "item_collectible-sigil": {
+      "source_page": "https://gw2.app/items/19925",
+      "file": "collectible-sigil.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "source_sha256": "ab09e3e15d2481b13b8d0a05d46940e4d8dc7896460ac50bb863c7c8f26380e0",
+      "image_url": "https://render.guildwars2.com/file/AE16FCC326D80A3906B17B6A75E8A91980BE4670/434362.png"
+    },
+    "item_gem": {
+      "source_page": "https://hardstuck.gg/gw2/guides/general/gemstore-overview/",
+      "image_url": "https://assets.hardstuck.gg/uploads/Gem_highres.png",
+      "file": "gem.png",
+      "rect": [
+        0,
+        0,
+        195,
+        195
+      ],
+      "source_sha256": "250faaa5830023d171ccd16fbe3178e12cf22d0bd2b67b76325764e832348f7e"
+    }
+  }
+}

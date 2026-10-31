@@ -285,3 +285,67 @@ body{font-family:Georgia,'Times New Roman',serif;background:#101719}
 }
 @media(max-width:370px){.hud-balances>span:nth-child(2){display:none}.menu-corner-glyph{display:none}.menu-tile{width:29px}.window-body{padding:7px}.minor-tabs button{padding:5px 6px;font-size:10px}}
 @media(prefers-reduced-motion:reduce){.skillbar,.floating-motes{animation:none!important}}
+
+/* Local game art pass. Bitmap sources and exact crop rectangles are recorded
+   in docs/ASSET_SOURCES.json; the quest remains HTML with usable controls. */
+.landscape{filter:saturate(.84) contrast(1.03);background-position:center center}
+.ambient-vignette{background:linear-gradient(90deg,#07141c20,transparent 52%,#06121930),linear-gradient(0deg,#050b10aa,transparent 35%,#08101324)}
+.floating-motes{opacity:.12}
+.game-window{background-color:#252526;backdrop-filter:none;box-shadow:0 12px 45px #0009,0 0 0 1px #080a0b}
+.game-window::before{opacity:.65}
+.window-body{background:linear-gradient(100deg,#251e1b24,#0c11144d);position:relative}
+.window-titlebar{height:43px;font-size:23px;border:0;padding-left:13px;background-color:#161d20}
+.window-titlebar::before{display:none}
+.window-symbol{display:none}
+.window-close{color:#ded8c7}
+.window-footer{background:#151718ba}
+.inventory-bag-area .item-slot,.inventory-bag-area .item-slot.slot-empty{border-color:#635e57;box-shadow:none}
+.item-slot .item-art{width:100%;height:100%;object-fit:contain;filter:none}
+.item-slot:not(.slot-empty):hover{outline:1px solid #e6d6b4;outline-offset:-2px;filter:brightness(1.18)}
+.toolbar-actions img{width:20px;height:20px;object-fit:contain}
+.toolbar-actions button{background:transparent;border:0}
+.menu-tile{background:transparent;border:0;box-shadow:none;filter:drop-shadow(0 1px 2px #000);opacity:.85}
+.menu-tile:hover,.menu-tile:focus-visible{opacity:1;background:#d2c49922}
+.menu-tile img{width:29px;height:29px;object-fit:contain}
+.hud-top{background:linear-gradient(#111a21a6,transparent);height:50px}
+.hud-balances>span{background:#09131c80}
+.menu-place{letter-spacing:.6px}
+.world-location{top:24vh;left:5vw;opacity:.9;filter:drop-shadow(0 2px 3px #111)}
+.world-location strong{font-size:23px;letter-spacing:4px}
+.world-location small{font-size:10px}
+.skillbar{opacity:1;bottom:32px}
+.skill{width:42px;height:42px;border:1px solid #878071;box-shadow:inset 0 0 2px #000}
+.skillbar-health{width:94px;height:94px;border:0;background-color:transparent;box-shadow:none;margin:0 4px}
+.skillbar-health:after{display:none}
+.skillbar-health span{font-size:16px}
+.hud-party{display:none}
+.mini-map{opacity:1;width:200px}
+.mini-map-surface{background-size:cover;border:2px solid #646559}
+.mini-map-label{display:none}
+.mini-map-arrow{display:none}
+.mini-map-bottom{background:#131a1cce}
+.ingame-button{background-color:#c8be9f;color:#24211b;text-shadow:0 1px #f6f2df66;border:1px solid #8c826c;box-shadow:0 1px 3px #0008;font-family:Georgia,'Times New Roman',serif}
+.ingame-button.gold{color:#211c12;background-color:#cdb785;border-color:#a38e65}
+.ingame-button:hover:not(:disabled){filter:brightness(1.15);color:#100e09}
+.ingame-button:disabled{opacity:.42}
+.minor-tabs button.selected{color:#f0dfbd;background:linear-gradient(#77644a88,#372f2588)}
+.chest-keyhole{display:none}
+.faithful-chest .chest-stage{height:235px;background:radial-gradient(ellipse,#ac8c4e2b,transparent 65%)}
+.faithful-chest .chest-hero{height:190px;display:grid;place-items:center}
+.faithful-chest .big-chest{width:176px;height:176px;object-fit:contain;filter:drop-shadow(0 12px 12px #000)}
+.chest-side img{object-fit:contain}
+.store-image img{object-fit:contain;max-width:130px;max-height:130px}
+.item-tooltip{background-size:cover}
+.book-spread{background-size:100% 100%}
+.fan-disclaimer{font-size:8px!important;background:#081116b8!important}
+@media(max-width:710px){
+ .window-titlebar{height:39px;font-size:20px}
+ .game-window{margin-top:5px}
+ .world-location{display:none}
+ .hud-top{height:46px}
+ .menu-tile img{width:25px;height:25px}
+ .faithful-chest .chest-stage{height:195px}
+ .faithful-chest .chest-hero{height:165px}
+ .faithful-chest .big-chest{width:145px;height:145px}
+ .action-dock img{object-fit:contain}
+}

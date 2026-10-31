@@ -2,26 +2,29 @@
 from pathlib import Path
 import time,json
 from playwright.sync_api import sync_playwright
+from browser_runtime import launch_browser, load_document
 root=Path(__file__).resolve().parent.parent
 out=root/'previews';out.mkdir(exist_ok=True)
-html=(root/'play-offline.html').read_text()
+html=(root/'play-offline.html').read_text(encoding='utf8')
 def document(saved=None):
  return '<script>Object.defineProperty(window,"localStorage",{value:{_s:'+json.dumps(saved or {})+',getItem(k){return this._s[k]||null},setItem(k,v){this._s[k]=String(v)},removeItem(k){delete this._s[k]}}})</script>'+html
 try:
  with sync_playwright() as p:
-  browser=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox','--disable-dev-shm-usage'])
+  browser=launch_browser(p)
   page=browser.new_page(viewport={'width':1440,'height':900},device_scale_factor=1)
   errors=[]
+  requests=[]
+  page.on('request',lambda r:requests.append(r.url) if r.url.startswith(('http:','https:')) and r.url!='https://quest.test/' else None)
   page.on('pageerror',lambda e:errors.append(str(e)))
-  page.set_content(document(),wait_until='load')
-  assert page.title().endswith('v1.0')
+  load_document(page, document(),wait_until='load')
+  assert page.title().endswith('v1.2')
   assert page.locator('[data-item="regular-chest"]').count()==1
   assert page.locator('#audioToggle').get_attribute('aria-pressed')=='false'
   page.screenshot(path=str(out/'desktop.png'),full_page=True)
   page.locator('#audioToggle').click()
   assert page.locator('#audioToggle').get_attribute('aria-pressed')=='true'
   snapshot=page.evaluate('window.localStorage._s')
-  page.set_content(document(snapshot),wait_until='load')
+  load_document(page, document(snapshot),wait_until='load')
   assert page.locator('#audioToggle').get_attribute('aria-pressed')=='true'
   # M shortcut toggles back off, ensuring screenshots are silent.
   page.keyboard.press('m')
@@ -112,13 +115,15 @@ try:
   page.locator('[data-action="close-modal"]').last.click()
   assert page.locator('[data-item="bonus-chest"]').count()==0
   snapshot=page.evaluate('window.localStorage._s')
-  page.set_content(document(snapshot),wait_until='load')
+  load_document(page, document(snapshot),wait_until='load')
   page.locator('[data-screen="inventory"]').first.click()
   assert page.locator('[data-item="legendary-book"]').count()==1
   assert len(errors)==0,errors
+  assert not requests,requests
+  assert page.evaluate('Array.from(document.images).every(i=>i.complete && i.naturalWidth>0)')
   mobile=browser.new_page(viewport={'width':390,'height':844},device_scale_factor=1,is_mobile=True,has_touch=True, reduced_motion='reduce')
   mobile.on('pageerror',lambda e:errors.append('mobile: '+str(e)))
-  mobile.set_content(document(),wait_until='load')
+  load_document(mobile, document(),wait_until='load')
   mobile.screenshot(path=str(out/'mobile.png'),full_page=True)
   assert mobile.evaluate('document.documentElement.scrollWidth <= innerWidth')
   mobile.locator('[data-screen="trading"]').last.click()

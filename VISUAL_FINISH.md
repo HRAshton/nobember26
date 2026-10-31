@@ -1,19 +1,13 @@
-# Visual finish — v1.0 (2026-10-31)
+# Завершение v1.2 — 31 октября 2026
 
-## Delivered
-- Replaced the oversized website header with compact game-style top-left icon menu (Inventory, Merchant, Black Lion, Wallet).
-- Replaced the website bottom navigation on desktop with decorative skill bar, health orb, mini map and party portrait; mobile retains an accessible tab bar.
-- New translucent, textured panel treatment, tighter 10-column inventory slots and compact bag rail.
-- Retuned Black Lion Chest window, four reward slots, tooltips and legendary highlighting.
-- Added original fan-made cartographic minimap asset and leveraged pre-existing original harbor art.
-- Optional online icons from the GW2 official API: chest (20316), key (19980), glittering dust (24272), silver ore (19703), shimmering dust (24273), powerful blood (24295). No network needed offline; local icons always remain available.
+Встроены 47 локальных элементов из сторонних источников. Вместо прежних SVG-заглушек используются игровые иконки сундука, ключа, материалов и кристалла, вырезки книг, рюкзака, кошелька и навигации. Фон — скриншот старого Lion’s Arch из RPG Site. Фактуры окон, сфера здоровья и кнопка — из стороннего Blish HUD; пустой слот, навыки и мини-карта нарезаны из Hardstuck.
 
-## Deliberate differences
-These are independently written fan UI approximations, not a pixel-by-pixel clone and not a redistribution of ArenaNet UI textures, sound files or logos. Books, custom codes, exchange rates and collectible loot belong to the gift quest. Mini map/skillbar is decorative and does not simulate combat.
+HTML остаётся интерактивным: скриншоты не подменяют текст, кнопки, цены или загадки. Мини-карта и навыки декоративные; карта из учебного скриншота представляет Queensdale, а не Lion’s Arch. Книги и трофеи имеют собственные квестовые названия и используют подходящие игровые визуальные мотивы, не утверждая соответствия предметам GW2.
 
-## Fan content policy
-https://www.arena.net/en/legal/content-terms-of-use
-https://www.guildwars2.com/en/media/asset-kit/
+Исправлена существовавшая ошибка делегирования кликов: data-screen на контейнере окна больше не превращает отправку формы в переход на тот же экран. Коды и обмен отправляются без пересоздания формы. Движок, экономика, конфиг и формат сохранений не изменены.
 
-## Testing
-Run `npm test`, `npm run validate` and `python scripts/browser-smoke.py`; a complete walkthrough is included in the latter.
+Сборщик встраивает PNG-иконки HUD и карту предметов в play-offline.html; полный локальный набор отключает необязательную загрузку метаданных API. Nine-slice больше не закрывает содержимое окна центральной заливкой. Локальный сервер скрывает dot-файлы (включая Git) и отвечает 400 на повреждённые URL, сохраняя работоспособность.
+
+Исходники вырезок: local-input/screenshots, разметка: local-input/slices.local.json, готовые изображения и отчёт: assets/real-ui. Все источники, прямые URL, координаты и SHA-256 записаны в docs/ASSET_SOURCES.json. Страницы официального сайта и форумы игры не открывались.
+
+Проверки описаны в TEST_RESULTS.md. Скриншоты фактической сборки — previews/. Персональные тексты подарков не выдумывались: в config.js сохранено исходное демо.

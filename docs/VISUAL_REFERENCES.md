@@ -1,23 +1,15 @@
-# Визуальные ориентиры
+# Источники встроенной графики v1.2
 
-Ссылки для разработчика, на которые опирались при проектировании v0.5. В архиве **нет скопированных скриншотов или официальных игровых звуков**.
+Исследование и страницы использованы только со сторонних сайтов:
 
-1. Инвентарь GW2: https://wiki.guildwars2.com/wiki/Inventory — стартовый рюкзак, слоты, боковая панель, Deposit All Materials и Compact.
-2. Скриншот инвентаря: https://wiki.guildwars2.com/wiki/File:Inventory.jpg — фактура, сетка, рамки редкости и значки сумок.
-3. Окно Black Lion Chest: https://wiki.guildwars2.com/wiki/File:Black_Lion_Chest_window_(original).jpg — центральный сундук, иконки ключа и сундука, кнопка Open.
-4. Другие варианты окна: https://wiki.guildwars2.com/wiki/Black_Lion_Chest/historical — более поздняя компоновка и награды.
-5. Текущая игровая механика сундука: https://wiki.guildwars2.com/wiki/Black_Lion_Chest — четыре предмета с вероятностью пятого; в нашем квесте намеренно **ровно четыре**.
-6. Продажа мусора торговцу: https://wiki.guildwars2.com/wiki/Merchant — Sell Junk и Buyback.
-7. Политика фан-контента ArenaNet: https://www.arena.net/en/legal/content-terms-of-use — проект обязан оставаться некоммерческим, не выдавать себя за официальный и содержать собственную творческую часть.
+- Hardstuck, Game basics: https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/ — inventory4.jpg, interface2.jpg и intro-minimap.jpg. Вырезаны чистые слоты, иконки сумок, книг, кошелька, меню и навыков. На фон окон не переносились инструкции из гайда.
+- Hardstuck, Gemstore overview: https://hardstuck.gg/gw2/guides/general/gemstore-overview/ — Gem_highres.png.
+- RPG Site, Guild Wars 2 Review: https://www.rpgsite.net/review/3154-guild-wars-2-review — Lions_Arch_04.jpg, реальный вид старого Lion’s Arch.
+- GW2.app: https://gw2.app/items/20316 и отдельные страницы предметов — прямые ссылки на иконки сундука, ключа и материалов. С render.guildwars2.com скачаны только изображения; официальный API и страницы игры не запрашивались.
+- Blish HUD: https://github.com/blish-hud/Blish-HUD — ref/controls/window/502049.png, ref/titlebar-active.png, ref/tooltip.png, ref/healthpool.png, ref/1909316.png и Content/common/button-states.jpg. Лицензия проекта сохранена в BLISH_HUD_LICENSE.txt. Она не меняет владельца исходной игровой графики.
 
-Базовые художественные элементы (сундук, книги, фон, гербы и т.д.) созданы для этого фан-квеста, а не выгружены из GW2. Изображения официальных источников в архив не включались.
+Машиночитаемый список каждого элемента: ASSET_SOURCES.json. Он содержит URL страницы, URL отдельного изображения, если применимо, координаты и SHA-256 исходника. Отчёт результата сборки с SHA-256 вырезок: ../assets/real-ui/asset-report.json.
 
-## Дополнение v0.6 — публичные данные для игровых иконок
+Мини-карта и навыки служат декорацией. Трофеи и книги — предметы домашнего квеста; похожая игровая иконка не означает совпадения с названием или свойствами реального предмета GW2.
 
-- API: https://wiki.guildwars2.com/wiki/API:2/items (метаданные содержат поле `icon` с URL).
-- Render service: https://wiki.guildwars2.com/wiki/API:Render_service (URL оригинальных ресурсов).
-- Сундук: https://wiki.guildwars2.com/wiki/Black_Lion_Chest — GW2 API ID **20316**.
-- Ключ: https://wiki.guildwars2.com/wiki/Black_Lion_Chest_Key — GW2 API ID **19980**.
-- Текущие правила ArenaNet: https://www.arena.net/en/legal/content-terms-of-use ; https://www.arena.net/en/legal/user-agreement .
-
-Оригинальные изображения **не встроены в автономную сборку**: только браузерный запрос публичных URL в случае доступного API, с локальным SVG-фолбэком. В данной версии не производилась генерация новых изображений на основе игрового арта.
+© ArenaNet LLC / NCSoft. Наличие изображения на стороннем сайте не передаёт исключительных прав. Эта частная некоммерческая фан-сборка не опубликована и не выдаётся за официальный продукт.

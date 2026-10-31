@@ -20,6 +20,8 @@ html=html.replace('<link rel="stylesheet" href="./style.css">','<style>'+css+'</
 html=html.replace('<link rel="icon" href="./assets/crest.svg" type="image/svg+xml">','')
 for name,data in assets.items():
     html=html.replace(f'src="./assets/{name}.svg"',f'src="{data}"')
+# Static HUD icons use the same local skin as dynamically rendered items.
+html=re.sub(r'(<img\b[^>]*?\bsrc=")(\./assets/[^"<>]+)(")',lambda m:m.group(1)+image_data(root/m.group(2))+m.group(3) if (root/m.group(2)).is_file() else m.group(0),html)
 
 skin=root/'assets/real-ui/skin.css'
 if skin.exists():

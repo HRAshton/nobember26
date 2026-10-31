@@ -1,6 +1,6 @@
 {
   "name": "gw2-black-lion-quest-prototype",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Offline-friendly GW2-style gift quest",
   "private": true,
   "scripts": {
@@ -11,7 +11,8 @@
     "assets:check": "python3 tools/finish_local.py --check",
     "assets:build": "python3 tools/finish_local.py --standalone",
     "assets:strict": "python3 tools/finish_local.py --strict --standalone",
-    "assets:sheet": "python3 tools/create_contact_sheet.py"
+    "assets:sheet": "python3 tools/create_contact_sheet.py",
+    "test:browser": "python scripts/browser-smoke.py"
   },
   "engines": {
     "node": ">=18"

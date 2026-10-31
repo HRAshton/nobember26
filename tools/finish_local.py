@@ -30,12 +30,22 @@ CSS_TARGETS = {
     'book_pages': '.book-spread',
     'tooltip': '.item-tooltip',
     'menu_bar': '.game-menu-bar',
+    'health_orb': '.skillbar-health',
+    'minimap': '.mini-map-surface',
+    'skill_a': '.skill-a',
+    'skill_b': '.skill-b',
+    'skill_c': '.skill-c',
+    'skill_d': '.skill-d',
+    'skill_e': '.skill-e',
+    'skill_f': '.skill-f',
+    'skill_g': '.skill-g',
 }
 # Use image file names item_chest.png, item_key.png, etc.
 ITEMS = ['chest','key','gem','crest','book-1','book-2','book-3','book-final',
          'junk-seal','junk-tooth','junk-box', 'material-dust','material-ore',
          'material-shard','material-eternal','collectible-anchor',
-         'collectible-caravan','collectible-captain','collectible-sigil','collectible-final']
+         'collectible-caravan','collectible-captain','collectible-sigil','collectible-final',
+         'bag','menu-inventory','menu-merchant','menu-trading','menu-wallet','deposit','compact']
 VALID_NAMES = set(CSS_TARGETS)|{'item_'+x for x in ITEMS}
 REQUIRED_FOR_STRICT = {'window_frame','window_title','slot_empty','chest_panel','merchant_panel','trading_panel'}
 
@@ -105,7 +115,7 @@ def validate_slice(s,w,h):
 
 
 def css_for(entries):
-    out=['/* Auto-generated local skin. No original images shipped with template. */',
+    out=['/* Generated from local images; provenance: docs/ASSET_SOURCES.json. */',
          '/* To disable, remove this stylesheet link from index.html. */']
     for name in sorted(CSS_TARGETS):
         if name not in entries: continue
@@ -113,7 +123,7 @@ def css_for(entries):
         sel=CSS_TARGETS[name]
         if name=='window_frame':
             l,t,r,b=entries[name]['slice']
-            out.append(f'''{sel}{{content:"";position:absolute;inset:0;pointer-events:none;box-sizing:border-box;border-style:solid;border-width:{t}px {r}px {b}px {l}px;border-image-source:url("{url}");border-image-slice:{t} {r} {b} {l} fill;border-image-width:{t}px {r}px {b}px {l}px;border-image-repeat:stretch;}}''')
+            out.append(f'''{sel}{{content:"";position:absolute;inset:0;pointer-events:none;box-sizing:border-box;border-style:solid;border-width:{t}px {r}px {b}px {l}px;border-image-source:url("{url}");border-image-slice:{t} {r} {b} {l};border-image-width:{t}px {r}px {b}px {l}px;border-image-repeat:stretch;}}''')
         elif name=='slot_empty':
             out.append(f'{sel}, .inventory-bag-area .item-slot.slot-empty{{background-image:url("{url}");background-size:100% 100%;background-repeat:no-repeat;}}')
         elif name=='world_background':
