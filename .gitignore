@@ -1,0 +1,14 @@
+# Do not publish captured screenshots, derived proprietary textures or secret paper codes accidentally.
+local-input/screenshots/*
+local-input/ready-slices/*
+local-input/slices.local.json
+assets/real-ui/*.png
+assets/real-ui/asset-report.json
+assets/real-ui/contact-sheet.png
+# build output can embed local game art; review before committing
+play-offline.html
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store

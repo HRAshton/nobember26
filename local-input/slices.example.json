@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "regions": [
+    {"name": "window_frame", "file": "inventory-example.png", "rect": [20, 20, 400, 500], "slice": [20, 20, 20, 20]},
+    {"name": "window_title", "file": "inventory-example.png", "rect": [20, 20, 400, 40]}
+  ]
+}
