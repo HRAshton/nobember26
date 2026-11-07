@@ -10,7 +10,7 @@ const C=JSON.parse(JSON.stringify(sandbox.window.QUEST_CONFIG));
 const store=()=>({db:{},getItem(key){return this.db[key]||null},setItem(key,value){this.db[key]=value}});
 const advance=s=>{
   let state=s;
-  for(const code of ['START-LION','GIFT-ONE']){
+  for(const code of C.codes.filter(code=>!code.final).slice(0,2).map(code=>code.code)){
     state=E.redeem(C,state,code).state;
     state=E.buyKey(C,state).state;
     state=E.open(C,state).state;

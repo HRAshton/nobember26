@@ -1,5 +1,12 @@
 # Changelog
 
+## Personal quest, November 7, 2026
+
+- Configured gem, goblet, scruffy, gold, and silk for five regular chests.
+- Configured prophecies as the dedicated 10-gem final code.
+- Inserted all six supplied book clues verbatim and isolated personal progress under its own save key.
+- Verified all six books and the 90 silver plus 10 gems ending.
+
 ## v1.3.1, October 31, 2026
 
 - Removed the save export/import panel, file picker, and associated browser handlers.

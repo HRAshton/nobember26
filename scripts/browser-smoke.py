@@ -32,14 +32,14 @@ try:
   page.locator('[data-item="regular-chest"]').click(button='right')
   page.locator('[data-menu-action="preview"]').click()
   assert page.locator('.chest-preview').is_visible()
-  assert 'At the Edge of Dawn' not in page.locator('.chest-preview').inner_text()
+  assert page.evaluate('QUEST_CONFIG.gifts[0].clue') not in page.locator('.chest-preview').inner_text()
   page.screenshot(path=str(out/'chest-preview.png'),full_page=True)
   page.locator('[data-action="close-modal"]').last.click()
   page.locator('[data-item="regular-chest"]').dblclick()
   assert page.locator('.faithful-chest .chest-side').count()==2
   page.screenshot(path=str(out/'chest-window.png'),full_page=True)
   page.locator('[data-action="close-modal"]').last.click()
-  for code in ['START-LION','GIFT-ONE','GIFT-TWO']:
+  for code in ['gem','goblet','scruffy','gold','silk']:
    page.locator('[data-screen="trading"]').first.click()
    page.locator('[data-tab="redeem"]').click()
    page.locator('#promo').fill(code)
@@ -56,7 +56,8 @@ try:
    assert page.locator('[data-inspect-reward]').count()==4
    ids=page.locator('[data-inspect-reward]').evaluate_all('(els)=>els.map(x=>x.dataset.inspectReward)')
    assert ids[-1].startswith('book-'),ids
-   if code=='START-LION':
+   expected_clue=page.evaluate('(code)=>QUEST_CONFIG.gifts[QUEST_CONFIG.codes.filter(c=>!c.final).findIndex(c=>c.code===code)].clue',code)
+   if code=='gem':
     page.wait_for_timeout(1100)
     page.screenshot(path=str(out/'loot-reveal.png'),full_page=True)
     # A junk item can be inspected from its own reward slot.
@@ -69,10 +70,12 @@ try:
     page.locator('[data-screen="inventory"]').first.click()
     page.locator('[data-item="book-gift-1"]').dblclick()
     assert page.locator('.book-spread').is_visible()
+    assert expected_clue in page.locator('.book-pages').inner_text()
     page.locator('[data-action="close-modal"]').last.click()
    else:
     page.locator('[data-action="read-new-book"]').click()
     assert page.locator('.book-spread').is_visible()
+    assert expected_clue in page.locator('.book-pages').inner_text()
     page.locator('[data-action="close-modal"]').last.click()
   page.locator('[data-screen="inventory"]').first.click()
   page.locator('[data-item="book-gift-1"]').dblclick()
@@ -95,7 +98,7 @@ try:
   page.locator('#exchangeForm button').click()
   assert page.locator('#topGems').inner_text()=='90'
   page.locator('[data-tab="redeem"]').click()
-  page.locator('#promo').fill('LAST-SECRET')
+  page.locator('#promo').fill('prophecies')
   page.locator('#redeemForm button').click()
   page.locator('[data-tab="store"]').click()
   page.locator('[data-action="buy-key"]').click()
@@ -110,10 +113,14 @@ try:
   page.locator('[data-action="skip-open"]').click()
   assert page.locator('.reward-legendary').is_visible()
   assert page.locator('.legendary-kicker').is_visible()
+
   page.wait_for_timeout(1000)
   page.screenshot(path=str(out/'legendary-rewards.png'),full_page=True)
   page.locator('[data-action="close-modal"]').last.click()
   assert page.locator('[data-item="bonus-chest"]').count()==0
+  page.locator('[data-item="legendary-book"]').dblclick()
+  assert page.evaluate('QUEST_CONFIG.bonus.clue') in page.locator('.book-pages').inner_text()
+  page.locator('[data-action="close-modal"]').last.click()
   snapshot=page.evaluate('window.localStorage._s')
   load_document(page, document(snapshot),wait_until='load')
   page.locator('[data-screen="inventory"]').first.click()
@@ -128,7 +135,7 @@ try:
   assert mobile.evaluate('document.documentElement.scrollWidth <= innerWidth')
   mobile.locator('[data-screen="trading"]').last.click()
   mobile.locator('[data-tab="redeem"]').click()
-  mobile.locator('#promo').fill('START-LION')
+  mobile.locator('#promo').fill('gem')
   mobile.locator('#redeemForm button').click()
   mobile.locator('[data-tab="store"]').click()
   mobile.locator('[data-action="buy-key"]').click()

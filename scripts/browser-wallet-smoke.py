@@ -27,7 +27,7 @@ with sync_playwright() as p:
     load_document(page,document())
     page.locator('[data-screen="trading"]').first.click()
     page.locator('[data-tab="redeem"]').click()
-    page.locator('#promo').fill('START-LION')
+    page.locator('#promo').fill('gem')
     page.locator('#redeemForm button').click()
     check_wallet(page,100,0)
     saved=page.evaluate('localStorage._s')

@@ -422,7 +422,7 @@ body{font-family:Georgia,'Times New Roman',serif;background:#101719}
   <script>/* Quest configuration. Edit gifts, clues and codes here. */
 window.QUEST_CONFIG = {
   title: 'Black Lion Gift Quest',
-  storageKey: 'gw2-black-lion-quest-v1',
+  storageKey: 'gw2-black-lion-quest-personal-v1',
   seed: 'tyria-gifts-2026',
   economy: {
     keyPriceGems: 100,
@@ -430,18 +430,20 @@ window.QUEST_CONFIG = {
     junkTotalCopper: 9000         // 90 silver = 90 gems, in total
   },
   codes: [
-    { code: 'START-LION', gems: 100, description: 'The Journey Begins' },
-    { code: 'GIFT-ONE', gems: 100, description: 'Code from the first gift' },
-    { code: 'GIFT-TWO', gems: 100, description: 'Code from the second gift' },
-    { code: 'LAST-SECRET', gems: 10, description: 'A Secret Discovery', final: true }
+    { code: 'gem', gems: 100, description: 'The Journey Begins' },
+    { code: 'goblet', gems: 100, description: 'Second gift' },
+    { code: 'scruffy', gems: 100, description: 'Third gift' },
+    { code: 'gold', gems: 100, description: 'Fourth gift' },
+    { code: 'silk', gems: 100, description: 'Fifth gift' },
+    { code: 'prophecies', gems: 10, description: 'Dedicated final code', final: true }
   ],
   gifts: [
     {
       id: 'gift-1',
       bookTitle: 'The Cartographer\'s Journal I',
       subtitle: 'At the Edge of Dawn',
-      clue: 'Where morning begins and water boils, look behind the box of your favorite tea.',
-      hint: 'Demo hint: the kitchen, behind the tea box.',
+      clue: 'Лежу я где-то на земле',
+      hint: 'On the ground.',
       junkName: 'Worn Lion Seal',
       junkIcon: '♜',
       material: 'Pile of Glittering Dust',
@@ -453,8 +455,8 @@ window.QUEST_CONFIG = {
       id: 'gift-2',
       bookTitle: 'The Cartographer\'s Journal II',
       subtitle: 'Among Forgotten Stories',
-      clue: 'Where hundreds of lives rest on shelves, seek the page that no one has turned.',
-      hint: 'Demo hint: the bookcase.',
+      clue: 'Среди посуды мы стоим',
+      hint: 'Among the dishes.',
       junkName: 'Broken Dragon Tooth',
       junkIcon: '◆',
       material: 'Orichalcum Ore',
@@ -466,21 +468,47 @@ window.QUEST_CONFIG = {
       id: 'gift-3',
       bookTitle: 'The Cartographer\'s Journal III',
       subtitle: 'When Time Stands Still',
-      clue: 'The final trail leads to the keeper of time. Look where you can hear its quiet ticking.',
-      hint: 'Demo hint: near the clock.',
+      clue: 'У планшета, где и место',
+      hint: 'By the tablet.',
       junkName: 'Empty Merchant Box',
       junkIcon: '▣',
       material: 'Crystalline Shard',
       materialIcon: '✦',
       collectible: 'Captain\'s Emblem',
       collectibleIcon: '⚜'
+    },
+    {
+      id: 'gift-4',
+      bookTitle: 'The Cartographer\'s Journal IV',
+      subtitle: 'A Hidden Message',
+      clue: 'Под клавиатурой я',
+      hint: 'Under the keyboard.',
+      junkName: 'Tarnished Copper Token',
+      junkIcon: '◇',
+      material: 'Pile of Glittering Dust',
+      materialIcon: '✧',
+      collectible: 'Navigator\'s Keepsake',
+      collectibleIcon: '⚓'
+    },
+    {
+      id: 'gift-5',
+      bookTitle: 'The Cartographer\'s Journal V',
+      subtitle: 'The Final Trail',
+      clue: 'На одеждной стойке',
+      hint: 'On the clothes rack.',
+      junkName: 'Worn Caravan Buckle',
+      junkIcon: '◆',
+      material: 'Orichalcum Ore',
+      materialIcon: '⬡',
+      collectible: 'Traveler\'s Emblem',
+      collectibleIcon: '⚜'
     }
   ],
   bonus: {
     title: 'The Last Page of the Legend',
     subtitle: 'Legendary Reward',
-    clue: 'Everything you sought was part of one story. Its final secret awaits where the greatest surprise is hidden.',
-    hint: 'Demo hint for the final gift. Replace before playing.'
+    clue: 'Среди книжек',
+    hint: 'Among the books.'
   }
 };
 </script>

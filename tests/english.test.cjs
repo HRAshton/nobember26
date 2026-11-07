@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const E=require('../engine.js');
 const {load}=require('../scripts/validate-config.cjs');
-const C=load(path.join(__dirname,'../config.js'));
+const C=load(path.join(__dirname,'./fixtures/english-demo-config.js'));
 const store=()=>({data:{},getItem(k){return this.data[k]??null},setItem(k,v){this.data[k]=String(v)}});
 
 function oldLocale(state){
@@ -61,15 +61,20 @@ test('English migration also relabels final rewards without reopening the final 
   assert.equal(E.read(C,storage).bonusOpened,true);
 });
 
-test('interface, tools, configuration and documentation contain English text without em dashes',()=>{
+test('project text uses English except the configured personal clues, without em dashes',()=>{
   const root=path.join(__dirname,'..');
+  const quest=load(path.join(root,'config.js'));
+  const personalClues=[...quest.gifts.map(gift=>gift.clue),quest.bonus.clue];
   function check(dir){
     for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
       if(['.git','node_modules','__pycache__','.venv'].includes(entry.name))continue;
       const file=path.join(dir,entry.name);
       if(entry.isDirectory())check(file);
-      else if(/\.(md|html|js|cjs|py|json|svg|css|bat|sh)$/.test(file))
-        assert.doesNotMatch(fs.readFileSync(file,'utf8'),/[\u0400-\u04ff\u2014]/u,file);
+      else if(/\.(md|html|js|cjs|py|json|svg|css|bat|sh)$/.test(file)) {
+        let text=fs.readFileSync(file,'utf8');
+        for(const clue of personalClues) text=text.split(clue).join('');
+        assert.doesNotMatch(text,/[\u0400-\u04ff\u2014]/u,file);
+      }
     }
   }
   check(root);

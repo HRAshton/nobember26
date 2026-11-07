@@ -10,9 +10,9 @@ A personal, offline gift quest with a Guild Wars 2 style inventory. Find physica
 
 ## Personalize
 
-Edit `config.js` using `docs/CUSTOMIZATION.md`. It currently contains three demo gifts and English clues. The number of regular chests follows the `gifts` array.
+Edit `config.js` using `docs/CUSTOMIZATION.md`. It contains five regular gifts and a final legendary journal, with the supplied Russian clues. The number of regular chests follows the `gifts` array.
 
-Demo codes: `START-LION`, `GIFT-ONE`, `GIFT-TWO`, `LAST-SECRET`.
+Main codes are `gem`, `goblet`, `scruffy`, `gold`, and `silk`. The dedicated final code is `prophecies`. Main codes grant 100 gems each; the final code grants 10.
 
 After editing, run `npm run validate` and `python build_standalone.py` to update the offline file. `npm start` reads the current configuration directly. Generate paper cards with `npm run print:cards`; see `docs/PRINTABLE_CODES.md`.
 
@@ -26,7 +26,7 @@ Sell junk manually at the Merchant. All regular junk together is worth 90 silver
 
 ## Saves
 
-Progress is saved automatically in the current browser. Wallet displays currencies and keys. The English demo preserves progress from the previous unchanged demo; other configuration changes retain the existing compatibility checks.
+Progress is saved automatically in the current browser. Wallet displays currencies and keys. The personal quest uses its own browser save key and starts a new run. Previous demo progress is retained under its original save key.
 
 ## Assets and development
 
