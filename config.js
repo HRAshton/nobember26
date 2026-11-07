@@ -21,7 +21,7 @@ window.QUEST_CONFIG = {
       id: 'gift-1',
       bookTitle: 'The Cartographer\'s Journal I',
       subtitle: 'At the Edge of Dawn',
-      clue: 'Лежу я где-то на земле',
+      clue: 'Первый след ищи внизу. Я лежу на земле и терпеливо жду, когда ты опустишь взгляд.',
       hint: 'On the ground.',
       junkName: 'Worn Lion Seal',
       junkIcon: '♜',
@@ -34,7 +34,7 @@ window.QUEST_CONFIG = {
       id: 'gift-2',
       bookTitle: 'The Cartographer\'s Journal II',
       subtitle: 'Among Forgotten Stories',
-      clue: 'Среди посуды мы стоим',
+      clue: 'Здесь чашки ждут горячего чая, а тарелки ждут нового застолья. Среди них спрятался твой следующий подарок.',
       hint: 'Among the dishes.',
       junkName: 'Broken Dragon Tooth',
       junkIcon: '◆',
@@ -47,7 +47,7 @@ window.QUEST_CONFIG = {
       id: 'gift-3',
       bookTitle: 'The Cartographer\'s Journal III',
       subtitle: 'When Time Stands Still',
-      clue: 'У планшета, где и место',
+      clue: 'Рядом с маленьким окном в большой мир нашлось место и для меня. Ищи возле планшета.',
       hint: 'By the tablet.',
       junkName: 'Empty Merchant Box',
       junkIcon: '▣',
@@ -60,7 +60,7 @@ window.QUEST_CONFIG = {
       id: 'gift-4',
       bookTitle: 'The Cartographer\'s Journal IV',
       subtitle: 'A Hidden Message',
-      clue: 'Под клавиатурой я',
+      clue: 'Надо мной рождаются слова и начинаются приключения. Приподними клавиатуру. Следующая находка ждёт под ней.',
       hint: 'Under the keyboard.',
       junkName: 'Tarnished Copper Token',
       junkIcon: '◇',
@@ -73,7 +73,7 @@ window.QUEST_CONFIG = {
       id: 'gift-5',
       bookTitle: 'The Cartographer\'s Journal V',
       subtitle: 'The Final Trail',
-      clue: 'На одеждной стойке',
+      clue: 'Здесь дорожные одежды отдыхают между странствиями. Осмотри стойку, на которой они ждут своего часа.',
       hint: 'On the clothes rack.',
       junkName: 'Worn Caravan Buckle',
       junkIcon: '◆',
@@ -86,7 +86,7 @@ window.QUEST_CONFIG = {
   bonus: {
     title: 'The Last Page of the Legend',
     subtitle: 'Legendary Reward',
-    clue: 'Среди книжек',
+    clue: 'Пять находок уже стали частью твоей истории. Последняя ждёт среди чужих, там, где книги стоят плечом к плечу.',
     hint: 'Among the books.'
   }
 };

@@ -1,5 +1,12 @@
 # Changelog
 
+## Interface and Pages update, November 7, 2026
+
+- Applied the approved six journal texts without em dashes and upgraded existing personal saves.
+- Removed the decorative map, health orb, skill bar, and location labels.
+- Added the static Pages build and GitHub Actions deployment workflow.
+- Verified the complete quest and the Pages artifact on desktop and mobile.
+
 ## Personal quest, November 7, 2026
 
 - Configured gem, goblet, scruffy, gold, and silk for five regular chests.

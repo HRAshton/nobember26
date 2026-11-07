@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "image_count": 47,
+  "image_count": 38,
   "elements": {
     "window_frame": {
       "file": "window_frame.png",
@@ -71,14 +71,6 @@
         942
       ],
       "source": "screenshots/tooltip.png"
-    },
-    "health_orb": {
-      "file": "health_orb.png",
-      "size": [
-        100,
-        100
-      ],
-      "source": "screenshots/healthpool.png"
     },
     "book_pages": {
       "file": "book_pages.png",
@@ -232,70 +224,6 @@
       ],
       "source": "screenshots/interface.jpg"
     },
-    "skill_a": {
-      "file": "skill_a.png",
-      "size": [
-        22,
-        20
-      ],
-      "source": "screenshots/interface.jpg"
-    },
-    "skill_b": {
-      "file": "skill_b.png",
-      "size": [
-        22,
-        20
-      ],
-      "source": "screenshots/interface.jpg"
-    },
-    "skill_c": {
-      "file": "skill_c.png",
-      "size": [
-        22,
-        20
-      ],
-      "source": "screenshots/interface.jpg"
-    },
-    "skill_d": {
-      "file": "skill_d.png",
-      "size": [
-        22,
-        20
-      ],
-      "source": "screenshots/interface.jpg"
-    },
-    "skill_e": {
-      "file": "skill_e.png",
-      "size": [
-        22,
-        20
-      ],
-      "source": "screenshots/interface.jpg"
-    },
-    "skill_f": {
-      "file": "skill_f.png",
-      "size": [
-        22,
-        22
-      ],
-      "source": "screenshots/interface.jpg"
-    },
-    "skill_g": {
-      "file": "skill_g.png",
-      "size": [
-        22,
-        22
-      ],
-      "source": "screenshots/interface.jpg"
-    },
-    "minimap": {
-      "file": "minimap.png",
-      "size": [
-        280,
-        170
-      ],
-      "source": "screenshots/minimap.jpg"
-    },
     "world_background": {
       "file": "world_background.png",
       "size": [
@@ -395,7 +323,6 @@
     "trading_panel": "1b4b435b8464d78f99330affc1c895735da45b0b6a994463d564d90b44021725",
     "wallet_panel": "1b4b435b8464d78f99330affc1c895735da45b0b6a994463d564d90b44021725",
     "tooltip": "12b1793dff927381747df32ded75834cad04c78c6fd2b27e11201d0616175913",
-    "health_orb": "b31b5a7dbb6eb7bb734d8f49f1f65a7ca3b6e8d4c3065648ee1436f9611f29d2",
     "book_pages": "d3d68638eff08e52b09b99afed1386647c1ef2c8bad58642ce419d541f0a5b82",
     "button": "cee4048f28ec45c727f5a2b55d3d530be7b33e805a38d4468fa21f7f1eec641c",
     "slot_empty": "285fc00b5b6ea1fab15a1b202fd149f7d576c70db94f47745e91ee0fcf3741c3",
@@ -415,14 +342,6 @@
     "item_collectible-final": "91518cc2f4fe8a22ec899a1c1e1ba995d8521ab41a47cfd3d2aed003e180d543",
     "item_menu-trading": "0376c8d3a2b65e239c76efe6f746d423f06a66f9c9f181ecfbb6ce270895b599",
     "item_menu-inventory": "1c04d560ea83079f06234fe338ef3d515c5e4897c806a5aacca0715fedf14056",
-    "skill_a": "e17e19b0ae4457d1724a0769e4f055db8e79266e412d2d528f7b717adb581e62",
-    "skill_b": "12d049c824708b0b8733c8cd7bbd4086a954cd51ea48793f518cc1fbd9da3372",
-    "skill_c": "53254af1b9acf56a08a061bf987e58e602ac250b5104eb7677b721be19faa153",
-    "skill_d": "f4ba56260e33a5fe1afb1f5b8b58d5096f3fc69cc996493dfef7e8880bf6ed08",
-    "skill_e": "68efb75361277b425fb1acdb154429b574a0db768c8cf16acb1e2e2af056d409",
-    "skill_f": "fb77b7c6b6700e591f41ccb6ac02c459db0af722d296e6770c70a5ecbdc870e9",
-    "skill_g": "4cfc845bde981a3b11ad64f896d1db5fb2210b3ecd816f4a3e39aa77003220f6",
-    "minimap": "9e5972b9ff80d06edd318eb27093143984431a736ff1d8734f4eaf095d430031",
     "world_background": "3d86170b76f4fae9581504ecc543e10367a16e9309e8e66be67a8cd0f42cc536",
     "item_chest": "923a1b4fe2724ac39ada1f11a773335fbb345da73e00241941a38ee4d43e60cb",
     "item_key": "44d2cb5dd03e154e94ba73eacd16d993f8cde1580a04b77ba57333834f71097c",

@@ -30,15 +30,6 @@ CSS_TARGETS = {
     'book_pages': '.book-spread',
     'tooltip': '.item-tooltip',
     'menu_bar': '.game-menu-bar',
-    'health_orb': '.skillbar-health',
-    'minimap': '.mini-map-surface',
-    'skill_a': '.skill-a',
-    'skill_b': '.skill-b',
-    'skill_c': '.skill-c',
-    'skill_d': '.skill-d',
-    'skill_e': '.skill-e',
-    'skill_f': '.skill-f',
-    'skill_g': '.skill-g',
 }
 # Use image file names item_chest.png, item_key.png, etc.
 ITEMS = ['chest','key','gem','crest','book-1','book-2','book-3','book-final',

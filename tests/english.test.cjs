@@ -61,13 +61,31 @@ test('English migration also relabels final rewards without reopening the final 
   assert.equal(E.read(C,storage).bonusOpened,true);
 });
 
+test('revised personal clues preserve existing progress and update collected journals',()=>{
+  const personal=load(path.join(__dirname,'../config.js'));
+  let expected=E.initial(personal);
+  expected=E.redeem(personal,expected,'gem').state;
+  expected=E.buyKey(personal,expected).state;
+  expected=E.open(personal,expected).state;
+  const previous=structuredClone(expected);
+  previous.fingerprint='1u9j280';previous.contentFingerprint='1jgo4t0';
+  previous.books[0].clue='Previous clue';previous.lastRewards[0].clue='Previous clue';
+  const storage=store();storage.setItem(personal.storageKey,JSON.stringify(previous));
+  assert.deepEqual(E.read(personal,storage),expected);
+  assert.deepEqual(E.read(personal,storage),expected,'revision is idempotent');
+  const backup={...E.exportSave(personal,expected),configFingerprint:previous.fingerprint,contentFingerprint:previous.contentFingerprint,state:previous};
+  assert.deepEqual(E.importSave(personal,storage,backup),expected);
+  const edited=structuredClone(personal);edited.gifts[0].clue='A different hiding place';
+  assert.throws(()=>E.importSave(edited,storage,backup),/different quest/);
+});
+
 test('project text uses English except the configured personal clues, without em dashes',()=>{
   const root=path.join(__dirname,'..');
   const quest=load(path.join(root,'config.js'));
   const personalClues=[...quest.gifts.map(gift=>gift.clue),quest.bonus.clue];
   function check(dir){
     for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
-      if(['.git','node_modules','__pycache__','.venv'].includes(entry.name))continue;
+      if(['.git','node_modules','__pycache__','.venv','_site'].includes(entry.name))continue;
       const file=path.join(dir,entry.name);
       if(entry.isDirectory())check(file);
       else if(/\.(md|html|js|cjs|py|json|svg|css|bat|sh)$/.test(file)) {

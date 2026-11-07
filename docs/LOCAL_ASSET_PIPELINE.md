@@ -1,6 +1,6 @@
 # Local asset pipeline
 
-The current build already includes 47 image regions. Source screenshots are in `local-input/screenshots/`; crop coordinates are in `local-input/slices.local.json`; compiled assets are in `assets/real-ui/`. See `ASSET_SOURCES.json` for provenance and source hashes.
+The current build already includes 38 image regions. Source screenshots are in `local-input/screenshots/`; crop coordinates are in `local-input/slices.local.json`; compiled assets are in `assets/real-ui/`. See `ASSET_SOURCES.json` for provenance and source hashes.
 
 ## Rebuild
 
@@ -35,7 +35,7 @@ Coordinates are x, y, width, height in source pixels. The example coordinates mu
 
 Strict mode requires window_frame, window_title, slot_empty, chest_panel, merchant_panel, and trading_panel. Partial builds may omit strict mode. The compiler produces skin.css, asset-map.js, asset-report.json with hashes, PNG crops, and optionally play-offline.html. The contact sheet provides a quick visual inspection.
 
-Additional targets include the health orb, minimap, skill slots, and menu icons. For a custom optional API-based icon set, tools/fetch_api_icons.py remains available; the included completed set does not use it.
+Additional targets include menu icons. For a custom optional API-based icon set, tools/fetch_api_icons.py remains available; the included completed set does not use it.
 
 To revert the bitmap skin, remove the real-ui stylesheet link and use the original asset map. Logic, currencies, and journal behavior are independent of the skin. The original code remains available in the Git backup.
 

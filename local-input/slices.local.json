@@ -88,16 +88,6 @@
       ]
     },
     {
-      "name": "health_orb",
-      "file": "healthpool.png",
-      "rect": [
-        0,
-        0,
-        100,
-        100
-      ]
-    },
-    {
       "name": "book_pages",
       "file": "1909316.png",
       "rect": [
@@ -285,86 +275,6 @@
         111,
         33,
         34
-      ]
-    },
-    {
-      "name": "skill_a",
-      "file": "interface.jpg",
-      "rect": [
-        666,
-        641,
-        22,
-        20
-      ]
-    },
-    {
-      "name": "skill_b",
-      "file": "interface.jpg",
-      "rect": [
-        689,
-        641,
-        22,
-        20
-      ]
-    },
-    {
-      "name": "skill_c",
-      "file": "interface.jpg",
-      "rect": [
-        713,
-        641,
-        22,
-        20
-      ]
-    },
-    {
-      "name": "skill_d",
-      "file": "interface.jpg",
-      "rect": [
-        737,
-        641,
-        22,
-        20
-      ]
-    },
-    {
-      "name": "skill_e",
-      "file": "interface.jpg",
-      "rect": [
-        761,
-        641,
-        22,
-        20
-      ]
-    },
-    {
-      "name": "skill_f",
-      "file": "interface.jpg",
-      "rect": [
-        823,
-        639,
-        22,
-        22
-      ]
-    },
-    {
-      "name": "skill_g",
-      "file": "interface.jpg",
-      "rect": [
-        847,
-        639,
-        22,
-        22
-      ]
-    },
-    {
-      "name": "minimap",
-      "file": "minimap.jpg",
-      "rect": [
-        275,
-        140,
-        280,
-        170
       ]
     },
     {

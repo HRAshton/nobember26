@@ -12,7 +12,8 @@
     "assets:build": "python3 tools/finish_local.py --standalone",
     "assets:strict": "python3 tools/finish_local.py --strict --standalone",
     "assets:sheet": "python3 tools/create_contact_sheet.py",
-    "test:browser": "python scripts/browser-smoke.py"
+    "test:browser": "python scripts/browser-smoke.py",
+    "build:pages": "node scripts/build-pages.cjs"
   },
   "engines": {
     "node": ">=18"

@@ -3,17 +3,8 @@
 .book-spread{background-image:url("book_pages.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
 .ingame-button{background-image:url("button.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
 .chest-modal{background-image:url("chest_panel.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
-.skillbar-health{background-image:url("health_orb.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
 .game-window[data-screen="inventory"]{background-image:url("inventory_panel.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
 .game-window[data-screen="merchant"]{background-image:url("merchant_panel.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
-.mini-map-surface{background-image:url("minimap.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
-.skill-a{background-image:url("skill_a.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
-.skill-b{background-image:url("skill_b.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
-.skill-c{background-image:url("skill_c.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
-.skill-d{background-image:url("skill_d.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
-.skill-e{background-image:url("skill_e.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
-.skill-f{background-image:url("skill_f.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
-.skill-g{background-image:url("skill_g.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
 .inventory-bag-area .item-slot, .inventory-bag-area .item-slot.slot-empty{background-image:url("slot_empty.png");background-size:100% 100%;background-repeat:no-repeat;}
 .item-tooltip{background-image:url("tooltip.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}
 .game-window[data-screen="trading"]{background-image:url("trading_panel.png");background-position:center;background-size:100% 100%;background-repeat:no-repeat;}

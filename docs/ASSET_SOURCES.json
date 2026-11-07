@@ -90,17 +90,6 @@
       ],
       "source_sha256": "4e9dc5e620a34eea003d3088a6016c47cb9b4aa7f3830ff02fb1092c1a4ef5f9"
     },
-    "health_orb": {
-      "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/healthpool.png",
-      "file": "healthpool.png",
-      "rect": [
-        0,
-        0,
-        100,
-        100
-      ],
-      "source_sha256": "1e735fd58d2a338d023b310dacb3c6efdd2e4035b7837aefd70c1e2cd2b66a25"
-    },
     "book_pages": {
       "source_page": "https://github.com/blish-hud/Blish-HUD/blob/dev/Blish%20HUD/ref/1909316.png",
       "file": "1909316.png",
@@ -320,94 +309,6 @@
         26
       ],
       "source_sha256": "4891e560f180781fb07a3d0d60b21e3f372b64977fc0804f13f279d05b09a6c2"
-    },
-    "skill_a": {
-      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
-      "file": "interface.jpg",
-      "rect": [
-        666,
-        641,
-        22,
-        20
-      ],
-      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
-    },
-    "skill_b": {
-      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
-      "file": "interface.jpg",
-      "rect": [
-        689,
-        641,
-        22,
-        20
-      ],
-      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
-    },
-    "skill_c": {
-      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
-      "file": "interface.jpg",
-      "rect": [
-        713,
-        641,
-        22,
-        20
-      ],
-      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
-    },
-    "skill_d": {
-      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
-      "file": "interface.jpg",
-      "rect": [
-        737,
-        641,
-        22,
-        20
-      ],
-      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
-    },
-    "skill_e": {
-      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
-      "file": "interface.jpg",
-      "rect": [
-        761,
-        641,
-        22,
-        20
-      ],
-      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
-    },
-    "skill_f": {
-      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
-      "file": "interface.jpg",
-      "rect": [
-        823,
-        639,
-        22,
-        22
-      ],
-      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
-    },
-    "skill_g": {
-      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
-      "file": "interface.jpg",
-      "rect": [
-        847,
-        639,
-        22,
-        22
-      ],
-      "source_sha256": "da2c1729a5493036ec183167d150eca24f99bf347f12995aa58e4b46d14c0ac9"
-    },
-    "minimap": {
-      "source_page": "https://hardstuck.gg/gw2/guides/general/game-basics-first-steps-in-tyria/",
-      "file": "minimap.jpg",
-      "rect": [
-        275,
-        140,
-        280,
-        170
-      ],
-      "source_sha256": "2d041f8ff318aa089bc82570729c03bc9909ce069ad81c5c7cc037752c2711fb"
     },
     "world_background": {
       "source_page": "https://www.rpgsite.net/review/3154-guild-wars-2-review",

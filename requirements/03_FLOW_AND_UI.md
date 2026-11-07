@@ -30,6 +30,6 @@ Currency Exchange shows the fixed rate and available balance and accepts a whole
 
 Wallet shows currencies and keys. Progress is saved automatically; the interface has no save, import, export, or file selection controls.
 
-I opens Inventory, O opens the store, M toggles audio, and Escape closes the current menu, overlay, or window. Desktop windows can be dragged by the title bar while keeping it reachable. Mobile navigation remains usable at narrow widths. Decorative skills and the minimap do not simulate gameplay.
+I opens Inventory, O opens the store, M toggles audio, and Escape closes the current menu, overlay, or window. Desktop windows can be dragged by the title bar while keeping it reachable. Mobile navigation remains usable at narrow widths.
 
 The interface text, accessibility labels, journals, status messages, and printable cards use English. No copyright footer, disclaimer label, publication notice, or em dash is shown.

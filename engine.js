@@ -14,12 +14,17 @@
   function fingerprint(c) { return FNV(JSON.stringify({g:c.gifts.map(g=>g.id),codes:c.codes,economy:c.economy,bonus:c.bonus})); }
   // A second fingerprint protects edited book text and artwork labels from old saved snapshots.
   function contentFingerprint(c) { return FNV(JSON.stringify({gifts:c.gifts,bonus:c.bonus})); }
-  // This exact demo was translated without changing gifts, codes or economics.
-  // Accept only that known pair of releases, never an arbitrarily edited quest.
-  function migrateEnglishDemo(c, data) {
-    if (!data || data.version!==1 || data.fingerprint!=='8g5lcs' ||
-        (data.contentFingerprint && data.contentFingerprint!=='w430xq') ||
-        fingerprint(c)!=='ljfinq' || contentFingerprint(c)!=='1cp3dgy') return data;
+  // Only these exact text revisions may reuse progress from an earlier release.
+  function migrateKnownTextRevision(c, data) {
+    if (!data || data.version!==1) return data;
+    const currentFingerprint=fingerprint(c);
+    const currentContent=contentFingerprint(c);
+    const demoTranslation=data.fingerprint==='8g5lcs' &&
+      (!data.contentFingerprint || data.contentFingerprint==='w430xq') &&
+      currentFingerprint==='ljfinq' && currentContent==='1cp3dgy';
+    const personalRevision=data.fingerprint==='1u9j280' && data.contentFingerprint==='1jgo4t0' &&
+      currentFingerprint==='6ddbjx' && currentContent==='ua3dfa';
+    if (!demoTranslation && !personalRevision) return data;
     const state=clone(data);
     state.fingerprint=fingerprint(c);state.contentFingerprint=contentFingerprint(c);
     const items=new Map([...c.gifts.flatMap((_,i)=>rewardsForChest(c,i)),...bonusRewards(c)].map(item=>[item.id,item]));
@@ -47,7 +52,7 @@
     try {
       const raw = storage.getItem(c.storageKey); if (!raw) return initial(c);
       const saved = JSON.parse(raw);
-      const data = migrateEnglishDemo(c, saved);
+      const data = migrateKnownTextRevision(c, saved);
       if (data.version !== 1 || data.fingerprint !== fingerprint(c)) return initial(c);
       if (data.contentFingerprint && data.contentFingerprint !== contentFingerprint(c)) return initial(c);
       const state=Object.assign(initial(c), data, {contentFingerprint:contentFingerprint(c)});
@@ -218,9 +223,9 @@
     try { file=typeof input==='string'?JSON.parse(input):input; }
     catch (_) { throw new Error('The save file is not valid JSON.'); }
     requireValid(file && file.format==='gw2-black-lion-quest-save' && file.version===1, 'Invalid save file format.');
-    if (file.configFingerprint==='8g5lcs' && file.contentFingerprint==='w430xq' &&
-        file.state?.fingerprint==='8g5lcs' && file.state?.contentFingerprint==='w430xq') {
-      const translated=migrateEnglishDemo(c,file.state);
+    if (file.state && file.configFingerprint===file.state.fingerprint &&
+        file.contentFingerprint===file.state.contentFingerprint) {
+      const translated=migrateKnownTextRevision(c,file.state);
       if (translated!==file.state) file={...file,state:translated,configFingerprint:translated.fingerprint,contentFingerprint:translated.contentFingerprint};
     }
     requireValid(file.configFingerprint===fingerprint(c) && file.contentFingerprint===contentFingerprint(c), 'This backup belongs to a different quest version or set of clues.');
