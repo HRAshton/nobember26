@@ -36,7 +36,7 @@ ITEMS = ['chest','key','gem','crest','book-1','book-2','book-3','book-final',
          'junk-seal','junk-tooth','junk-box', 'material-dust','material-ore',
          'material-shard','material-eternal','collectible-anchor',
          'collectible-caravan','collectible-captain','collectible-sigil','collectible-final',
-         'bag','menu-inventory','menu-merchant','menu-trading','menu-wallet','deposit','compact']
+         'perfume','bag','menu-inventory','menu-merchant','menu-trading','menu-wallet','deposit','compact']
 VALID_NAMES = set(CSS_TARGETS)|{'item_'+x for x in ITEMS}
 REQUIRED_FOR_STRICT = {'window_frame','window_title','slot_empty','chest_panel','merchant_panel','trading_panel'}
 

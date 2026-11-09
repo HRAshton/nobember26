@@ -4,18 +4,19 @@
 |---|---:|
 | Key price | 100 gems |
 | Each main code | 100 gems |
-| Final code | 10 gems |
+| First secret code, choya | 10 gems |
+| Second secret code, prophecies | 100 gems |
 | Exchange rate | 1 silver to 1 gem |
 | One silver | 100 copper |
 | Total sellable junk from regular chests | 90 silver, or 9000 copper |
 | Each ordinary opening | 1 key, 4 rewards |
 | Initial gems, coins, keys | 0 |
 | Initial ordinary chests | N = gifts.length |
-| Hidden extra chests | 1 |
+| Hidden extra chests | 2 |
 
 Earlier examples using nine gold or one gold for ten gems were superseded by the values above.
 
-With k main codes redeemed, junk alone brings total income to at most 100*k + 90 gems, below the next key price of 100*(k+1). The final code adds the missing 10. A completed natural run therefore funds exactly N+1 keys for N+1 chests and ends with zero currency after all exchanges.
+With k main codes redeemed, junk alone brings total income to at most 100*k + 90 gems, below the next key price of 100*(k+1). Choya adds the missing 10 for the perfume chest. Prophecies then adds a full 100 for the final book chest. The completed run funds exactly N+2 keys for N+2 chests and ends with zero currency after all exchanges.
 
 Main codes are not ordered in software. Knowing several codes early may fund several ordinary keys; physical placement controls progression. This does not create extra income.
 
@@ -29,10 +30,11 @@ Merchant sales remove the item and credit its exact value. Buyback debits that e
 2. Read journal i to find gift i and, for i less than N, its next code.
 3. Sell junk and exchange the proceeds manually.
 4. After all ordinary chests, 90 gems from junk plus the final 10 fund the last key.
-5. The hidden extra chest appears and contains the final journal.
+5. The first hidden chest gives the perfume clue under the grand piano.
+6. The code prophecies, placed with that gift, grants the next key and unlocks the final book chest.
 
 For five gifts, one illustrative junk split is 10s, 15s, 20s, 20s, 25s. Accumulated income after buying each ordinary key is 10, 25, 45, 65, then 90 gems. The secret code and final key purchase bring it back to zero. Only the total is required; this example is not the engine's fixed split.
 
-Check bonus eligibility after key purchases and ordinary openings: all main chests open, final code redeemed, at least one unused key, bonus not yet granted. This supports early code redemption and spare keys without revealing the bonus prematurely.
+Check the next secret stage after code redemption, key purchases, and openings. It needs all main chests open, all preceding secret stages complete, its own code redeemed, and at least one unused key. This supports early code redemption and spare keys without revealing the bonus prematurely.
 
 Reject opening without a key, purchasing with too few gems, exchanging without enough coins, and buying back without the sale value. An early final code cannot expose the chest before main completion. Refreshing during an animation cannot duplicate books, junk, or chest rewards.

@@ -18,7 +18,7 @@ Three decorative drops appear before the journal. Each reward can be inspected, 
 
 Redeem Code normalizes case and surrounding whitespace. Unknown and reused codes produce clear messages without changing state. Success credits the configured gem amount. Main codes are accepted in any order.
 
-The store sells a Black Lion Chest Key for 100 gems. There is no advance bonus-chest listing. The normal final purchase produces a New Item Acquired notification with one ordinary-looking chest.
+The store sells a Black Lion Chest Key for 100 gems. There is no advance bonus-chest listing. Each eligible secret key purchase produces a New Item Acquired notification with one ordinary-looking chest. Choya opens the perfume stage first, followed by prophecies for the final book.
 
 ## Merchant and exchange
 

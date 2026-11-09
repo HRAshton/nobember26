@@ -21,14 +21,14 @@ The number of physical gifts is configurable: N equals gifts.length. Regular che
 - Junk is sold manually through Sell or Sell Junk. Buyback returns sold items for exactly the original sale price.
 - All regular junk together is worth exactly 90 silver, or 9000 copper, for every supported N.
 - Currency Exchange converts 100 copper to one gem. Whole gems only; leftover copper stays in the wallet.
-- The separate final code grants 10 gems.
+- Choya grants 10 gems for the first secret stage. Prophecies grants 100 gems for the second secret stage.
 - Materials and collectibles are not sellable. Starting coins, gems, and keys are zero.
 
 ## Bonus chest
 
-The hidden chest is absent from initial counts and previews. It appears once all main chests are open, the final code has been redeemed, an unused key is owned, and no bonus chest has been granted. Normal progression reveals it immediately after the extra key purchase. The same eligibility check handles an early secret code or spare key without a dead end.
+Two secret chests appear sequentially after the five ordinary chests. The first requires choya, an unused key, and completion of the ordinary gifts. Its journal leads to perfume under the grand piano. The second requires prophecies, an unused key, and completion of the perfume stage. Its legendary journal leads to the book among books.
 
-Its closed appearance matches the ordinary chest. Opening it consumes one key and grants a legendary journal plus three non-sellable rewards. The final clue is not exposed before opening.
+Each chest consumes one key and grants four non-sellable rewards. Future secret stages remain hidden until eligible. Early code redemption and spare keys cannot change the secret opening order or create a dead end.
 
 ## Inventory and screens
 

@@ -30,14 +30,15 @@ Each chest contains a journal, junk, a material, and a collectible. Closed chest
 
 Provide one main code per gift. Each main code grants economy.keyPriceGems gems, normally 100. Give the first code at the start; place the second code with physical gift 1, and so on. The final regular gift does not need another main code.
 
-One separate code must have `final: true`. It supplies the missing gems for the last key, normally 10. Hide it where it will be discovered near the end.
+Each secret code has `final: true` and belongs to one entry of the ordered `bonus` array. The first supplies the missing 10 gems after exchanging all junk. Each following secret code supplies a full 100-gem key.
 
 ```js
 codes: [
   { code: 'START-LION', gems: 100 },
   { code: 'GIFT-ONE', gems: 100 },
   { code: 'GIFT-TWO', gems: 100 },
-  { code: 'LAST-SECRET', gems: 10, final: true }
+  { code: 'choya', gems: 10, final: true },
+  { code: 'prophecies', gems: 100, final: true }
 ]
 ```
 
@@ -48,11 +49,11 @@ Code matching ignores case and surrounding whitespace. Each code can be redeemed
 - One key costs 100 gems.
 - 100 copper, or 1 silver, exchanges for 1 gem.
 - All regular chest junk together sells for exactly 9000 copper, or 90 silver, regardless of gift count.
-- The final code adds 10 gems, allowing one extra key.
-- The bonus chest appears once all regular chests are open, the final code is redeemed, and an unused key is owned.
+- Choya adds 10 gems, allowing the first secret key. Prophecies adds 100 gems for the second secret key.
+- The next secret chest appears once all regular chests and earlier secret stages are complete, its own code is redeemed, and an unused key is owned.
 - Materials and collectibles cannot be sold. Buyback returns junk for exactly its original sale price.
 
-Edit bonus.title, bonus.subtitle, bonus.clue, and bonus.hint for the final journal. The final clue is hidden until that chest is opened.
+The bonus array contains perfume first and legendary second. Each entry has a unique id, its matching secret code, title, subtitle, clue, and hint. Edit bonus[0] for the perfume journal and bonus[1] for the final book journal. A legacy single-object bonus configuration is also supported.
 
 ## Before playing
 
@@ -60,7 +61,7 @@ Edit bonus.title, bonus.subtitle, bonus.clue, and bonus.hint for the final journ
 2. Run `npm run validate` and `npm test`.
 3. Rebuild `play-offline.html` with `python build_standalone.py`.
 4. Walk through the entire quest, including junk sales and the secret code.
-5. Start with a clean test browser profile, or explicitly clear test progress with `localStorage.removeItem('gw2-black-lion-quest-v1'); location.reload();`.
+5. Start with a clean test browser profile, or explicitly clear test progress with `localStorage.removeItem(QUEST_CONFIG.storageKey); location.reload();`.
 6. Keep the configuration fixed during play and retain a copy for restoring backups.
 
 The English translation includes a narrowly scoped upgrade for the previous demo's saves. Changing the actual clues, codes, or gift IDs still changes save compatibility.

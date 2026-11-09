@@ -1,6 +1,6 @@
 # Completed visual build
 
-The project includes 38 local image regions: chest, key, gem and material icons; journal, bag, wallet and navigation crops; window and slot textures; an old Lion's Arch background.
+The project includes 39 local image regions: chest, key, gem and material icons; journal, bag, wallet and navigation crops; window and slot textures; an old Lion's Arch background.
 
 The interface remains interactive HTML. Text, prices, buttons, and clues are rendered separately from the bitmap surfaces.
 

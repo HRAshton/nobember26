@@ -10,6 +10,7 @@ const base=load(path.join(__dirname,'../config.js'));
 const act=(result)=>result.state;
 function scalable(n){
  const c=structuredClone(base);
+ c.bonus=E.bonusStages(c).at(-1);
  c.gifts=Array.from({length:n},(_,i)=>({...c.gifts[i%c.gifts.length],id:`gift-${i+1}`}));
  c.codes=Array.from({length:n},(_,i)=>({code:`STEP-${i+1}`,gems:c.economy.keyPriceGems}));
  c.codes.push({code:'LAST-SECRET',gems:10,final:true});

@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.4, November 9, 2026
+
+- Added a first secret chest for perfume under the grand piano, unlocked by choya and the remaining 10 gems.
+- Kept prophecies dedicated to the second secret chest and final book, with a 100-gem reward.
+- Preserved sequential opening, automatic saving, and existing completed book rewards during the upgrade.
+- Added the Choya perfume icon from the linked third-party item record.
+
 ## Interface and Pages update, November 7, 2026
 
 - Applied the approved six journal texts without em dashes and upgraded existing personal saves.

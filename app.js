@@ -76,6 +76,10 @@
     if(item.type==='chest'||item.type==='bonusChest') return 'chest';
     if(item.type==='key') return 'key';
     if(item.id==='legendary-book') return 'book-final';
+    if(item.id==='book-perfume') return 'book-2';
+    if(item.id==='perfume-token') return (window.GW2_LOCAL_ASSETS||{}).perfume ? 'perfume' : 'gem';
+    if(item.id==='perfume-sigil') return 'collectible-caravan';
+    if(item.id==='perfume-dust') return 'material-shard';
     if(item.id==='legendary-token') return 'collectible-final';
     if(item.id==='golden-sigil') return 'collectible-sigil';
     if(item.id==='eternal-dust') return 'material-eternal';
@@ -143,7 +147,7 @@
   }
   function go(name){selectedId=null;screen=name;if(name==='trading'&&!['store','exchange','redeem'].includes(tab))tab='store';if(name==='merchant'&&!['sell','buyback'].includes(tab))tab='sell';draw();}
   function toast(message, error=false){const id=Date.now()+Math.random();const e=document.createElement('div');e.className='toast'+(error?' error':'');e.textContent=message;e.dataset.id=id;$('#toasts').appendChild(e);setTimeout(()=>e.remove(),4200);}
-  function perform(fn){try{const result=fn();S=result.state;E.write(C,localStorage,S);draw();toast(result.message);sound(({redeem:'redeem',buyKey:'purchase',sell:'sell',buyback:'purchase',exchange:'exchange',deposit:'select'})[result.kind]||'select');if(result.rewards)showRewards(result.rewards,result.bonus);else if(result.bonusGranted)showBonusGranted();return result;}catch(ex){sound('error');toast(ex.message,true);return null;}}
+  function perform(fn){try{const result=fn();S=result.state;E.write(C,localStorage,S);draw();toast(result.message);sound(({redeem:'redeem',buyKey:'purchase',sell:'sell',buyback:'purchase',exchange:'exchange',deposit:'select'})[result.kind]||'select');if(result.rewards)showRewards(result.rewards,result.legendary);else if(result.bonusGranted)showBonusGranted();return result;}catch(ex){sound('error');toast(ex.message,true);return null;}}
   function hideOverlay(){hideFloats(); if(pending?.timer) clearTimeout(pending.timer);$('#overlay').classList.add('hidden');$('#dialogContent').innerHTML=''; pending=null; }
   function showOverlay(markup,cls=''){hideFloats();const dialog=$('#dialogContent');dialog.className='dialog-shell '+cls;dialog.innerHTML=markup;$('#overlay').classList.remove('hidden');applyOfficialArt();}
   function previewChest(){
@@ -217,7 +221,7 @@
     let result;
     try {result=E.open(C,S); S=result.state;E.write(C,localStorage,S);draw();}
     catch(error){toast(error.message,true);return;}
-    const bonus=result.bonus;
+    const bonus=result.legendary;
     // An edge-case surprise if the bonus key was bought ahead of time.
     if(result.bonusGranted)toast('A new Black Lion Chest has been added to your inventory.');
     sound(bonus?'legendary':'open');

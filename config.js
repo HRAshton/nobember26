@@ -14,7 +14,8 @@ window.QUEST_CONFIG = {
     { code: 'scruffy', gems: 100, description: 'Third gift' },
     { code: 'gold', gems: 100, description: 'Fourth gift' },
     { code: 'silk', gems: 100, description: 'Fifth gift' },
-    { code: 'prophecies', gems: 10, description: 'Dedicated final code', final: true }
+    { code: 'choya', gems: 10, description: 'Perfume secret code', final: true },
+    { code: 'prophecies', gems: 100, description: 'Dedicated final book code', final: true }
   ],
   gifts: [
     {
@@ -83,10 +84,22 @@ window.QUEST_CONFIG = {
       collectibleIcon: '⚜'
     }
   ],
-  bonus: {
-    title: 'The Last Page of the Legend',
-    subtitle: 'Legendary Reward',
-    clue: 'Пять находок уже стали частью твоей истории. Последняя ждёт среди чужих, там, где книги стоят плечом к плечу.',
-    hint: 'Among the books.'
-  }
+  bonus: [
+    {
+      id: 'perfume',
+      code: 'choya',
+      title: 'A Fragrant Prelude',
+      subtitle: 'A Melody in the Air',
+      clue: 'Не всякая мелодия слышна ушами. Иногда её можно узнать по аромату. Загляни под рояль, там тебя ждёт следующая находка.',
+      hint: 'Under the grand piano.'
+    },
+    {
+      id: 'legendary',
+      code: 'prophecies',
+      title: 'The Last Page of the Legend',
+      subtitle: 'Legendary Reward',
+      clue: 'Шесть находок уже стали частью твоей истории. Последняя ждёт среди чужих, там, где книги стоят плечом к плечу.',
+      hint: 'Among the books.'
+    }
+  ]
 };

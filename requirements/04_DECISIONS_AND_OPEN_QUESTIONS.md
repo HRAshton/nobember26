@@ -17,7 +17,7 @@
 
 ## Current fixed behavior
 
-One player, source configuration, localStorage, identical main chests with ordered journals, four rewards, separate Quest Bag, Material Storage, manual sales and buyback, currency exchange, and one hidden final chest. A key and each main code equal 100 gems; total junk equals 90 silver; the final code equals 10 gems.
+One player, source configuration, localStorage, identical main chests with ordered journals, four rewards, separate Quest Bag, Material Storage, manual sales and buyback, currency exchange, and two sequential hidden chests. A key and each main code equal 100 gems. Total junk equals 90 silver, choya grants 10 gems, and prophecies grants 100 gems.
 
 ## Content still supplied by the organizer
 
@@ -26,6 +26,6 @@ One player, source configuration, localStorage, identical main chests with order
 3. Personalized journal titles, clues, and final message.
 4. Optional custom decorative item choices and imagery.
 
-The personal configuration uses five regular gifts and one final book, with the supplied Russian clues. Technical choices already implemented include responsive desktop/mobile layouts, shortcuts, optional synthesized sound, reduced motion, growing bags, deterministic junk allocation, persistent buyback, and automatic local saving.
+The personal configuration uses five regular gifts, perfume under the grand piano, and one final book, with the supplied Russian clues. Technical choices already implemented include responsive desktop/mobile layouts, shortcuts, optional synthesized sound, reduced motion, growing bags, deterministic junk allocation, persistent buyback, and automatic local saving.
 
 To repeat a test run, use a separate browser profile or deliberately clear only the quest's storage key. The English release recognizes the exact previous demo save checksums; edits to actual quest content continue to use ordinary compatibility checks.

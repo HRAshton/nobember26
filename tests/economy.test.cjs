@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const E=require('../engine.js');
 const sandbox={window:{}};
-vm.runInNewContext(fs.readFileSync(require('node:path').join(__dirname,'../config.js'),'utf8'),sandbox);
+vm.runInNewContext(fs.readFileSync(require('node:path').join(__dirname,'./fixtures/personal-single-secret-config.js'),'utf8'),sandbox);
 const C=JSON.parse(JSON.stringify(sandbox.window.QUEST_CONFIG));
 const mainCodes=C.codes.filter(code=>!code.final).map(code=>code.code);
 const finalCode=C.codes.find(code=>code.final).code;

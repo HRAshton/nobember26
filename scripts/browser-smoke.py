@@ -17,7 +17,7 @@ try:
   page.on('request',lambda r:requests.append(r.url) if r.url.startswith(('http:','https:')) and r.url!='https://quest.test/' else None)
   page.on('pageerror',lambda e:errors.append(str(e)))
   load_document(page, document(),wait_until='load')
-  assert page.title().endswith('v1.3')
+  assert page.title().endswith('v1.4')
   assert page.locator('[data-item="regular-chest"]').count()==1
   assert page.locator('#audioToggle').get_attribute('aria-pressed')=='false'
   page.screenshot(path=str(out/'desktop.png'),full_page=True)
@@ -98,12 +98,39 @@ try:
   page.locator('#exchangeForm button').click()
   assert page.locator('#topGems').inner_text()=='90'
   page.locator('[data-tab="redeem"]').click()
-  page.locator('#promo').fill('prophecies')
+  page.locator('#promo').fill('choya')
   page.locator('#redeemForm button').click()
   page.locator('[data-tab="store"]').click()
   page.locator('[data-action="buy-key"]').click()
   assert page.locator('.secret-modal').is_visible()
   page.screenshot(path=str(out/'secret-acquired.png'),full_page=True)
+  page.locator('[data-action="close-modal"]').last.click()
+  page.locator('[data-screen="inventory"]').first.click()
+  page.locator('[data-item="bonus-chest"]').dblclick()
+  page.locator('[data-action="open-chest"]').click()
+  assert page.locator('.opening-modal').is_visible()
+  assert page.locator('.opening-legendary').count()==0
+  page.locator('[data-action="skip-open"]').click()
+  assert page.locator('.reward-legendary').count()==0
+  assert page.locator('[data-inspect-reward]').count()==4
+  page.wait_for_function("document.querySelector('img[data-art=perfume]')?.naturalWidth>0")
+  page.screenshot(path=str(out/'perfume-rewards.png'),full_page=True)
+  page.locator('[data-action="read-new-book"]').click()
+  assert page.evaluate('QUEST_CONFIG.bonus[0].clue') in page.locator('.book-pages').inner_text()
+  page.screenshot(path=str(out/'perfume-journal.png'),full_page=True)
+  page.locator('[data-action="close-modal"]').last.click()
+  snapshot=page.evaluate('window.localStorage._s')
+  load_document(page,document(snapshot),wait_until='load')
+  assert page.locator('[data-item="book-perfume"]').count()==1
+  assert page.locator('[data-item="bonus-chest"]').count()==0
+  page.locator('[data-screen="trading"]').first.click()
+  page.locator('[data-tab="redeem"]').click()
+  page.locator('#promo').fill('prophecies')
+  page.locator('#redeemForm button').click()
+  assert page.locator('#topGems').inner_text()=='100'
+  page.locator('[data-tab="store"]').click()
+  page.locator('[data-action="buy-key"]').click()
+  assert page.locator('.secret-modal').is_visible()
   page.locator('[data-action="close-modal"]').last.click()
   page.locator('[data-screen="inventory"]').first.click()
   page.locator('[data-item="bonus-chest"]').dblclick()
@@ -119,7 +146,7 @@ try:
   page.locator('[data-action="close-modal"]').last.click()
   assert page.locator('[data-item="bonus-chest"]').count()==0
   page.locator('[data-item="legendary-book"]').dblclick()
-  assert page.evaluate('QUEST_CONFIG.bonus.clue') in page.locator('.book-pages').inner_text()
+  assert page.evaluate('QUEST_CONFIG.bonus[1].clue') in page.locator('.book-pages').inner_text()
   page.locator('[data-action="close-modal"]').last.click()
   snapshot=page.evaluate('window.localStorage._s')
   load_document(page, document(snapshot),wait_until='load')

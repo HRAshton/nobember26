@@ -2,7 +2,7 @@
 
 1. Run `start-windows.bat` or `npm start` and open http://localhost:3000.
 2. To play without installing anything, open `play-offline.html` instead.
-3. Test using gem, goblet, scruffy, gold, silk, and the final code prophecies.
+3. Test using gem, goblet, scruffy, gold, and silk, followed by choya for perfume and prophecies for the final book.
 
 The images are already included. No screenshot preparation or network access is needed.
 

@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "image_count": 38,
+  "image_count": 39,
   "elements": {
     "window_frame": {
       "file": "window_frame.png",
@@ -311,6 +311,14 @@
         195
       ],
       "source": "screenshots/gem.png"
+    },
+    "item_perfume": {
+      "file": "item_perfume.png",
+      "size": [
+        64,
+        64
+      ],
+      "source": "screenshots/choya-perfume.png"
     }
   },
   "missing_core": [],
@@ -352,6 +360,7 @@
     "item_junk-tooth": "92dcd7301b6504ec8675009f4c5f1bedbc64a0f74150022b8d9b07a3b586607f",
     "item_collectible-sigil": "b8f3563f12d05d76c21426116f5e04104e5f0fafdef741b4a70366b38efadd3e",
     "item_menu-merchant": "6f1a39dc5741f6a4e3e022d25f9d19761ec62454a94ae286dafcccc09b96fdc8",
-    "item_gem": "50b97d1910175ce83080a67f0aa35edded2cdfd49635a247918d45064ced5a6e"
+    "item_gem": "50b97d1910175ce83080a67f0aa35edded2cdfd49635a247918d45064ced5a6e",
+    "item_perfume": "79ccf62679be5b543d8c2e5aa4568b8586855ac215478b872f00b80a1b6bac2b"
   }
 }

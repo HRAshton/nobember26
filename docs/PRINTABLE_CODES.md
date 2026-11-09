@@ -18,6 +18,7 @@ npm run print:cards -- "C:\Users\USER\Desktop\gift-codes.html"
 - QUEST START: hand over before the first chest.
 - AFTER GIFT #1: place the second main code with the first physical gift.
 - AFTER GIFT #2: place the third main code with the second physical gift, continuing as needed.
-- SECRET CODE: hide separately for discovery near the ending.
+- SECRET CODE 1, choya: hide separately for discovery after the five ordinary gifts.
+- SECRET CODE 2, prophecies: place with the perfume under the grand piano.
 
-For N gifts, the sheet contains N main cards and one secret card. The generator validates the configuration, escapes HTML, and leaves game progress unchanged.
+For the current five ordinary gifts, the sheet contains five main cards and two secret cards, seven cards in total. The generator validates the configuration, escapes HTML, and leaves game progress unchanged.

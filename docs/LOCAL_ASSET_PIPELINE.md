@@ -1,6 +1,6 @@
 # Local asset pipeline
 
-The current build already includes 38 image regions. Source screenshots are in `local-input/screenshots/`; crop coordinates are in `local-input/slices.local.json`; compiled assets are in `assets/real-ui/`. See `ASSET_SOURCES.json` for provenance and source hashes.
+The current build already includes 39 image regions. Source screenshots are in `local-input/screenshots/`; crop coordinates are in `local-input/slices.local.json`; compiled assets are in `assets/real-ui/`. See `ASSET_SOURCES.json` for provenance and source hashes.
 
 ## Rebuild
 

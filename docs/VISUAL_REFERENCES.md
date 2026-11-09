@@ -9,3 +9,5 @@
 ASSET_SOURCES.json lists each source page, direct image URL where applicable, crop rectangle, and source SHA-256. assets/real-ui/asset-report.json records the compiled crop hashes.
 
 The minimap crop shows Queensdale and is decorative. Quest journals and trophies reuse suitable visual motifs. Their game behavior is defined by this project's configuration.
+
+[GW2 Treasures, Bottle of Choya...Perfume?](https://en.gw2treasures.com/item/84591) supplies the game reference and direct image URL for the new perfume reward icon.

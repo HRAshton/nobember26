@@ -428,6 +428,18 @@
         195
       ],
       "source_sha256": "250faaa5830023d171ccd16fbe3178e12cf22d0bd2b67b76325764e832348f7e"
+    },
+    "item_perfume": {
+      "source_page": "https://en.gw2treasures.com/item/84591",
+      "image_url": "https://render.guildwars2.com/file/D963A14FE574A40717034535BD4E6F3656219AAB/1766325.png",
+      "file": "choya-perfume.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "source_sha256": "2b226e3bd86d2252d47889c83d426700cbb9999737471c8d6db51fd9039c71c1"
     }
   }
 }

@@ -386,6 +386,16 @@
         195,
         195
       ]
+    },
+    {
+      "name": "item_perfume",
+      "file": "choya-perfume.png",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
     }
   ]
 }

@@ -14,8 +14,20 @@
   function fingerprint(c) { return FNV(JSON.stringify({g:c.gifts.map(g=>g.id),codes:c.codes,economy:c.economy,bonus:c.bonus})); }
   // A second fingerprint protects edited book text and artwork labels from old saved snapshots.
   function contentFingerprint(c) { return FNV(JSON.stringify({gifts:c.gifts,bonus:c.bonus})); }
-  // Only these exact text revisions may reuse progress from an earlier release.
-  function migrateKnownTextRevision(c, data) {
+  function bonusStages(c) {
+    if (Array.isArray(c.bonus)) return c.bonus;
+    const code=c.codes.find(entry=>entry?.final)?.code;
+    return [{...c.bonus,id:'legendary',code}];
+  }
+  function openedBonusIds(c, state) {
+    if (Array.isArray(state.bonusOpenedIds)) return state.bonusOpenedIds;
+    return state.bonusOpened ? [bonusStages(c).at(-1).id] : [];
+  }
+  function bonusBookId(stage) {
+    return stage.id==='legendary' ? 'legendary-book' : 'book-'+stage.id;
+  }
+  // Only these exact revisions may reuse progress from an earlier release.
+  function migrateKnownRevision(c, data) {
     if (!data || data.version!==1) return data;
     const currentFingerprint=fingerprint(c);
     const currentContent=contentFingerprint(c);
@@ -24,10 +36,27 @@
       currentFingerprint==='ljfinq' && currentContent==='1cp3dgy';
     const personalRevision=data.fingerprint==='1u9j280' && data.contentFingerprint==='1jgo4t0' &&
       currentFingerprint==='6ddbjx' && currentContent==='ua3dfa';
-    if (!demoTranslation && !personalRevision) return data;
+    const previousPersonal=(data.fingerprint==='6ddbjx' && data.contentFingerprint==='ua3dfa') ||
+      (data.fingerprint==='1u9j280' && data.contentFingerprint==='1jgo4t0');
+    const secretExpansion=previousPersonal && currentFingerprint==='1g13ejj' && currentContent==='15s46ts';
+    if (!demoTranslation && !personalRevision && !secretExpansion) return data;
     const state=clone(data);
     state.fingerprint=fingerprint(c);state.contentFingerprint=contentFingerprint(c);
-    const items=new Map([...c.gifts.flatMap((_,i)=>rewardsForChest(c,i)),...bonusRewards(c)].map(item=>[item.id,item]));
+    state.bonusOpenedIds=openedBonusIds(c,data);
+    if (secretExpansion) {
+      state.usedCodes=state.usedCodes.map(code=>code==='PROPHECIES'?'CHOYA':code);
+      state.bonusOpened=false;
+      // A completed former finale keeps its book and receives a key for the
+      // newly inserted perfume chest, with no repeat reward for the old book.
+      if (data.bonusOpened) {
+        state.keys++;
+        state.usedCodes=[...new Set([...state.usedCodes,'CHOYA','PROPHECIES'])];
+      }
+      state.bonusGranted=false;
+      grantBonusIfEligible(c,state);
+    }
+    const stages=bonusStages(c);
+    const items=new Map([...c.gifts.flatMap((_,i)=>rewardsForChest(c,i)),...stages.flatMap((_,i)=>bonusRewards(c,i))].map(item=>[item.id,item]));
     for (const list of ['books','junk','materials','collectibles','buyback','lastRewards']) {
       if (!Array.isArray(state[list])) continue;
       state[list]=state[list].map(item=>{
@@ -44,7 +73,7 @@
   function initial(c) {
     return {
       version: 1, fingerprint: fingerprint(c), contentFingerprint: contentFingerprint(c), gems:0, goldCopper:0, keys:0, opened:0,
-      bonusGranted:false, bonusOpened:false, usedCodes:[], books:[], junk:[], materials:[],
+      bonusGranted:false, bonusOpened:false, bonusOpenedIds:[], usedCodes:[], books:[], junk:[], materials:[],
       collectibles:[], buyback:[], lastRewards:[], lastAction:'', history:[]
     };
   }
@@ -52,12 +81,13 @@
     try {
       const raw = storage.getItem(c.storageKey); if (!raw) return initial(c);
       const saved = JSON.parse(raw);
-      const data = migrateKnownTextRevision(c, saved);
+      const data = migrateKnownRevision(c, saved);
       if (data.version !== 1 || data.fingerprint !== fingerprint(c)) return initial(c);
       if (data.contentFingerprint && data.contentFingerprint !== contentFingerprint(c)) return initial(c);
       const state=Object.assign(initial(c), data, {contentFingerprint:contentFingerprint(c)});
+      state.bonusOpenedIds=openedBonusIds(c,data);
       // v0.2/v0.3 saves lacked this field. Upgrade them once without losing progress.
-      if (!data.contentFingerprint || data!==saved) { try { write(c,storage,state); } catch (_) {} }
+      if (!data.contentFingerprint || !data.bonusOpenedIds || data!==saved) { try { write(c,storage,state); } catch (_) {} }
       return state;
     } catch { return initial(c); }
   }
@@ -73,9 +103,10 @@
     return {state:s, ...outcome};
   }
   function grantBonusIfEligible(c, s) {
-    const final = c.codes.find(code => code.final);
-    const redeemed = !!final && s.usedCodes.includes(final.code.toUpperCase());
-    if (!s.bonusGranted && s.opened === c.gifts.length && redeemed && s.keys > 0) {
+    const completed=openedBonusIds(c,s);
+    const stage=bonusStages(c).find(entry=>!completed.includes(entry.id));
+    const redeemed=stage && s.usedCodes.includes(stage.code.trim().toUpperCase());
+    if (!s.bonusGranted && s.opened===c.gifts.length && redeemed && s.keys>0) {
       s.bonusGranted = true;
       return true;
     }
@@ -89,7 +120,8 @@
       requireValid(!!found, 'Code not found. Check the spelling.');
       requireValid(!s.usedCodes.includes(normalized), 'This code has already been redeemed.');
       s.usedCodes.push(normalized); s.gems += found.gems;
-      return { kind:'redeem', message:`Code redeemed: +${found.gems} gems.`, bonusGranted:false };
+      const bonusGranted=grantBonusIfEligible(c,s);
+      return { kind:'redeem', message:`Code redeemed: +${found.gems} gems.`, bonusGranted };
     });
   }
   function buyKey(c, previous) {
@@ -120,24 +152,33 @@
       {type:'collectible',id:`collectible-${g.id}`,name:g.collectible,icon:g.collectibleIcon || '⚜',rarity:['masterwork','rare','exotic'][idx%3],qty:1}
     ];
   }
-  function bonusRewards(c) {
+  function bonusRewards(c, index=bonusStages(c).length-1) {
+    const stage=bonusStages(c)[index];
+    const legendary=stage.id==='legendary';
     return [
-      {type:'book',id:'legendary-book',name:c.bonus.title,subtitle:c.bonus.subtitle,icon:'📜',rarity:'legendary',clue:c.bonus.clue,hint:c.bonus.hint,qty:1},
-      {type:'collectible',id:'legendary-token',name:'Seal of the Last Lion',icon:'⚜',rarity:'legendary',qty:1},
-      {type:'collectible',id:'golden-sigil',name:'Gilded Sigil of Fate',icon:'✦',rarity:'exotic',qty:1},
-      {type:'material',id:'eternal-dust',name:'Stellar Essence',icon:'✧',rarity:'ascended',qty:25}
+      {type:'book',id:bonusBookId(stage),name:stage.title,subtitle:stage.subtitle,icon:'📜',rarity:legendary?'legendary':'exotic',clue:stage.clue,hint:stage.hint,qty:1},
+      {type:'collectible',id:legendary?'legendary-token':stage.id+'-token',name:legendary?'Seal of the Last Lion':'Choya Perfume',icon:legendary?'⚜':'✿',rarity:legendary?'legendary':'exotic',qty:1},
+      {type:'collectible',id:legendary?'golden-sigil':stage.id+'-sigil',name:legendary?'Gilded Sigil of Fate':'Fragrant Choya Blossom',icon:'✦',rarity:legendary?'exotic':'rare',qty:1},
+      {type:'material',id:legendary?'eternal-dust':stage.id+'-dust',name:legendary?'Stellar Essence':'Shimmering Essence',icon:'✧',rarity:legendary?'ascended':'fine',qty:legendary?25:10}
     ];
   }
   function open(c, previous) {
     return atomic(c, previous, s => {
       requireValid(s.keys > 0, 'A Black Lion Chest Key is required.');
-      let rewards; let bonus = false;
+      let rewards; let bonus = false; let legendary = false;
       if (s.opened < c.gifts.length) {
         rewards = rewardsForChest(c, s.opened); s.opened++;
       } else {
         requireValid(s.bonusGranted && !s.bonusOpened, 'There are no chests in your inventory.');
-        bonus=true; s.bonusOpened=true;
-        rewards=bonusRewards(c);
+        const stages=bonusStages(c);
+        s.bonusOpenedIds=openedBonusIds(c,s);
+        const index=stages.findIndex(stage=>!s.bonusOpenedIds.includes(stage.id));
+        requireValid(index>=0,'There are no chests in your inventory.');
+        bonus=true;legendary=stages[index].id==='legendary';
+        rewards=bonusRewards(c,index);
+        s.bonusOpenedIds.push(stages[index].id);
+        s.bonusOpened=s.bonusOpenedIds.length===stages.length;
+        s.bonusGranted=s.bonusOpened;
       }
       s.keys--;
       rewards.forEach(item => {
@@ -149,12 +190,14 @@
         }
         if (item.type==='collectible') s.collectibles.push(item);
       });
+      const bookOrder=[...c.gifts.map(gift=>'book-'+gift.id),...bonusStages(c).map(bonusBookId)];
+      s.books.sort((a,b)=>bookOrder.indexOf(a.id)-bookOrder.indexOf(b.id));
       s.lastRewards = rewards;
       // An early final code and an early purchase must never make the secret chest
       // unreachable. In that case the chest materializes after the last normal
       // chest, when the player already holds an extra key.
-      const bonusGranted = !bonus && grantBonusIfEligible(c, s);
-      return {kind:'open', message:bonus ? 'Legendary chest opened!' : '4 items received.', rewards, bonus, bonusGranted};
+      const bonusGranted = grantBonusIfEligible(c, s);
+      return {kind:'open', message:legendary ? 'Legendary chest opened!' : '4 items received.', rewards, bonus, legendary, bonusGranted};
     });
   }
   function sellJunk(c, previous, id) {
@@ -225,7 +268,7 @@
     requireValid(file && file.format==='gw2-black-lion-quest-save' && file.version===1, 'Invalid save file format.');
     if (file.state && file.configFingerprint===file.state.fingerprint &&
         file.contentFingerprint===file.state.contentFingerprint) {
-      const translated=migrateKnownTextRevision(c,file.state);
+      const translated=migrateKnownRevision(c,file.state);
       if (translated!==file.state) file={...file,state:translated,configFingerprint:translated.fingerprint,contentFingerprint:translated.contentFingerprint};
     }
     requireValid(file.configFingerprint===fingerprint(c) && file.contentFingerprint===contentFingerprint(c), 'This backup belongs to a different quest version or set of clues.');
@@ -238,17 +281,25 @@
     requireValid(typeof raw.bonusGranted==='boolean' && typeof raw.bonusOpened==='boolean', 'Invalid secret chest status.');
     requireValid(!raw.bonusGranted || raw.opened===c.gifts.length, 'Invalid secret chest state.');
     requireValid(!raw.bonusOpened || raw.bonusGranted, 'Invalid ending state in save.');
+    requireValid(raw.bonusOpenedIds===undefined || Array.isArray(raw.bonusOpenedIds),'Invalid completed secret chests.');
+    const completed=openedBonusIds(c,raw);
+    const stages=bonusStages(c);
+    requireValid(Array.isArray(completed) && new Set(completed).size===completed.length &&
+      completed.every(id=>stages.some(stage=>stage.id===id)), 'Invalid completed secret chests.');
+    requireValid(raw.bonusOpened===(completed.length===stages.length),'Invalid ending state in save.');
     for (const key of ['usedCodes','books','junk','materials','collectibles','buyback','lastRewards','history'])
       requireValid(Array.isArray(raw[key]), 'Invalid list in save: '+key);
     const known=new Set(c.codes.map(x=>x.code.toUpperCase()));
     requireValid(raw.usedCodes.every(x=>typeof x==='string' && known.has(x)) && new Set(raw.usedCodes).size===raw.usedCodes.length, 'The redeemed code list is damaged.');
-    requireValid(raw.books.length===raw.opened+(raw.bonusOpened?1:0), 'The journal count does not match the number of opened chests.');
-    requireValid(raw.books.every((x,i)=>x && x.id === (i<c.gifts.length?'book-'+c.gifts[i].id:'legendary-book')), 'The quest journal order is damaged.');
+    requireValid(raw.books.length===raw.opened+completed.length, 'The journal count does not match the number of opened chests.');
+    const expectedBooks=[...c.gifts.slice(0,raw.opened).map(gift=>'book-'+gift.id),...stages.filter(stage=>completed.includes(stage.id)).map(bonusBookId)];
+    requireValid(raw.books.every((book,index)=>book && book.id===expectedBooks[index]), 'The quest journal order is damaged.');
     requireValid(raw.junk.every(x=>x && x.type==='junk' && Number.isSafeInteger(x.unitCopper) && x.unitCopper>=0 && Number.isSafeInteger(x.qty) && x.qty>0), 'Invalid junk items in save.');
     requireValid(raw.materials.every(x=>x && x.type==='material' && Number.isSafeInteger(x.qty) && x.qty>0), 'Invalid materials in save.');
     // Explicit allowlist; do not import unexpected data into the engine state.
     const state=initial(c);
     for(const key of Object.keys(state)) if(Object.prototype.hasOwnProperty.call(raw,key)) state[key]=clone(raw[key]);
+    state.bonusOpenedIds=clone(completed);
     write(c,storage,state);
     return state;
   }
@@ -258,5 +309,5 @@
     const g=Math.floor(copper/10000),s=Math.floor(copper%10000/100),c=copper%100;
     return `${g}g ${String(s).padStart(2,'0')}s ${String(c).padStart(2,'0')}c`;
   }
-  return {initial,read,write,fingerprint,contentFingerprint,redeem,buyKey,open,sellJunk,buyBack,exchange,deposit,depositOne,formatCoins,rewardsForChest,junkAllocations,grantBonusIfEligible,exportSave,importSave};
+  return {initial,read,write,fingerprint,contentFingerprint,bonusStages,redeem,buyKey,open,sellJunk,buyBack,exchange,deposit,depositOne,formatCoins,rewardsForChest,junkAllocations,grantBonusIfEligible,exportSave,importSave};
 });
