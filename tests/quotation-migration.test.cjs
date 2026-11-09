@@ -30,4 +30,8 @@ test('quotation revision preserves progress and refreshes acquired books only on
   }
   assert.equal(upgraded.lastRewards.find(item => item.type === 'book').clue, current.bonus[1].clue);
   assert.deepEqual(E.read(current, storage), upgraded);
+  const previousQuotations={...upgraded,fingerprint:'t47zv8',contentFingerprint:'3hxg46'};
+  previousQuotations.books=previousQuotations.books.map(book=>({...book,clue:'Previous quotation'}));
+  saved=JSON.stringify(previousQuotations);
+  assert.deepEqual(E.read(current,storage),upgraded);
 });
