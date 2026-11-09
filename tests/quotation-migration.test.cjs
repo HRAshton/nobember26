@@ -34,4 +34,8 @@ test('quotation revision preserves progress and refreshes acquired books only on
   previousQuotations.books=previousQuotations.books.map(book=>({...book,clue:'Previous quotation'}));
   saved=JSON.stringify(previousQuotations);
   assert.deepEqual(E.read(current,storage),upgraded);
+  previousQuotations.fingerprint='1smb5pj';
+  previousQuotations.contentFingerprint='wtz1zx';
+  saved=JSON.stringify(previousQuotations);
+  assert.deepEqual(E.read(current,storage),upgraded);
 });

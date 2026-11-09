@@ -39,10 +39,11 @@
     const previousPersonal=(data.fingerprint==='6ddbjx' && data.contentFingerprint==='ua3dfa') ||
       (data.fingerprint==='1u9j280' && data.contentFingerprint==='1jgo4t0');
     const quotationConfig=(currentFingerprint==='t47zv8' && currentContent==='3hxg46') ||
-      (currentFingerprint==='1smb5pj' && currentContent==='wtz1zx');
+      (currentFingerprint==='1smb5pj' && ['wtz1zx','1l5a8tv'].includes(currentContent));
     const secretExpansion=previousPersonal && ((currentFingerprint==='1g13ejj' && currentContent==='15s46ts') || quotationConfig);
     const quotationRevision=quotationConfig && ((data.fingerprint==='1g13ejj' && data.contentFingerprint==='15s46ts') ||
-      (data.fingerprint==='t47zv8' && data.contentFingerprint==='3hxg46'));
+      (data.fingerprint==='t47zv8' && data.contentFingerprint==='3hxg46') ||
+      (data.fingerprint==='1smb5pj' && data.contentFingerprint==='wtz1zx'));
     if (!demoTranslation && !personalRevision && !secretExpansion && !quotationRevision) return data;
     const state=clone(data);
     state.fingerprint=fingerprint(c);state.contentFingerprint=contentFingerprint(c);
