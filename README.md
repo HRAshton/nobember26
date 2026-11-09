@@ -10,7 +10,7 @@ A personal, offline gift quest with a Guild Wars 2 style inventory. Find physica
 
 ## Personalize
 
-Edit `config.js` using `docs/CUSTOMIZATION.md`. It contains five regular gifts and two sequential secret gifts, with the supplied Russian clues. The number of regular chests follows the `gifts` array.
+Edit `config.js` using `docs/CUSTOMIZATION.md`. It contains five regular gifts and two sequential secret gifts, with Russian quotations and source attributions. The journal hint button emphasizes the key phrase in the quotation. The number of regular chests follows the `gifts` array.
 
 Main codes are `gem`, `goblet`, `scruffy`, `gold`, and `silk`. The perfume code is `choya`, granting 10 gems. The dedicated final book code is `prophecies`, granting 100 gems. Main codes grant 100 gems each.
 

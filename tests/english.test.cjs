@@ -82,7 +82,7 @@ test('revised personal clues preserve existing progress and update collected jou
 test('project text uses English except the configured personal clues, without em dashes',()=>{
   const root=path.join(__dirname,'..');
   const quest=load(path.join(root,'config.js'));
-  const personalClues=[...quest.gifts.map(gift=>gift.clue),...E.bonusStages(quest).map(stage=>stage.clue)];
+  const personalClues=[...quest.gifts,...E.bonusStages(quest)].flatMap(entry=>[entry.clue,entry.clueFocus]).concat('\u041f\u043e\u0434\u0441\u043a\u0430\u0437\u043a\u0430');
   function check(dir){
     for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
       if(['.git','node_modules','__pycache__','.venv','_site'].includes(entry.name))continue;

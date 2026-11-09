@@ -326,6 +326,16 @@ body{font-family:Georgia,'Times New Roman',serif;background:#101719}
  .action-dock img{object-fit:contain}
 }
 @media(max-width:710px){.action-dock{bottom:12px}}
+
+/* Quotations and their sources share the journal parchment. */
+.book-quote{margin:8px 0 18px;font-size:clamp(16px,1.8vw,22px);line-height:1.65;text-align:left;font-style:italic;overflow-wrap:anywhere}
+.book-quote strong{font-weight:700;color:#40260e}
+.quote-attribution{text-align:right;font-size:13px;line-height:1.6;color:#6c5133}
+.quote-attribution span{display:block;font-variant:small-caps;letter-spacing:.4px}
+.quote-attribution cite{display:block;font-size:12px;font-style:normal}
+.book-pages .quote-hint{align-self:center;margin:4px 0 0}
+.quote-hint[aria-pressed="true"]{box-shadow:inset 0 0 0 1px #d0ae6d}
+@media(max-width:710px){.book-quote{font-size:16px}.quote-attribution{font-size:12px}.quote-attribution cite{font-size:11px}}
 </style>
   <style>/* Generated from local images; provenance: docs/ASSET_SOURCES.json. */
 /* To disable, remove this stylesheet link from index.html. */
@@ -400,7 +410,10 @@ window.QUEST_CONFIG = {
       id: 'gift-1',
       bookTitle: 'The Cartographer\'s Journal I',
       subtitle: 'At the Edge of Dawn',
-      clue: 'Первый след ищи внизу. Я лежу на земле и терпеливо жду, когда ты опустишь взгляд.',
+      clue: "И сияли звёзды, и благоухала земля.",
+      clueFocus: "земля",
+      quoteAuthor: "Giacomo Puccini",
+      quoteSource: "Tosca · Act III · Cavaradossi",
       hint: 'On the ground.',
       junkName: 'Worn Lion Seal',
       junkIcon: '♜',
@@ -413,7 +426,10 @@ window.QUEST_CONFIG = {
       id: 'gift-2',
       bookTitle: 'The Cartographer\'s Journal II',
       subtitle: 'Among Forgotten Stories',
-      clue: 'Здесь чашки ждут горячего чая, а тарелки ждут нового застолья. Среди них спрятался твой следующий подарок.',
+      clue: "Выпьем из радостных бокалов.",
+      clueFocus: "бокалов",
+      quoteAuthor: "Giuseppe Verdi",
+      quoteSource: "La traviata · Act I · Brindisi",
       hint: 'Among the dishes.',
       junkName: 'Broken Dragon Tooth',
       junkIcon: '◆',
@@ -426,7 +442,10 @@ window.QUEST_CONFIG = {
       id: 'gift-3',
       bookTitle: 'The Cartographer\'s Journal III',
       subtitle: 'When Time Stands Still',
-      clue: 'Рядом с маленьким окном в большой мир нашлось место и для меня. Ищи возле планшета.',
+      clue: "Что толку в книге без картинок и разговоров?",
+      clueFocus: "картинок и разговоров",
+      quoteAuthor: "Lewis Carroll",
+      quoteSource: "Alice’s Adventures in Wonderland · Chapter I",
       hint: 'By the tablet.',
       junkName: 'Empty Merchant Box',
       junkIcon: '▣',
@@ -439,7 +458,10 @@ window.QUEST_CONFIG = {
       id: 'gift-4',
       bookTitle: 'The Cartographer\'s Journal IV',
       subtitle: 'A Hidden Message',
-      clue: 'Надо мной рождаются слова и начинаются приключения. Приподними клавиатуру. Следующая находка ждёт под ней.',
+      clue: "Слова, по моему нескромному мнению, наш самый неиссякаемый источник магии.",
+      clueFocus: "Слова",
+      quoteAuthor: "Albus Dumbledore",
+      quoteSource: "Harry Potter and the Deathly Hallows: Part 2 · Film",
       hint: 'Under the keyboard.',
       junkName: 'Tarnished Copper Token',
       junkIcon: '◇',
@@ -452,7 +474,10 @@ window.QUEST_CONFIG = {
       id: 'gift-5',
       bookTitle: 'The Cartographer\'s Journal V',
       subtitle: 'The Final Trail',
-      clue: 'Здесь дорожные одежды отдыхают между странствиями. Осмотри стойку, на которой они ждут своего часа.',
+      clue: "Послушай, старое пальто.",
+      clueFocus: "пальто",
+      quoteAuthor: "Giacomo Puccini",
+      quoteSource: "La bohème · Act IV · Colline",
       hint: 'On the clothes rack.',
       junkName: 'Worn Caravan Buckle',
       junkIcon: '◆',
@@ -468,7 +493,10 @@ window.QUEST_CONFIG = {
       code: 'choya',
       title: 'A Fragrant Prelude',
       subtitle: 'A Melody in the Air',
-      clue: 'Не всякая мелодия слышна ушами. Иногда её можно узнать по аромату. Загляни под рояль, там тебя ждёт следующая находка.',
+      clue: "Если музыка питает любовь, играйте.",
+      clueFocus: "музыка",
+      quoteAuthor: "William Shakespeare",
+      quoteSource: "Twelfth Night · Act I, Scene I · Orsino",
       hint: 'Under the grand piano.'
     },
     {
@@ -476,7 +504,10 @@ window.QUEST_CONFIG = {
       code: 'prophecies',
       title: 'The Last Page of the Legend',
       subtitle: 'Legendary Reward',
-      clue: 'Шесть находок уже стали частью твоей истории. Последняя ждёт среди чужих, там, где книги стоят плечом к плечу.',
+      clue: "У каждого путешествия есть последний день. Не спеши.",
+      clueFocus: "последний день",
+      quoteAuthor: "Zhongli",
+      quoteSource: "Genshin Impact · Chat: Journeys",
       hint: 'Among the books.'
     }
   ]
@@ -522,8 +553,10 @@ window.QUEST_CONFIG = {
       currentFingerprint==='6ddbjx' && currentContent==='ua3dfa';
     const previousPersonal=(data.fingerprint==='6ddbjx' && data.contentFingerprint==='ua3dfa') ||
       (data.fingerprint==='1u9j280' && data.contentFingerprint==='1jgo4t0');
-    const secretExpansion=previousPersonal && currentFingerprint==='1g13ejj' && currentContent==='15s46ts';
-    if (!demoTranslation && !personalRevision && !secretExpansion) return data;
+    const quotationConfig=currentFingerprint==='t47zv8' && currentContent==='3hxg46';
+    const secretExpansion=previousPersonal && ((currentFingerprint==='1g13ejj' && currentContent==='15s46ts') || quotationConfig);
+    const quotationRevision=quotationConfig && data.fingerprint==='1g13ejj' && data.contentFingerprint==='15s46ts';
+    if (!demoTranslation && !personalRevision && !secretExpansion && !quotationRevision) return data;
     const state=clone(data);
     state.fingerprint=fingerprint(c);state.contentFingerprint=contentFingerprint(c);
     state.bonusOpenedIds=openedBonusIds(c,data);
@@ -1092,13 +1125,23 @@ window.QUEST_CONFIG = {
   }
   function showBonusGranted(){showOverlay(`<div class="secret-modal"><div class="modal-title"><strong>Inventory</strong><button data-action="close-modal" aria-label="Close">×</button></div><div class="secret-shimmer">✦</div><h2>New Item Acquired</h2><div class="secret-acquired">${img('chest')}<div><strong>Black Lion Chest</strong><span>×1</span></div></div><p>Item added to your inventory.</p><button class="ingame-button gold" data-action="close-modal">Continue</button></div>`);}
   function readBook(item){
+    const entry=[...C.gifts,...E.bonusStages(C)].find(entry=>
+      (entry.id==='legendary'?'legendary-book':'book-'+entry.id)===item.id);
+    const clue=entry?.clue || item.clue;
+    const focus=entry?.clueFocus;
+    const position=focus ? clue.indexOf(focus) : -1;
+    const quote=position<0 ? h(clue) : h(clue.slice(0,position))+
+      '<span class="quote-focus">'+h(focus)+'</span>'+h(clue.slice(position+focus.length));
     // Only books already acquired can appear in this journal navigator.
     const index=S.books.findIndex(b=>b.id===item.id);
     const previous=index>0?S.books[index-1]:null;
     const next=index>=0&&index<S.books.length-1?S.books[index+1]:null;
     showOverlay(`<div class="book-modal illuminated-book"><div class="modal-title"><strong>${h(item.name)}</strong><button data-action="close-modal" aria-label="Close">×</button></div>
       <div class="book-spread"><div class="book-left-page"><div class="book-front-emblem">❦</div><div class="book-volume">${h(item.rarity==='legendary'?'LEGENDARY TOME':'A TRAVELER’S JOURNAL')}</div><div class="book-illustration">${icon(item)}</div><h3>${h(item.name)}</h3><div class="book-ledger">Account Bound<br>Quest Item</div></div>
-      <div class="book-pages"><div class="book-decoration">❧</div><h2>${h(item.subtitle||item.name)}</h2><p>«${h(item.clue)}»</p><div class="book-rule">✥</div><small>Pages from a forgotten journal</small></div></div>
+      <div class="book-pages"><div class="book-decoration">❧</div><h2>${h(item.subtitle||item.name)}</h2><blockquote class="book-quote" id="book-quote">«${quote}»</blockquote>
+      ${entry?.quoteSource?`<div class="quote-attribution"><span>${h(entry.quoteAuthor)}</span><cite>${h(entry.quoteSource)}</cite></div>`:''}
+      <div class="book-rule">✥</div>
+      ${position>=0?'<button type="button" class="ingame-button small quote-hint" data-action="highlight-quote" aria-pressed="false" aria-controls="book-quote">Подсказка</button>':''}</div></div>
       <div class="book-navigation"><button class="ingame-button small" data-booknav="${previous?h(previous.id):''}" ${previous?'':'disabled'} aria-label="Previous collected journal">← Previous</button><span>${index+1} / ${S.books.length} · Collected journals</span><button class="ingame-button small" data-booknav="${next?h(next.id):''}" ${next?'':'disabled'} aria-label="Next collected journal">Next →</button></div>
       <button class="ingame-button" data-action="close-modal">Close Book</button></div>`,'book-dialog');
   }
@@ -1126,6 +1169,18 @@ window.QUEST_CONFIG = {
     if(target.dataset.item){if(suppressContextClick){suppressContextClick=false;return;}selectItem(target.dataset.item);hideFloats();return;}
     const action=target.dataset.action;
     switch(action){
+      case 'highlight-quote':{
+        const quote=$('#book-quote');
+        const focus=quote?.querySelector('.quote-focus');
+        if(focus && target.getAttribute('aria-pressed')!=='true'){
+          const strong=document.createElement('strong');
+          strong.className='quote-focus';
+          strong.textContent=focus.textContent;
+          focus.replaceWith(strong);
+          target.setAttribute('aria-pressed','true');
+        }
+        break;
+      }
       case 'buy-key':perform(()=>E.buyKey(C,S));break;
       case 'sell-all':perform(()=>E.sellJunk(C,S));break;
       case 'sell-one':perform(()=>E.sellJunk(C,S,target.dataset.id));break;

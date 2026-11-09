@@ -38,8 +38,10 @@
       currentFingerprint==='6ddbjx' && currentContent==='ua3dfa';
     const previousPersonal=(data.fingerprint==='6ddbjx' && data.contentFingerprint==='ua3dfa') ||
       (data.fingerprint==='1u9j280' && data.contentFingerprint==='1jgo4t0');
-    const secretExpansion=previousPersonal && currentFingerprint==='1g13ejj' && currentContent==='15s46ts';
-    if (!demoTranslation && !personalRevision && !secretExpansion) return data;
+    const quotationConfig=currentFingerprint==='t47zv8' && currentContent==='3hxg46';
+    const secretExpansion=previousPersonal && ((currentFingerprint==='1g13ejj' && currentContent==='15s46ts') || quotationConfig);
+    const quotationRevision=quotationConfig && data.fingerprint==='1g13ejj' && data.contentFingerprint==='15s46ts';
+    if (!demoTranslation && !personalRevision && !secretExpansion && !quotationRevision) return data;
     const state=clone(data);
     state.fingerprint=fingerprint(c);state.contentFingerprint=contentFingerprint(c);
     state.bonusOpenedIds=openedBonusIds(c,data);

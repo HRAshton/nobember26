@@ -231,13 +231,23 @@
   }
   function showBonusGranted(){showOverlay(`<div class="secret-modal"><div class="modal-title"><strong>Inventory</strong><button data-action="close-modal" aria-label="Close">×</button></div><div class="secret-shimmer">✦</div><h2>New Item Acquired</h2><div class="secret-acquired">${img('chest')}<div><strong>Black Lion Chest</strong><span>×1</span></div></div><p>Item added to your inventory.</p><button class="ingame-button gold" data-action="close-modal">Continue</button></div>`);}
   function readBook(item){
+    const entry=[...C.gifts,...E.bonusStages(C)].find(entry=>
+      (entry.id==='legendary'?'legendary-book':'book-'+entry.id)===item.id);
+    const clue=entry?.clue || item.clue;
+    const focus=entry?.clueFocus;
+    const position=focus ? clue.indexOf(focus) : -1;
+    const quote=position<0 ? h(clue) : h(clue.slice(0,position))+
+      '<span class="quote-focus">'+h(focus)+'</span>'+h(clue.slice(position+focus.length));
     // Only books already acquired can appear in this journal navigator.
     const index=S.books.findIndex(b=>b.id===item.id);
     const previous=index>0?S.books[index-1]:null;
     const next=index>=0&&index<S.books.length-1?S.books[index+1]:null;
     showOverlay(`<div class="book-modal illuminated-book"><div class="modal-title"><strong>${h(item.name)}</strong><button data-action="close-modal" aria-label="Close">×</button></div>
       <div class="book-spread"><div class="book-left-page"><div class="book-front-emblem">❦</div><div class="book-volume">${h(item.rarity==='legendary'?'LEGENDARY TOME':'A TRAVELER’S JOURNAL')}</div><div class="book-illustration">${icon(item)}</div><h3>${h(item.name)}</h3><div class="book-ledger">Account Bound<br>Quest Item</div></div>
-      <div class="book-pages"><div class="book-decoration">❧</div><h2>${h(item.subtitle||item.name)}</h2><p>«${h(item.clue)}»</p><div class="book-rule">✥</div><small>Pages from a forgotten journal</small></div></div>
+      <div class="book-pages"><div class="book-decoration">❧</div><h2>${h(item.subtitle||item.name)}</h2><blockquote class="book-quote" id="book-quote">«${quote}»</blockquote>
+      ${entry?.quoteSource?`<div class="quote-attribution"><span>${h(entry.quoteAuthor)}</span><cite>${h(entry.quoteSource)}</cite></div>`:''}
+      <div class="book-rule">✥</div>
+      ${position>=0?'<button type="button" class="ingame-button small quote-hint" data-action="highlight-quote" aria-pressed="false" aria-controls="book-quote">Подсказка</button>':''}</div></div>
       <div class="book-navigation"><button class="ingame-button small" data-booknav="${previous?h(previous.id):''}" ${previous?'':'disabled'} aria-label="Previous collected journal">← Previous</button><span>${index+1} / ${S.books.length} · Collected journals</span><button class="ingame-button small" data-booknav="${next?h(next.id):''}" ${next?'':'disabled'} aria-label="Next collected journal">Next →</button></div>
       <button class="ingame-button" data-action="close-modal">Close Book</button></div>`,'book-dialog');
   }
@@ -265,6 +275,18 @@
     if(target.dataset.item){if(suppressContextClick){suppressContextClick=false;return;}selectItem(target.dataset.item);hideFloats();return;}
     const action=target.dataset.action;
     switch(action){
+      case 'highlight-quote':{
+        const quote=$('#book-quote');
+        const focus=quote?.querySelector('.quote-focus');
+        if(focus && target.getAttribute('aria-pressed')!=='true'){
+          const strong=document.createElement('strong');
+          strong.className='quote-focus';
+          strong.textContent=focus.textContent;
+          focus.replaceWith(strong);
+          target.setAttribute('aria-pressed','true');
+        }
+        break;
+      }
       case 'buy-key':perform(()=>E.buyKey(C,S));break;
       case 'sell-all':perform(()=>E.sellJunk(C,S));break;
       case 'sell-one':perform(()=>E.sellJunk(C,S,target.dataset.id));break;
